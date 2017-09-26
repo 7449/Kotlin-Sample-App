@@ -1,0 +1,36 @@
+buildscript {
+    ext.kotlin_version = '1.1.50'
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+ext {
+    applicationId = "sample.app.k"
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.3'
+    supportVersion = '25.3.1'
+    minSdkVersion = 15
+    targetSdkVersion = 25
+    versionCode = 1
+    versionName = '1.0'
+
+    xadapterVersion = '0.1.8'
+    rxJsoupNetWorkVersion = '0.0.7'
+    rxNetWorkVersion = '0.1.4'
+}
