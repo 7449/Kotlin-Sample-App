@@ -12,6 +12,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven { url 'https://maven.google.com' }
     }
 }
 
@@ -33,4 +34,6 @@ ext {
     xadapterVersion = '0.1.8'
     rxJsoupNetWorkVersion = '0.0.7'
     rxNetWorkVersion = '0.1.4'
+    dialogVersion = '0.9.4.5'
+    glideVersion = '4.1.1'
 }

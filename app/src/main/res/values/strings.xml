@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KotlinSample</string>
+    <string name="title_codekk">codekk</string>
+    <string name="title_zh">知乎</string>
 </resources>
