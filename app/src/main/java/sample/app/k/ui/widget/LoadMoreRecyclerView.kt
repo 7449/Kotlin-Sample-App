@@ -12,7 +12,7 @@ import java.lang.RuntimeException
  * by y on 27/09/2017.
  */
 class LoadMoreRecyclerView : RecyclerView {
-    private var layoutManagerType: LAYOUT_MANAGER_TYPE? = null
+    private var layoutManagerType: LAYOUT? = null
     private var lastPositions: IntArray? = null
     private var lastVisibleItemPosition: Int = 0
     private var loadingData: LoadMoreListener? = null
@@ -35,18 +35,18 @@ class LoadMoreRecyclerView : RecyclerView {
         val layoutManager = layoutManager
         if (layoutManagerType == null) {
             layoutManagerType = when (layoutManager) {
-                is GridLayoutManager -> LAYOUT_MANAGER_TYPE.GRID
-                is LinearLayoutManager -> LAYOUT_MANAGER_TYPE.LINEAR
-                is StaggeredGridLayoutManager -> LAYOUT_MANAGER_TYPE.STAGGERED_GRID
+                is GridLayoutManager -> LAYOUT.GRID
+                is LinearLayoutManager -> LAYOUT.LINEAR
+                is StaggeredGridLayoutManager -> LAYOUT.STAGGERED_GRID
                 else -> throw RuntimeException(
                         "Unsupported LayoutManager used. Valid ones are LinearLayoutManager, GridLayoutManager and StaggeredGridLayoutManager")
             }
         }
 
         when (layoutManagerType) {
-            LoadMoreRecyclerView.LAYOUT_MANAGER_TYPE.LINEAR -> lastVisibleItemPosition = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-            LoadMoreRecyclerView.LAYOUT_MANAGER_TYPE.GRID -> lastVisibleItemPosition = (layoutManager as GridLayoutManager).findLastVisibleItemPosition()
-            LoadMoreRecyclerView.LAYOUT_MANAGER_TYPE.STAGGERED_GRID -> {
+            LoadMoreRecyclerView.LAYOUT.LINEAR -> lastVisibleItemPosition = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+            LoadMoreRecyclerView.LAYOUT.GRID -> lastVisibleItemPosition = (layoutManager as GridLayoutManager).findLastVisibleItemPosition()
+            LoadMoreRecyclerView.LAYOUT.STAGGERED_GRID -> {
                 val staggeredGridLayoutManager = layoutManager as StaggeredGridLayoutManager
                 if (lastPositions == null) {
                     lastPositions = IntArray(staggeredGridLayoutManager.spanCount)
@@ -70,7 +70,7 @@ class LoadMoreRecyclerView : RecyclerView {
 
     private fun findMax(lastPositions: IntArray): Int = lastPositions.max() ?: lastPositions[0]
 
-    private enum class LAYOUT_MANAGER_TYPE {
+    private enum class LAYOUT {
         LINEAR,
         GRID,
         STAGGERED_GRID
