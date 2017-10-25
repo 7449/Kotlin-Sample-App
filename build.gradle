@@ -41,4 +41,5 @@ ext {
     dialogVersion = '0.9.4.7'
     glideVersion = '4.2.0'
     klogVersion = '1.6.0'
+    daggerVersion = '2.12'
 }

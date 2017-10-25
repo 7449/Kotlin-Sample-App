@@ -2,4 +2,12 @@
     <string name="app_name">KotlinSample</string>
     <string name="title_codekk">codekk</string>
     <string name="title_zh">知乎</string>
+    <string name="status_layout_tips_empty">数据为空</string>
+    <string name="status_layout_tips_error">加载失败\n点击重试</string>
+    <string name="status_layout_tips_normal">empty</string>
+    <string name="status_layout_tips_success">加载成功</string>
+    <string name="zhihu">知乎专栏</string>
+    <string name="blog">blog</string>
+    <string name="jsoup">Jsoup</string>
+    <string name="codekk">codeKK</string>
 </resources>

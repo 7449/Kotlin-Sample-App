@@ -22,6 +22,8 @@ kotlin app
 
 ## 使用的开源库
 
+[dagger](https://github.com/google/dagger)
+
 [kotlin](https://github.com/JetBrains/kotlin)
 
 [glide](https://github.com/bumptech/glide)

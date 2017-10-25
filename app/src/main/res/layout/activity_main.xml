@@ -1,23 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dl_layout"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-
-    <FrameLayout
-        android:id="@+id/fragment"
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/zhihu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorWhite" />
+        android:layout_height="wrap_content"
+        android:text="@string/zhihu" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/blog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/blog" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/jsoup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/jsoup" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/codeKK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/codekk" />
+
+    <sample.app.k.ui.widget.status.StatusLayout
+        android:id="@+id/statusLayout"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navigationview"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/colorDrawableLayout"
-        app:menu="@menu/drawerlayout_menu" />
-</android.support.v4.widget.DrawerLayout>
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="normal" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="loading" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="empty" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="success" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="error" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+
