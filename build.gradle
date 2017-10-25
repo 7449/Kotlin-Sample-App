@@ -1,10 +1,13 @@
 buildscript {
     ext.kotlin_version = '1.1.50'
+    ext.objectboxVersion = '1.1.0'
     repositories {
+        maven { url "http://objectbox.net/beta-repo/" }
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -12,6 +15,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven { url "http://objectbox.net/beta-repo/" }
         maven { url 'https://maven.google.com' }
     }
 }
@@ -33,7 +37,8 @@ ext {
 
     xadapterVersion = '0.1.8'
     rxJsoupNetWorkVersion = '0.0.7'
-    rxNetWorkVersion = '0.1.4'
-    dialogVersion = '0.9.4.5'
-    glideVersion = '4.1.1'
+    rxNetWorkVersion = '0.1.5'
+    dialogVersion = '0.9.4.7'
+    glideVersion = '4.2.0'
+    klogVersion = '1.6.0'
 }
