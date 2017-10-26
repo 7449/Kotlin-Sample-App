@@ -15,21 +15,21 @@ android {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile "com.android.support:appcompat-v7:$supportVersion"
-    compile "com.android.support:design:$supportVersion"
-    compile "com.xadapter:xadapter:$xadapterVersion"
-    compile "com.ydevelop:rxJsoupNetWork:$rxJsoupNetWorkVersion"
-    compile "com.ydevelop:rxNetWork:$rxNetWorkVersion"
-    compile "com.github.bumptech.glide:glide:$glideVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
+    implementation "com.xadapter:xadapter:$xadapterVersion"
+    implementation "com.ydevelop:rxJsoupNetWork:$rxJsoupNetWorkVersion"
+    implementation "com.ydevelop:rxNetWork:$rxNetWorkVersion"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
-    compile("com.afollestad.material-dialogs:core:$dialogVersion", {
+    implementation("com.afollestad.material-dialogs:core:$dialogVersion", {
         exclude group: 'com.android.support'
     })
-    compile "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
-    compile "com.github.zhaokaiqiang.klog:library:$klogVersion"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "com.github.zhaokaiqiang.klog:library:$klogVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 repositories {
     mavenCentral()
