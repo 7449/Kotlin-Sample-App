@@ -1,20 +1,21 @@
 buildscript {
-    ext.kotlin_version = '1.1.50'
-    ext.objectboxVersion = '1.1.0'
+    apply from: 'version.gradle'
     repositories {
-        maven { url "http://objectbox.net/beta-repo/" }
         jcenter()
+        google()
+        maven { url "http://objectbox.net/beta-repo/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
-        classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.android.tools.build:gradle:$apiVersion.gradleVersion"
+        classpath "io.objectbox:objectbox-gradle-plugin:$apiVersion.objectboxVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$apiVersion.kotlinVersion"
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
         maven { url "http://objectbox.net/beta-repo/" }
         maven { url 'https://maven.google.com' }
     }
@@ -22,24 +23,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-
-ext {
-    applicationId = "sample.app.k"
-    compileSdkVersion = 26
-    buildToolsVersion = '26.0.2'
-    supportVersion = '26.0.2'
-    minSdkVersion = 15
-    targetSdkVersion = 26
-    versionCode = 1
-    versionName = '1.0'
-
-    xadapterVersion = '0.1.8'
-    rxJsoupNetWorkVersion = '0.0.7'
-    rxNetWorkVersion = '0.1.5'
-    dialogVersion = '0.9.4.7'
-    glideVersion = '4.2.0'
-    klogVersion = '1.6.0'
-    daggerVersion = '2.12'
 }

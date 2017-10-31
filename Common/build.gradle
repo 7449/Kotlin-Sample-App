@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'io.objectbox'
+apply from: '../version.gradle'
+
+android {
+    compileSdkVersion localVersion.compileSdkVersion
+    buildToolsVersion localVersion.buildToolsVersion
+    defaultConfig {
+        minSdkVersion localVersion.minSdkVersion
+        targetSdkVersion localVersion.targetSdkVersion
+        versionCode localVersion.versionCode
+        versionName localVersion.versionName
+    }
+}
+dependencies {
+    api "com.android.support:appcompat-v7:$localVersion.supportLibraryVersion"
+    api "com.android.support:design:$localVersion.supportLibraryVersion"
+    api "org.jetbrains.kotlin:kotlin-stdlib:$apiVersion.kotlinVersion"
+    api "com.xadapter:xadapter:$apiVersion.xadapterVersion"
+    api "com.ydevelop:rxJsoupNetWork:$apiVersion.rxJsoupNetWorkVersion"
+    api "com.ydevelop:rxNetWork:$apiVersion.rxNetWorkVersion"
+    api "com.github.bumptech.glide:glide:$apiVersion.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$apiVersion.glideVersion"
+    api("com.afollestad.material-dialogs:core:$apiVersion.dialogVersion", {
+        exclude group: 'com.android.support'
+    })
+    api "com.google.dagger:dagger:$apiVersion.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$apiVersion.daggerVersion"
+    api "com.github.zhaokaiqiang.klog:library:$apiVersion.klogVersion"
+}

@@ -2,9 +2,15 @@ package sample.app.k.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import com.blog.BlogMainActivity
+import com.codekk.CodekkMainActivity
+import com.common.base.BaseActivity
+import com.common.utils.UIUtils
+import com.common.widget.status.StatusLayout
+import com.jsoup.JsoupMainActivity
+import com.zhihu.ZhiHuMainActivity
 import sample.app.k.R
-import sample.app.k.ui.widget.status.StatusLayout
-import sample.app.k.util.UIUtils
 
 class MainActivity : BaseActivity(), View.OnClickListener {
 
@@ -18,10 +24,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 //            R.id.empty -> b = statusView!!.setStatus(StatusLayout.EMPTY)
 //            R.id.success -> b = statusView!!.setStatus(StatusLayout.SUCCESS)
 //            R.id.error -> b = statusView!!.setStatus(StatusLayout.ERROR)
-            R.id.zhihu -> UIUtils.toast("zhihu")
-            R.id.jsoup -> UIUtils.toast("jsoup")
-            R.id.blog -> UIUtils.toast("blog")
-            R.id.codeKK -> UIUtils.toast("codekk")
+            R.id.blog -> UIUtils.startActivity(BlogMainActivity().javaClass)
+            R.id.jsoup -> UIUtils.startActivity(JsoupMainActivity().javaClass)
+            R.id.zhihu -> UIUtils.startActivity(ZhiHuMainActivity().javaClass)
+            R.id.codeKK -> UIUtils.startActivity(CodekkMainActivity().javaClass)
         }
 //        if (b) {
 //            UIUtils.toast("设置状态成功")
@@ -47,15 +53,15 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     override fun initById() {
         statusView = getView(R.id.statusLayout)
-        findViewById(R.id.normal).setOnClickListener(this)
-        findViewById(R.id.loading).setOnClickListener(this)
-        findViewById(R.id.empty).setOnClickListener(this)
-        findViewById(R.id.success).setOnClickListener(this)
-        findViewById(R.id.error).setOnClickListener(this)
-        findViewById(R.id.zhihu).setOnClickListener(this)
-        findViewById(R.id.blog).setOnClickListener(this)
-        findViewById(R.id.jsoup).setOnClickListener(this)
-        findViewById(R.id.codeKK).setOnClickListener(this)
+        findViewById<Button>(R.id.normal).setOnClickListener(this)
+        findViewById<Button>(R.id.loading).setOnClickListener(this)
+        findViewById<Button>(R.id.empty).setOnClickListener(this)
+        findViewById<Button>(R.id.success).setOnClickListener(this)
+        findViewById<Button>(R.id.error).setOnClickListener(this)
+        findViewById<Button>(R.id.zhihu).setOnClickListener(this)
+        findViewById<Button>(R.id.blog).setOnClickListener(this)
+        findViewById<Button>(R.id.jsoup).setOnClickListener(this)
+        findViewById<Button>(R.id.codeKK).setOnClickListener(this)
     }
 
     override fun clickNetWork() {

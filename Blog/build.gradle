@@ -1,12 +1,12 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'io.objectbox'
 apply from: '../version.gradle'
 
 android {
     compileSdkVersion localVersion.compileSdkVersion
     buildToolsVersion localVersion.buildToolsVersion
     defaultConfig {
-        applicationId applicationIdVersion.applicationId
         minSdkVersion localVersion.minSdkVersion
         targetSdkVersion localVersion.targetSdkVersion
         versionCode localVersion.versionCode
@@ -16,10 +16,6 @@ android {
 
 dependencies {
     implementation project(':Common')
-    implementation project(':Blog')
-    implementation project(':Codekk')
-    implementation project(':Jsoup')
-    implementation project(':ZhiHu')
 }
 repositories {
     mavenCentral()

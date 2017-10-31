@@ -1,6 +1,7 @@
 package sample.app.k.ui.fragment
 
 import android.os.Bundle
+import com.common.base.BaseFragment
 import sample.app.k.R
 
 /**
