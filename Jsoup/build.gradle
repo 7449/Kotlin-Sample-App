@@ -1,9 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'io.objectbox'
 apply from: '../version.gradle'
 
 android {
+    dataBinding {
+        enabled = true
+    }
     compileSdkVersion localVersion.compileSdkVersion
     buildToolsVersion localVersion.buildToolsVersion
     defaultConfig {
@@ -15,6 +19,7 @@ android {
 }
 
 dependencies {
+    kapt "com.android.databinding:compiler:$apiVersion.databindingVersion"
     implementation project(':Common')
 }
 repositories {

@@ -15,7 +15,7 @@ ext.javaVersion = [
 ]
 
 ext.applicationIdVersion = [
-        applicationId       : 'sample.app.k'
+        applicationId: 'sample.app.k'
 ]
 
 ext.apiVersion = [
@@ -29,5 +29,6 @@ ext.apiVersion = [
         kotlinVersion        : '1.1.51',
         objectboxVersion     : '1.1.0',
         gradleVersion        : '3.0.0',
+        databindingVersion   : '3.0.0',
 ]
 

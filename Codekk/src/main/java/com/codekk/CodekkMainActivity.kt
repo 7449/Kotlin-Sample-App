@@ -8,16 +8,15 @@ import com.common.base.BaseActivity
  */
 class CodekkMainActivity : BaseActivity() {
     override fun initCreate(savedInstanceState: Bundle?) {
-        mToolbar?.title = javaClass.simpleName
+        mToolbar.title = javaClass.simpleName
     }
 
     override fun initById() {
-        mToolbar = getView(R.id.toolbar)
     }
 
     override fun clickNetWork() {
     }
 
-
+    override fun showToolbar(): Boolean = true
     override fun getLayoutId(): Int = R.layout.activity_main_codekk
 }

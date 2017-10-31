@@ -1,8 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply from: '../version.gradle'
 
 android {
+    dataBinding {
+        enabled = true
+    }
     compileSdkVersion localVersion.compileSdkVersion
     buildToolsVersion localVersion.buildToolsVersion
     defaultConfig {
@@ -15,6 +19,7 @@ android {
 }
 
 dependencies {
+    kapt "com.android.databinding:compiler:$apiVersion.databindingVersion"
     implementation project(':Common')
     implementation project(':Blog')
     implementation project(':Codekk')

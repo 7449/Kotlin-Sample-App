@@ -11,6 +11,7 @@ import com.common.widget.status.StatusLayout
 import com.jsoup.JsoupMainActivity
 import com.zhihu.ZhiHuMainActivity
 import sample.app.k.R
+import sample.app.k.ui.sample.databinding.DataBindActivity
 
 class MainActivity : BaseActivity(), View.OnClickListener {
 
@@ -28,6 +29,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             R.id.jsoup -> UIUtils.startActivity(JsoupMainActivity().javaClass)
             R.id.zhihu -> UIUtils.startActivity(ZhiHuMainActivity().javaClass)
             R.id.codeKK -> UIUtils.startActivity(CodekkMainActivity().javaClass)
+            R.id.databinding -> UIUtils.startActivity(DataBindActivity().javaClass)
         }
 //        if (b) {
 //            UIUtils.toast("设置状态成功")
@@ -62,11 +64,12 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         findViewById<Button>(R.id.blog).setOnClickListener(this)
         findViewById<Button>(R.id.jsoup).setOnClickListener(this)
         findViewById<Button>(R.id.codeKK).setOnClickListener(this)
+        findViewById<Button>(R.id.databinding).setOnClickListener(this)
     }
 
     override fun clickNetWork() {
     }
 
-
+    override fun showToolbar(): Boolean = false
     override fun getLayoutId(): Int = R.layout.activity_main
 }
