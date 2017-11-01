@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <data>
 
         <variable
-            name="main"
-            type="sample.app.k.ui.sample.databinding.entitiy.MainEntity" />
+            name="layoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager" />
     </data>
 
     <LinearLayout
@@ -14,25 +15,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <include layout="@layout/toolbar" />
-        </android.support.design.widget.AppBarLayout>
-
-
-        <Button
-            android:id="@+id/button1"
+        <com.common.widget.LoadMoreRecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{main.text1}" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{main.text2}" />
+            app:layoutManager="@{layoutManager}" />
 
     </LinearLayout>
 
