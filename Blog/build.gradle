@@ -16,6 +16,10 @@ android {
         versionCode localVersion.versionCode
         versionName localVersion.versionName
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {

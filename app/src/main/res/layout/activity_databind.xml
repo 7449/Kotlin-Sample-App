@@ -8,6 +8,10 @@
         <variable
             name="layoutManager"
             type="android.support.v7.widget.RecyclerView.LayoutManager" />
+
+        <variable
+            name="simpleLayoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager" />
     </data>
 
     <LinearLayout
@@ -20,6 +24,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="@{layoutManager}" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_update_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="更新数据" />
+
+        <com.common.widget.LoadMoreRecyclerView
+            android:id="@+id/simple_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="@{simpleLayoutManager}" />
 
     </LinearLayout>
 

@@ -16,15 +16,19 @@ android {
         versionCode localVersion.versionCode
         versionName localVersion.versionName
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     kapt "com.android.databinding:compiler:$apiVersion.databindingVersion"
     implementation project(':Common')
     implementation project(':Blog')
-    implementation project(':Codekk')
-    implementation project(':Jsoup')
-    implementation project(':ZhiHu')
+    //    implementation project(':Codekk')
+    //    implementation project(':Jsoup')
+    //    implementation project(':ZhiHu')
 }
 repositories {
     mavenCentral()

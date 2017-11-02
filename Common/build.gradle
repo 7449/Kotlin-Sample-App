@@ -16,6 +16,10 @@ android {
         versionCode localVersion.versionCode
         versionName localVersion.versionName
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 dependencies {
     api "com.android.support:appcompat-v7:$localVersion.supportLibraryVersion"
@@ -31,6 +35,5 @@ dependencies {
     })
     api "com.google.dagger:dagger:$apiVersion.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$apiVersion.daggerVersion"
-    api "com.github.zhaokaiqiang.klog:library:$apiVersion.klogVersion"
     kapt "com.android.databinding:compiler:$apiVersion.databindingVersion"
 }

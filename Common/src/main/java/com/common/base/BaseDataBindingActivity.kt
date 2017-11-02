@@ -101,9 +101,9 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding> : AppCompatActivi
 
     override fun onDestroy() {
         super.onDestroy()
-        baseBinding.unbind()
-        rootBinding.unbind()
-        toolbarBinding.unbind()
         childDataBinding.unbind()
+        toolbarBinding.unbind()
+        rootBinding.unbind()
+        baseBinding.unbind()
     }
 }

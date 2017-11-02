@@ -24,7 +24,6 @@ ext.apiVersion = [
         rxNetWorkVersion     : '0.1.5',
         dialogVersion        : '0.9.4.7',
         glideVersion         : '4.2.0',
-        klogVersion          : '1.6.0',
         daggerVersion        : '2.12',
         kotlinVersion        : '1.1.51',
         objectboxVersion     : '1.1.0',

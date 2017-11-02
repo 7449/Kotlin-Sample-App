@@ -1,22 +1,19 @@
 package com.blog
 
 import android.os.Bundle
-import com.common.base.BaseActivity
+import com.blog.databinding.ActivityMainBlogBinding
+import com.common.base.BaseDataBindingActivity
 
 /**
  * by y on 31/10/2017.
  */
-class BlogMainActivity : BaseActivity() {
-
-    override fun initCreate(savedInstanceState: Bundle?) {
-        mToolbar.title = javaClass.simpleName
-    }
-
-    override fun initById() {
+class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding>() {
+    override fun initDataBindingCreate(savedInstanceState: Bundle?) {
     }
 
     override fun clickNetWork() {
     }
-    override fun showToolbar(): Boolean = true
+
+    override fun getTitleName(): String = javaClass.simpleName
     override fun getLayoutId(): Int = R.layout.activity_main_blog
 }
