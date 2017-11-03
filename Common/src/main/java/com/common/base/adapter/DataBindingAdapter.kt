@@ -35,12 +35,17 @@ class DataBindingAdapter<T, BIND : ViewDataBinding> : RecyclerView.Adapter<DataB
             LogUtils.w("bind listener == null")
         }
         if (onClickListener != null) {
-            onClickListener?.onItemClick(holder.itemView, position, mData[position])
+            holder.itemView.setOnClickListener { view ->
+                onClickListener?.onItemClick(view, position, mData[position])
+            }
         } else {
             LogUtils.w("onClickListener == null")
         }
         if (onLongClickListener != null) {
-            onLongClickListener?.onItemLongClick(holder.itemView, position, mData[position])
+            holder.itemView.setOnLongClickListener { view ->
+                onLongClickListener?.onItemLongClick(view, position, mData[position])
+                true
+            }
         } else {
             LogUtils.w("onLongClickListener == null")
         }
