@@ -33,7 +33,7 @@ dependencies {
     api("com.afollestad.material-dialogs:core:$apiVersion.dialogVersion", {
         exclude group: 'com.android.support'
     })
-    api "com.google.dagger:dagger:$apiVersion.daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$apiVersion.daggerVersion"
+//    api "com.google.dagger:dagger:$apiVersion.daggerVersion"
+//    annotationProcessor "com.google.dagger:dagger-compiler:$apiVersion.daggerVersion"
     kapt "com.android.databinding:compiler:$apiVersion.databindingVersion"
 }

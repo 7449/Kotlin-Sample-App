@@ -8,4 +8,5 @@
     <string name="blog">blog</string>
     <string name="jsoup">Jsoup</string>
     <string name="codekk">codeKK</string>
+    <string name="network_error">网络错误</string>
 </resources>

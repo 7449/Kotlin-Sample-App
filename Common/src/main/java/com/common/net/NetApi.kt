@@ -12,4 +12,11 @@ object NetApi {
 
     const val ZL_LIST_API = "columns/"
     const val ZL_DETAIL_API = "posts/"
+
+
+    /************ Blog ******************/
+
+    const val BLOG_BASE_URL: String = "https://7449.github.io/"
+    const val BLOG_URL_SUFFIX: String = "/page%s"
+
 }

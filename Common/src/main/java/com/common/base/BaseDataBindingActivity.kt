@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.common.R
+import com.common.base.mvvm.CommonViewModel
 import com.common.databinding.LayoutBaseDatabindingBinding
 import com.common.databinding.LayoutRootBinding
 import com.common.databinding.LayoutToolbarBinding
@@ -18,7 +19,7 @@ import com.common.widget.status.StatusLayout
 /**
  * by y on 31/10/2017.
  */
-abstract class BaseDataBindingActivity<BIND : ViewDataBinding> : AppCompatActivity(), StatusClickListener {
+abstract class BaseDataBindingActivity<BIND : ViewDataBinding, VM : CommonViewModel<BIND>> : AppCompatActivity(), StatusClickListener {
 
     /**
      * BaseViewDataBinding
@@ -36,6 +37,10 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding> : AppCompatActivi
      * 子级Activity的ViewDataBinding
      */
     protected lateinit var childDataBinding: BIND
+    /**
+     * 子级Activity的ViewModel
+     */
+    protected lateinit var childVM: VM
     /**
      * @see StatusLayout
      */
@@ -60,7 +65,10 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding> : AppCompatActivi
         initStatusView()
         /***  子类初始化 **/
         initDataBindingCreate(savedInstanceState)
+        /***  初始化VM **/
+        childVM = initChildVm()
     }
+
 
     private fun initStatusView() {
         statusView = rootBinding.statusLayout
@@ -70,12 +78,13 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding> : AppCompatActivi
         statusView.setErrorView(R.layout.layout_error)
         statusView.getEmptyView()?.setOnClickListener({ clickNetWork() })
         statusView.getErrorView()?.setOnClickListener({ clickNetWork() })
-        setViewStatus(StatusLayout.SUCCESS)
+        statusView.setStatus(StatusLayout.SUCCESS)
         /***  初始化子类的DataBinding **/
         childDataBinding = DataBindingUtil.bind(statusView.getSuccessView())
     }
 
     abstract fun initDataBindingCreate(savedInstanceState: Bundle?)
+    abstract fun initChildVm(): VM
     abstract fun clickNetWork()
     abstract fun getTitleName(): String
     abstract fun getLayoutId(): Int
@@ -95,15 +104,12 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding> : AppCompatActivi
     override fun onErrorClick() {
     }
 
-    fun setViewStatus(status: String) {
-        statusView.setStatus(status)
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         childDataBinding.unbind()
         toolbarBinding.unbind()
         rootBinding.unbind()
         baseBinding.unbind()
+        childVM.onDestroy()
     }
 }

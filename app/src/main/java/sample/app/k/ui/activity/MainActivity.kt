@@ -2,14 +2,16 @@ package sample.app.k.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import com.blog.BlogMainActivity
+import com.blog.view.BlogMainActivity
 import com.common.base.BaseDataBindingActivity
+import com.common.base.mvvm.CommonViewModel
 import com.common.utils.UIUtils
 import sample.app.k.R
 import sample.app.k.databinding.ActivityMainBinding
 import sample.app.k.ui.sample.databinding.DataBindActivity
 
-class MainActivity : BaseDataBindingActivity<ActivityMainBinding>(), View.OnClickListener {
+class MainActivity : BaseDataBindingActivity<ActivityMainBinding, CommonViewModel<ActivityMainBinding>>(), View.OnClickListener {
+
     override fun initDataBindingCreate(savedInstanceState: Bundle?) {
         childDataBinding.statusLayout.setNorMalView(R.layout.layout_normal, null)
         childDataBinding.statusLayout.setLoadingView(R.layout.layout_loading, null)
@@ -55,6 +57,7 @@ class MainActivity : BaseDataBindingActivity<ActivityMainBinding>(), View.OnClic
     override fun clickNetWork() {
     }
 
+    override fun initChildVm(): CommonViewModel<ActivityMainBinding> = CommonViewModel(childDataBinding)
     override fun getTitleName(): String = javaClass.simpleName
     override fun getLayoutId(): Int = R.layout.activity_main
 }

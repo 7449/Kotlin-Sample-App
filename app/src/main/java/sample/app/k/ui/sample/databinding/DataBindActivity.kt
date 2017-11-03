@@ -8,6 +8,7 @@ import com.common.base.BaseDataBindingActivity
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
+import com.common.base.mvvm.CommonViewModel
 import com.xadapter.adapter.XRecyclerViewAdapter
 import sample.app.k.R
 import sample.app.k.databinding.ActivityDatabindBinding
@@ -19,7 +20,7 @@ import sample.app.k.ui.sample.databinding.entitiy.SimpleAdapterEntity
  * by y on 31/10/2017.
  */
 class DataBindActivity :
-        BaseDataBindingActivity<ActivityDatabindBinding>(),
+        BaseDataBindingActivity<ActivityDatabindBinding, CommonViewModel<ActivityDatabindBinding>>(),
         OnItemClickListener<SimpleAdapterEntity>,
         OnBind<SimpleAdapterEntity, ItemSimpleAdapterBinding> {
 
@@ -51,9 +52,18 @@ class DataBindActivity :
                 .onBind(this)
         childDataBinding.simpleRecyclerView.adapter = simpleAdapter
         childDataBinding.btnUpdateData.setOnClickListener {
-            simpleAdapter.addAll((31..60).mapTo(ObservableArrayList()) { SimpleAdapterEntity(it.toString(), R.mipmap.ic_launcher) })
+            val simpleData = ObservableArrayList<SimpleAdapterEntity>()
+            simpleData.add(SimpleAdapterEntity("31", R.mipmap.ic_launcher))
+            simpleData.add(SimpleAdapterEntity("32", R.mipmap.ic_launcher))
+            simpleData.add(SimpleAdapterEntity("33", R.mipmap.ic_launcher))
+            simpleData.add(SimpleAdapterEntity("34", R.mipmap.ic_launcher))
+            simpleData.add(SimpleAdapterEntity("35", R.mipmap.ic_launcher))
+            simpleData.add(SimpleAdapterEntity("36", R.mipmap.ic_launcher))
+            simpleData.add(SimpleAdapterEntity("37", R.mipmap.ic_launcher))
+            simpleData.add(SimpleAdapterEntity("38", R.mipmap.ic_launcher))
+            simpleData.add(SimpleAdapterEntity("39", R.mipmap.ic_launcher))
+            simpleAdapter.getData().addAll(simpleData)
         }
-
     }
 
     override fun onBind(bind: ItemSimpleAdapterBinding, position: Int, info: SimpleAdapterEntity) {
@@ -66,6 +76,7 @@ class DataBindActivity :
     override fun clickNetWork() {
     }
 
+    override fun initChildVm(): CommonViewModel<ActivityDatabindBinding> = CommonViewModel(childDataBinding)
     override fun getTitleName(): String = "DataBindingTitle"
     override fun getLayoutId(): Int = R.layout.activity_databind
 

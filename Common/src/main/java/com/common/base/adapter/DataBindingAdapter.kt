@@ -21,7 +21,7 @@ class DataBindingAdapter<T, BIND : ViewDataBinding> : RecyclerView.Adapter<DataB
     private var bind: OnBind<T, BIND>? = null
     private var onClickListener: OnItemClickListener<T>? = null
     private var onLongClickListener: OnItemLongClickListener<T>? = null
-    private var listChangedCallback: AdapterOnListChangedCallback<T> = AdapterOnListChangedCallback()
+    private var listChangedCallback: AdapterOnListChangedCallback<T, BIND> = AdapterOnListChangedCallback(this)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindingHolder {
         viewDataBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), layoutId, parent, false)
@@ -74,6 +74,12 @@ class DataBindingAdapter<T, BIND : ViewDataBinding> : RecyclerView.Adapter<DataB
         return this
     }
 
+    fun resetData(data: ObservableArrayList<T>): DataBindingAdapter<T, BIND> {
+        this.mData = data
+        notifyDataSetChanged()
+        return this
+    }
+
     fun add(data: T): DataBindingAdapter<T, BIND> {
         this.mData.add(data)
         notifyDataSetChanged()
@@ -107,16 +113,20 @@ class DataBindingAdapter<T, BIND : ViewDataBinding> : RecyclerView.Adapter<DataB
     }
 
     fun onDestroy() {
+        LogUtils.i("onDestroy-->removeOnListChangedCallback")
+        mData.removeOnListChangedCallback(listChangedCallback)
         viewDataBinding.unbind()
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
+        LogUtils.i("addOnListChangedCallback")
         mData.addOnListChangedCallback(listChangedCallback)
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
         super.onDetachedFromRecyclerView(recyclerView)
-        mData.removeOnListChangedCallback(listChangedCallback)
+        LogUtils.i("removeOnListChangedCallback")
+//        mData.removeOnListChangedCallback(listChangedCallback)
     }
 }
