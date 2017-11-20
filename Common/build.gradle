@@ -46,4 +46,5 @@ dependencies {
     api "android.arch.lifecycle:extensions:$apiVersion.lifecycleVersion"
     api "android.arch.lifecycle:common-java8:$apiVersion.lifecycleVersion"
     api "android.arch.lifecycle:compiler:$apiVersion.lifecycleVersion"
+    api "android.arch.lifecycle:reactivestreams:$apiVersion.lifecycleVersion"
 }
