@@ -29,5 +29,7 @@ ext.apiVersion = [
         objectboxVersion     : '1.1.0',
         gradleVersion        : '3.0.0',
         databindingVersion   : '3.0.0',
+        roomVersion          : '1.0.0',
+        lifecycleVersion     : '1.0.0',
 ]
 
