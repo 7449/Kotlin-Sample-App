@@ -44,7 +44,7 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding, VM : CommonViewMo
     /**
      * @see StatusLayout
      */
-    protected lateinit var statusView: StatusLayout
+    private lateinit var statusView: StatusLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +64,7 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding, VM : CommonViewMo
         /***  初始化根布局 **/
         initStatusView()
         /***  初始化VM **/
-        childVM = initChildVm()
+        childVM = initChildVm(rootBinding)
         /***  子类初始化 **/
         initDataBindingCreate(savedInstanceState)
     }
@@ -84,7 +84,7 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding, VM : CommonViewMo
     }
 
     abstract fun initDataBindingCreate(savedInstanceState: Bundle?)
-    abstract fun initChildVm(): VM
+    abstract fun initChildVm(rootBinding: LayoutRootBinding): VM
     abstract fun clickNetWork()
     abstract fun getTitleName(): String
     abstract fun getLayoutId(): Int

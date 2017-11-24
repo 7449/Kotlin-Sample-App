@@ -9,6 +9,7 @@ import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
 import com.common.base.mvvm.CommonViewModel
+import com.common.databinding.LayoutRootBinding
 import com.xadapter.adapter.XRecyclerViewAdapter
 import sample.app.k.R
 import sample.app.k.databinding.ActivityDatabindBinding
@@ -76,7 +77,7 @@ class DataBindActivity :
     override fun clickNetWork() {
     }
 
-    override fun initChildVm(): CommonViewModel<ActivityDatabindBinding> = CommonViewModel(childDataBinding)
+    override fun initChildVm(rootBinding: LayoutRootBinding): CommonViewModel<ActivityDatabindBinding> = CommonViewModel(childDataBinding)
     override fun getTitleName(): String = "DataBindingTitle"
     override fun getLayoutId(): Int = R.layout.activity_databind
 

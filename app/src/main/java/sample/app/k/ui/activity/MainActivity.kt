@@ -5,6 +5,7 @@ import android.view.View
 import com.blog.view.BlogMainActivity
 import com.common.base.BaseDataBindingActivity
 import com.common.base.mvvm.CommonViewModel
+import com.common.databinding.LayoutRootBinding
 import com.common.utils.UIUtils
 import sample.app.k.R
 import sample.app.k.databinding.ActivityMainBinding
@@ -57,7 +58,7 @@ class MainActivity : BaseDataBindingActivity<ActivityMainBinding, CommonViewMode
     override fun clickNetWork() {
     }
 
-    override fun initChildVm(): CommonViewModel<ActivityMainBinding> = CommonViewModel(childDataBinding)
+    override fun initChildVm(rootBinding: LayoutRootBinding): CommonViewModel<ActivityMainBinding> = CommonViewModel(childDataBinding)
     override fun getTitleName(): String = javaClass.simpleName
     override fun getLayoutId(): Int = R.layout.activity_main
 }

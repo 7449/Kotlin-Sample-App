@@ -1,6 +1,5 @@
 package com.blog.view
 
-import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
@@ -16,7 +15,7 @@ import com.common.base.BaseDataBindingActivity
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
-import com.common.net.service.SuccessCallback
+import com.common.databinding.LayoutRootBinding
 import com.common.utils.UIUtils
 import com.common.widget.LoadMoreRecyclerView
 
@@ -27,7 +26,7 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
         OnItemClickListener<BlogListModel>,
         OnBind<BlogListModel, ItemBlogListBinding>,
         LoadMoreRecyclerView.LoadMoreListener,
-        SwipeRefreshLayout.OnRefreshListener, SuccessCallback<ObservableArrayList<BlogListModel>> {
+        SwipeRefreshLayout.OnRefreshListener {
 
 
     private lateinit var mAdapter: DataBindingAdapter<BlogListModel, ItemBlogListBinding>
@@ -71,14 +70,6 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
         childVM.onRefresh()
     }
 
-    override fun add(info: ObservableArrayList<BlogListModel>) {
-        mAdapter.addAll(info)
-    }
-
-    override fun remove() {
-        mAdapter.removeAll()
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_tag, menu)
         return true
@@ -91,7 +82,7 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
         return super.onOptionsItemSelected(item)
     }
 
-    override fun initChildVm(): BlogListViewModel = BlogListViewModel(childDataBinding, this)
+    override fun initChildVm(rootBinding: LayoutRootBinding): BlogListViewModel = BlogListViewModel(childDataBinding, rootBinding)
     override fun getTitleName(): String = getString(R.string.blog)
     override fun getLayoutId(): Int = R.layout.activity_main_blog
 }

@@ -2,24 +2,26 @@ package com.blog.vm
 
 import android.databinding.ObservableArrayList
 import com.blog.databinding.ActivityMainBlogBinding
+import com.blog.databinding.ItemBlogListBinding
 import com.blog.model.BlogListModel
 import com.blog.model.JsoupManager
+import com.common.base.adapter.DataBindingAdapter
+import com.common.databinding.LayoutRootBinding
 import com.common.net.NetApi
-import com.common.net.service.SuccessCallback
 import org.jsoup.nodes.Document
 
 /**
  * by y on 03/11/2017.
  */
 
-class BlogListViewModel(binding: ActivityMainBlogBinding, private val call: SuccessCallback<ObservableArrayList<BlogListModel>>) : BlogVM<ObservableArrayList<BlogListModel>, ActivityMainBlogBinding>(binding) {
+class BlogListViewModel(binding: ActivityMainBlogBinding, rootBinding: LayoutRootBinding) : BlogVM<ObservableArrayList<BlogListModel>, ActivityMainBlogBinding>(binding) {
 
     private var page = 1
+    private lateinit var mAdapter: DataBindingAdapter<BlogListModel, ItemBlogListBinding>
 
     fun onRefresh() {
         binding.isShowProgress = true
         page = 1
-        call.remove()
         httpJsoupRequest(NetApi.BLOG_BASE_URL, this)
     }
 
@@ -32,9 +34,9 @@ class BlogListViewModel(binding: ActivityMainBlogBinding, private val call: Succ
         binding.isShowProgress = false
     }
 
-
     override fun onHttpSuccess(info: ObservableArrayList<BlogListModel>) {
-        call.add(info)
+        mAdapter = binding.recyclerView.adapter as DataBindingAdapter<BlogListModel, ItemBlogListBinding>
+        mAdapter.addAll(info)
         binding.isShowProgress = false
         page++
     }

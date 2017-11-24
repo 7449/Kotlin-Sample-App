@@ -1,6 +1,5 @@
 package com.blog.view
 
-import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -13,14 +12,14 @@ import com.common.base.BaseDataBindingActivity
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
-import com.common.net.service.SuccessCallback
+import com.common.databinding.LayoutRootBinding
 
 /**
  * by y on 24/11/2017.
  */
 class TagActivity : BaseDataBindingActivity<ActivityBlogTagBinding, BlogTagViewModel>(),
         OnItemClickListener<BlogTagModel>,
-        OnBind<BlogTagModel, ItemBlogTagBinding>, SuccessCallback<ObservableArrayList<BlogTagModel>> {
+        OnBind<BlogTagModel, ItemBlogTagBinding> {
 
     private lateinit var mAdapter: DataBindingAdapter<BlogTagModel, ItemBlogTagBinding>
 
@@ -48,14 +47,7 @@ class TagActivity : BaseDataBindingActivity<ActivityBlogTagBinding, BlogTagViewM
         bind.entity = info
     }
 
-    override fun add(info: ObservableArrayList<BlogTagModel>) {
-        mAdapter.addAll(info)
-    }
-
-    override fun remove() {
-    }
-
-    override fun initChildVm(): BlogTagViewModel = BlogTagViewModel(childDataBinding, this)
+    override fun initChildVm(rootBinding: LayoutRootBinding): BlogTagViewModel = BlogTagViewModel(childDataBinding, rootBinding)
 
     override fun clickNetWork() {
         childVM.onRefresh()
