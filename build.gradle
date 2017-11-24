@@ -6,7 +6,7 @@ buildscript {
         maven { url "http://objectbox.net/beta-repo/" }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$apiVersion.gradleVersion"
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "io.objectbox:objectbox-gradle-plugin:$apiVersion.objectboxVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$apiVersion.kotlinVersion"
     }

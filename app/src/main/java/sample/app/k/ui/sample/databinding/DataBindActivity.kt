@@ -62,7 +62,7 @@ class DataBindActivity :
             simpleData.add(SimpleAdapterEntity("37", R.mipmap.ic_launcher))
             simpleData.add(SimpleAdapterEntity("38", R.mipmap.ic_launcher))
             simpleData.add(SimpleAdapterEntity("39", R.mipmap.ic_launcher))
-            simpleAdapter.getData().addAll(simpleData)
+            simpleAdapter.addAll(simpleData)
         }
     }
 

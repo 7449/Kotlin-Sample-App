@@ -34,7 +34,7 @@ class BlogListViewModel(binding: ActivityMainBlogBinding, private val adapter: D
 
 
     override fun onHttpSuccess(info: ObservableArrayList<BlogListModel>) {
-        adapter.getData().addAll(info)
+        adapter.addAll(info)
         binding.isShowProgress = false
         page++
     }

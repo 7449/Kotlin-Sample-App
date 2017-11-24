@@ -20,11 +20,9 @@ internal object Util {
             LayoutInflater.from(statusLayout.context).inflate(id, statusLayout, false)
 
     fun goneView(vararg views: View?) {
-        for (view in views) {
-            if (view != null) {
-                view.visibility = View.GONE
-            }
-        }
+        views
+                .filterNotNull()
+                .forEach { it.visibility = View.GONE }
     }
 
     fun visibilityView(view: View?) {
