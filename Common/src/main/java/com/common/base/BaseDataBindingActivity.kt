@@ -55,7 +55,7 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding, VM : CommonViewMo
         /***  获取 Toolbar 的 DataBinding 和 根布局的 DataBinding **/
         rootBinding = baseBinding.layoutRoot!!
         toolbarBinding = baseBinding.layoutToolbar!!
-
+        setSupportActionBar(toolbarBinding.toolbar)
         /***  如果是MainActivity跳过Toolbar的设置 **/
         if (!TextUtils.equals(javaClass.simpleName, "MainActivity")) {
             toolbarBinding.toolbar.navigationIcon = UIUtils.getDrawable(R.drawable.ic_arrow_back_24dp)
@@ -63,10 +63,10 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding, VM : CommonViewMo
         }
         /***  初始化根布局 **/
         initStatusView()
-        /***  子类初始化 **/
-        initDataBindingCreate(savedInstanceState)
         /***  初始化VM **/
         childVM = initChildVm()
+        /***  子类初始化 **/
+        initDataBindingCreate(savedInstanceState)
     }
 
 

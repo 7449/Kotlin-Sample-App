@@ -24,7 +24,7 @@ class AdapterOnListChangedCallback<T, BIND : ViewDataBinding>(val adapter: DataB
 
     /****** 每当项目已插入到列表中调用                        *******/
     override fun onItemRangeInserted(sender: ObservableArrayList<T>, positionStart: Int, itemCount: Int) {
-//        adapter.resetData(sender)
+        adapter.resetData(sender)
         LogUtils.i("onItemRangeInserted", (sender + "  " + positionStart + "  " + itemCount).toString())
     }
 

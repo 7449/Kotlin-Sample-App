@@ -1,8 +1,11 @@
 package com.blog.view
 
+import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.blog.R
 import com.blog.databinding.ActivityMainBlogBinding
@@ -13,6 +16,8 @@ import com.common.base.BaseDataBindingActivity
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
+import com.common.net.service.SuccessCallback
+import com.common.utils.UIUtils
 import com.common.widget.LoadMoreRecyclerView
 
 /**
@@ -22,12 +27,14 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
         OnItemClickListener<BlogListModel>,
         OnBind<BlogListModel, ItemBlogListBinding>,
         LoadMoreRecyclerView.LoadMoreListener,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, SuccessCallback<ObservableArrayList<BlogListModel>> {
+
 
     private lateinit var mAdapter: DataBindingAdapter<BlogListModel, ItemBlogListBinding>
 
 
     override fun initDataBindingCreate(savedInstanceState: Bundle?) {
+
         childDataBinding.layoutManager = LinearLayoutManager(this)
         mAdapter = DataBindingAdapter<BlogListModel, ItemBlogListBinding>()
                 .initLayoutId(R.layout.item_blog_list)
@@ -40,6 +47,8 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
 
         childDataBinding.refreshLayout.setOnRefreshListener(this)
         childDataBinding.refreshLayout.post { this.onRefresh() }
+
+
     }
 
     override fun onRefresh() {
@@ -62,7 +71,27 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
         childVM.onRefresh()
     }
 
-    override fun initChildVm(): BlogListViewModel = BlogListViewModel(childDataBinding, mAdapter)
+    override fun add(info: ObservableArrayList<BlogListModel>) {
+        mAdapter.addAll(info)
+    }
+
+    override fun remove() {
+        mAdapter.removeAll()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_tag, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.tag) {
+            UIUtils.startActivity(TagActivity().javaClass)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun initChildVm(): BlogListViewModel = BlogListViewModel(childDataBinding, this)
     override fun getTitleName(): String = getString(R.string.blog)
     override fun getLayoutId(): Int = R.layout.activity_main_blog
 }
