@@ -14,32 +14,51 @@ import org.jsoup.nodes.Document
  * by y on 03/11/2017.
  */
 
-class BlogListViewModel(binding: ActivityMainBlogBinding, rootBinding: LayoutRootBinding) : BlogVM<ObservableArrayList<BlogListModel>, ActivityMainBlogBinding>(binding) {
+class BlogListViewModel(binding: ActivityMainBlogBinding, private var statusBinding: LayoutRootBinding) : BlogVM<ObservableArrayList<BlogListModel>, ActivityMainBlogBinding>(binding) {
 
     private var page = 1
     private lateinit var mAdapter: DataBindingAdapter<BlogListModel, ItemBlogListBinding>
 
+    fun setAdapter(dataBindingAdapter: DataBindingAdapter<BlogListModel, ItemBlogListBinding>) {
+        this.mAdapter = dataBindingAdapter
+    }
+
     fun onRefresh() {
-        binding.isShowProgress = true
         page = 1
+        showProgress()
         httpJsoupRequest(NetApi.BLOG_BASE_URL, this)
     }
 
     fun onLoadMore() {
-        binding.isShowProgress = true
+        if (binding.refreshLayout.isRefreshing) {
+            return
+        }
+        showProgress()
         httpJsoupRequest(NetApi.BLOG_BASE_URL + String.format(NetApi.BLOG_URL_SUFFIX, page), this)
     }
 
     override fun onHttpError(e: Throwable) {
-        binding.isShowProgress = false
+        hideProgress()
     }
 
     override fun onHttpSuccess(info: ObservableArrayList<BlogListModel>) {
-        mAdapter = binding.recyclerView.adapter as DataBindingAdapter<BlogListModel, ItemBlogListBinding>
+        if (page == 1) {
+            mAdapter.removeAll()
+        }
         mAdapter.addAll(info)
-        binding.isShowProgress = false
         page++
+        hideProgress()
     }
 
     override fun getT(document: Document): ObservableArrayList<BlogListModel> = JsoupManager.getBlogList(document)
+
+
+    private fun showProgress() {
+        binding.isShowProgress = true
+    }
+
+    private fun hideProgress() {
+        binding.isShowProgress = false
+    }
+
 }

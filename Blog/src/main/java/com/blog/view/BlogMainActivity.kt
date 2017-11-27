@@ -40,6 +40,8 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
                 .setOnItemClickListener(this)
                 .onBind(this)
 
+        childVM.setAdapter(mAdapter)
+
         childDataBinding.recyclerView.setHasFixedSize(true)
         childDataBinding.recyclerView.setLoadingMore(this)
         childDataBinding.recyclerView.adapter = mAdapter
@@ -55,7 +57,6 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
     }
 
     override fun onLoadMore() {
-        if (childDataBinding.refreshLayout.isRefreshing) return
         childVM.onLoadMore()
     }
 
@@ -77,7 +78,7 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.tag) {
-            UIUtils.startActivity(TagActivity().javaClass)
+            UIUtils.startActivity(BlogTagActivity().javaClass)
         }
         return super.onOptionsItemSelected(item)
     }

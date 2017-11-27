@@ -31,23 +31,17 @@ class DataBindingAdapter<T, BIND : ViewDataBinding> : RecyclerView.Adapter<DataB
     override fun onBindViewHolder(holder: DataBindingHolder, position: Int) {
         if (bind != null) {
             bind?.onBind(DataBindingUtil.bind(holder.itemView), position, mData[position])
-        } else {
-            LogUtils.w("bind listener == null")
         }
         if (onClickListener != null) {
             holder.itemView.setOnClickListener { view ->
                 onClickListener?.onItemClick(view, position, mData[position])
             }
-        } else {
-            LogUtils.w("onClickListener == null")
         }
         if (onLongClickListener != null) {
             holder.itemView.setOnLongClickListener { view ->
                 onLongClickListener?.onItemLongClick(view, position, mData[position])
                 true
             }
-        } else {
-            LogUtils.w("onLongClickListener == null")
         }
     }
 

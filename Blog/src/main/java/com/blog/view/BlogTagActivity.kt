@@ -13,11 +13,12 @@ import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
 import com.common.databinding.LayoutRootBinding
+import com.xadapter.adapter.multi.MultiCallBack
 
 /**
  * by y on 24/11/2017.
  */
-class TagActivity : BaseDataBindingActivity<ActivityBlogTagBinding, BlogTagViewModel>(),
+class BlogTagActivity : BaseDataBindingActivity<ActivityBlogTagBinding, BlogTagViewModel>(),
         OnItemClickListener<BlogTagModel>,
         OnBind<BlogTagModel, ItemBlogTagBinding> {
 
@@ -30,6 +31,8 @@ class TagActivity : BaseDataBindingActivity<ActivityBlogTagBinding, BlogTagViewM
                 .initLayoutId(R.layout.item_blog_tag)
                 .setOnItemClickListener(this)
                 .onBind(this)
+
+        childVM.setAdapter(mAdapter)
 
         childDataBinding.recyclerView.setHasFixedSize(true)
         childDataBinding.recyclerView.adapter = mAdapter
@@ -44,10 +47,15 @@ class TagActivity : BaseDataBindingActivity<ActivityBlogTagBinding, BlogTagViewM
     }
 
     override fun onBind(bind: ItemBlogTagBinding, position: Int, info: BlogTagModel) {
+        if (info.itemType != MultiCallBack.TYPE_ITEM) {
+            bind.blogListTitle.visibility = View.GONE
+        } else {
+            bind.blogListTitle.visibility = View.VISIBLE
+        }
         bind.entity = info
     }
 
-    override fun initChildVm(rootBinding: LayoutRootBinding): BlogTagViewModel = BlogTagViewModel(childDataBinding, rootBinding)
+    override fun initChildVm(rootBinding: LayoutRootBinding): BlogTagViewModel = BlogTagViewModel(childDataBinding)
 
     override fun clickNetWork() {
         childVM.onRefresh()
