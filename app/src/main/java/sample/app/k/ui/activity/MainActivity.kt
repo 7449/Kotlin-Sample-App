@@ -34,9 +34,9 @@ class MainActivity : BaseDataBindingActivity<ActivityMainBinding, CommonViewMode
     }
 
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
 //        var b = false
-        when (v?.id) {
+        when (v.id) {
 //            R.id.normal -> b = childDataBinding.statusLayout.setStatus(StatusLayout.NORMAL)
 //            R.id.loading -> b = childDataBinding.statusLayout.setStatus(StatusLayout.LOADING)
 //            R.id.empty -> b = childDataBinding.statusLayout.setStatus(StatusLayout.EMPTY)

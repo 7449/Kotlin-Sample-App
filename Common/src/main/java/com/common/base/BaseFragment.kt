@@ -27,8 +27,6 @@ abstract class BaseFragment : Fragment() {
     }
 
 
-    protected fun <T : View> getView(id: Int): T = mView!!.findViewById<T>(id) as T
-
     abstract fun initCreated(savedInstanceState: Bundle?)
 
 

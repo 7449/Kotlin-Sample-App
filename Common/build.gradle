@@ -9,7 +9,6 @@ android {
         enabled = true
     }
     compileSdkVersion localVersion.compileSdkVersion
-    buildToolsVersion localVersion.buildToolsVersion
     defaultConfig {
         minSdkVersion localVersion.minSdkVersion
         targetSdkVersion localVersion.targetSdkVersion
@@ -33,15 +32,10 @@ dependencies {
     api("com.afollestad.material-dialogs:core:$apiVersion.dialogVersion", {
         exclude group: 'com.android.support'
     })
-//    api "com.google.dagger:dagger:$apiVersion.daggerVersion"
-//    annotationProcessor "com.google.dagger:dagger-compiler:$apiVersion.daggerVersion"
-    kapt "com.android.databinding:compiler:$apiVersion.databindingVersion"
-
     api "android.arch.persistence.room:runtime:$apiVersion.roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$apiVersion.roomVersion"
     api "android.arch.persistence.room:rxjava2:$apiVersion.roomVersion"
     api "android.arch.persistence.room:testing:$apiVersion.roomVersion"
-
     api "android.arch.lifecycle:runtime:$apiVersion.lifecycleVersion"
     api "android.arch.lifecycle:extensions:$apiVersion.lifecycleVersion"
     api "android.arch.lifecycle:common-java8:$apiVersion.lifecycleVersion"

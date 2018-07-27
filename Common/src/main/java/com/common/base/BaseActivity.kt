@@ -50,8 +50,8 @@ abstract class BaseActivity : AppCompatActivity(), StatusClickListener {
         mStatusView.setSuccessView(getLayoutId(), FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         mStatusView.setEmptyView(R.layout.layout_empty)
         mStatusView.setErrorView(R.layout.layout_error)
-        mStatusView.getEmptyView()?.setOnClickListener({ clickNetWork() })
-        mStatusView.getErrorView()?.setOnClickListener({ clickNetWork() })
+        mStatusView.getEmptyView()?.setOnClickListener { clickNetWork() }
+        mStatusView.getErrorView()?.setOnClickListener { clickNetWork() }
         setStatusViewStatus(StatusLayout.SUCCESS)
 
         appBarLayout.addView(mToolbar)
@@ -61,8 +61,6 @@ abstract class BaseActivity : AppCompatActivity(), StatusClickListener {
         return coordinatorLayout
     }
 
-
-    protected fun <T : View> getView(id: Int): T = findViewById<T>(id) as T
 
     abstract fun initCreate(savedInstanceState: Bundle?)
     abstract fun initById()

@@ -1,17 +1,12 @@
 ext.localVersion = [
-        supportLibraryVersion: '27.0.0',
+        supportLibraryVersion: '27.1.1',
 
         compileSdkVersion    : 27,
-        buildToolsVersion    : '27.0.0',
         targetSdkVersion     : 27,
         minSdkVersion        : 19,
 
         versionCode          : 1,
         versionName          : '1.0',
-]
-
-ext.javaVersion = [
-        javaVersion: JavaVersion.VERSION_1_8
 ]
 
 ext.applicationIdVersion = [
@@ -21,15 +16,13 @@ ext.applicationIdVersion = [
 ext.apiVersion = [
         xadapterVersion      : '0.1.8',
         rxJsoupNetWorkVersion: '0.0.7',
-        rxNetWorkVersion     : '0.1.5',
-        dialogVersion        : '0.9.4.7',
-        glideVersion         : '4.2.0',
-        daggerVersion        : '2.12',
-        kotlinVersion        : '1.1.51',
-        objectboxVersion     : '1.1.0',
-        gradleVersion        : '3.0.0',
-        databindingVersion   : '3.0.0',
-        roomVersion          : '1.0.0',
-        lifecycleVersion     : '1.0.0',
+        rxNetWorkVersion     : '0.1.8',
+        dialogVersion        : '0.9.6.0',
+        glideVersion         : '4.7.1',
+        daggerVersion        : '2.16',
+        kotlinVersion        : '1.2.51',
+        objectboxVersion     : '2.0.0',
+        roomVersion          : '1.1.1',
+        lifecycleVersion     : '1.1.1',
 ]
 

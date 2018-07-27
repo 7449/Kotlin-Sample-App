@@ -8,7 +8,6 @@ android {
         enabled = true
     }
     compileSdkVersion localVersion.compileSdkVersion
-    buildToolsVersion localVersion.buildToolsVersion
     defaultConfig {
         applicationId applicationIdVersion.applicationId
         minSdkVersion localVersion.minSdkVersion
@@ -23,12 +22,11 @@ android {
 }
 
 dependencies {
-    kapt "com.android.databinding:compiler:$apiVersion.databindingVersion"
-    implementation project(':Common')
-    implementation project(':Blog')
-    //    implementation project(':Codekk')
-    //    implementation project(':Jsoup')
-    //    implementation project(':ZhiHu')
+    api project(':Common')
+    api project(':Blog')
+    api project(':Codekk')
+    api project(':Jsoup')
+    api project(':ZhiHu')
 }
 repositories {
     mavenCentral()

@@ -314,7 +314,7 @@ class StatusLayout : FrameLayout {
 
     companion object {
 
-        private val NO_LAYOUT = 0X00
+        private const val NO_LAYOUT = 0X00
         const val NORMAL = "StatusLayout:Normal" // 初始状态
         const val LOADING = "StatusLayout:Loading" // 正在加载
         const val EMPTY = "StatusLayout:Empty" // 加载空布局

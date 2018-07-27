@@ -9,7 +9,6 @@ android {
         enabled = true
     }
     compileSdkVersion localVersion.compileSdkVersion
-    buildToolsVersion localVersion.buildToolsVersion
     defaultConfig {
         minSdkVersion localVersion.minSdkVersion
         targetSdkVersion localVersion.targetSdkVersion
@@ -23,8 +22,7 @@ android {
 }
 
 dependencies {
-    kapt "com.android.databinding:compiler:$apiVersion.databindingVersion"
-    implementation project(':Common')
+    api project(':Common')
 }
 repositories {
     mavenCentral()

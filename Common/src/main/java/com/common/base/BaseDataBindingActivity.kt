@@ -76,11 +76,11 @@ abstract class BaseDataBindingActivity<BIND : ViewDataBinding, VM : CommonViewMo
         statusView.setSuccessView(getLayoutId(), FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         statusView.setEmptyView(R.layout.layout_empty)
         statusView.setErrorView(R.layout.layout_error)
-        statusView.getEmptyView()?.setOnClickListener({ clickNetWork() })
-        statusView.getErrorView()?.setOnClickListener({ clickNetWork() })
+        statusView.getEmptyView()?.setOnClickListener { clickNetWork() }
+        statusView.getErrorView()?.setOnClickListener { clickNetWork() }
         statusView.setStatus(StatusLayout.SUCCESS)
         /***  初始化子类的DataBinding **/
-        childDataBinding = DataBindingUtil.bind(statusView.getSuccessView())
+        childDataBinding = DataBindingUtil.bind(statusView.getSuccessView()!!)!!
     }
 
     abstract fun initDataBindingCreate(savedInstanceState: Bundle?)

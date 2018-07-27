@@ -30,7 +30,7 @@ class DataBindingAdapter<T, BIND : ViewDataBinding> : RecyclerView.Adapter<DataB
 
     override fun onBindViewHolder(holder: DataBindingHolder, position: Int) {
         if (bind != null) {
-            bind?.onBind(DataBindingUtil.bind(holder.itemView), position, mData[position])
+            bind?.onBind(DataBindingUtil.bind(holder.itemView)!!, position, mData[position])
         }
         if (onClickListener != null) {
             holder.itemView.setOnClickListener { view ->
@@ -123,7 +123,7 @@ class DataBindingAdapter<T, BIND : ViewDataBinding> : RecyclerView.Adapter<DataB
         mData.addOnListChangedCallback(listChangedCallback)
     }
 
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         super.onDetachedFromRecyclerView(recyclerView)
         LogUtils.i("removeOnListChangedCallback")
 //        mData.removeOnListChangedCallback(listChangedCallback)
