@@ -11,6 +11,8 @@ import com.common.base.adapter.OnItemClickListener
 import com.common.base.mvvm.CommonViewModel
 import com.common.databinding.LayoutRootBinding
 import com.xadapter.adapter.XRecyclerViewAdapter
+import com.xadapter.holder.XViewHolder
+import com.xadapter.listener.OnXBindListener
 import sample.app.k.R
 import sample.app.k.databinding.ActivityDatabindBinding
 import sample.app.k.databinding.ItemSimpleAdapterBinding
@@ -39,7 +41,11 @@ class DataBindActivity :
         mAdapter.addRecyclerView(childDataBinding.recyclerView)
                 .initXData(list)
                 .setLayoutId(R.layout.item_databinding)
-                .onXBind { holder, _, t -> holder.setTextView(R.id.tv_content, t.text) }
+                .onXBind(object : OnXBindListener<DataBindingMainEntity> {
+                    override fun onXBind(holder: XViewHolder, position: Int, entity: DataBindingMainEntity) {
+                        holder.setTextView(R.id.tv_content, entity.text)
+                    }
+                })
         childDataBinding.recyclerView.adapter = mAdapter
 
 

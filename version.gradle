@@ -14,9 +14,9 @@ ext.applicationIdVersion = [
 ]
 
 ext.apiVersion = [
-        xadapterVersion      : '0.1.8',
+        xadapterVersion      : '0.0.4',
         rxJsoupNetWorkVersion: '0.0.7',
-        rxNetWorkVersion     : '0.1.8',
+        rxNetWorkVersion     : '0.1.6',
         dialogVersion        : '0.9.6.0',
         glideVersion         : '4.7.1',
         daggerVersion        : '2.16',

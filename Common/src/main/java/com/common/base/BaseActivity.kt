@@ -43,7 +43,7 @@ abstract class BaseActivity : AppCompatActivity(), StatusClickListener {
         mToolbar = Toolbar(this)
         if (!TextUtils.equals(javaClass.simpleName, "MainActivity")) {
             mToolbar.navigationIcon = UIUtils.getDrawable(R.drawable.ic_arrow_back_24dp)
-            mToolbar.setNavigationOnClickListener({ finish() })
+            mToolbar.setNavigationOnClickListener { finish() }
         }
         mToolbar.setTitleTextColor(UIUtils.getColor(R.color.colorWhite))
         mStatusView = StatusLayout(this)

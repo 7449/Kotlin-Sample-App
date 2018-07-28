@@ -24,9 +24,9 @@ dependencies {
     api "com.android.support:appcompat-v7:$localVersion.supportLibraryVersion"
     api "com.android.support:design:$localVersion.supportLibraryVersion"
     api "org.jetbrains.kotlin:kotlin-stdlib:$apiVersion.kotlinVersion"
-    api "com.xadapter:xadapter:$apiVersion.xadapterVersion"
+    api "com.ydevelop:rv-adapter-kotlin:$apiVersion.xadapterVersion"
     api "com.ydevelop:rxJsoupNetWork:$apiVersion.rxJsoupNetWorkVersion"
-    api "com.ydevelop:rxNetWork:$apiVersion.rxNetWorkVersion"
+    api "com.ydevelop:rxNetWork-kotlin:$apiVersion.rxNetWorkVersion"
     api "com.github.bumptech.glide:glide:$apiVersion.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$apiVersion.glideVersion"
     api("com.afollestad.material-dialogs:core:$apiVersion.dialogVersion", {

@@ -35,10 +35,10 @@ open class CommonViewModel<out BIND : ViewDataBinding>(val binding: BIND) : Comm
     fun <T> httpRequest(observable: Observable<T>, listener: RxNetWorkListener<T>) {
         httpRequestCancel()
         LogUtils.i("http request:" + javaClass.simpleName)
-        RxNetWork.getInstance().getApi(javaClass.simpleName, observable, listener)
+        RxNetWork.instance.getApi(javaClass.simpleName, observable, listener)
     }
 
     fun httpRequestCancel() {
-        RxNetWork.getInstance().cancel(javaClass.simpleName)
+        RxNetWork.instance.cancel(javaClass.simpleName)
     }
 }
