@@ -6,7 +6,7 @@ import com.blog.R
 import com.blog.databinding.ActivityBlogTagBinding
 import com.blog.databinding.ItemBlogTagBinding
 import com.blog.model.BlogTagModel
-import com.blog.vm.BlogTagViewModel
+import com.blog.viewmodel.BlogTagViewModel
 import com.common.base.BaseDataBindingActivity
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind

@@ -1,4 +1,4 @@
-package com.blog.vm
+package com.blog.viewmodel
 
 import android.databinding.ObservableArrayList
 import com.blog.databinding.ActivityBlogTagBinding

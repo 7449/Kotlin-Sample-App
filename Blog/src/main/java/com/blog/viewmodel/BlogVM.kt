@@ -1,4 +1,4 @@
-package com.blog.vm
+package com.blog.viewmodel
 
 import android.databinding.ViewDataBinding
 import com.common.base.mvvm.CommonViewModel

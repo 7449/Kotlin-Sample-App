@@ -1,7 +1,12 @@
 package com.blog.view
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
+import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
@@ -10,19 +15,17 @@ import com.blog.R
 import com.blog.databinding.ActivityMainBlogBinding
 import com.blog.databinding.ItemBlogListBinding
 import com.blog.model.BlogListModel
-import com.blog.vm.BlogListViewModel
-import com.common.base.BaseDataBindingActivity
+import com.blog.viewmodel.BlogListViewModel
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
-import com.common.databinding.LayoutRootBinding
 import com.common.utils.UIUtils
 import com.common.widget.LoadMoreRecyclerView
 
 /**
  * by y on 31/10/2017.
  */
-class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogListViewModel>(),
+class BlogMainActivity : AppCompatActivity(),
         OnItemClickListener<BlogListModel>,
         OnBind<BlogListModel, ItemBlogListBinding>,
         LoadMoreRecyclerView.LoadMoreListener,
@@ -30,33 +33,47 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
 
 
     private lateinit var mAdapter: DataBindingAdapter<BlogListModel, ItemBlogListBinding>
+    private lateinit var mBinding: ActivityMainBlogBinding
+    private lateinit var viewModel: BlogListViewModel
 
-
-    override fun initDataBindingCreate(savedInstanceState: Bundle?) {
-        childDataBinding.layoutManager = LinearLayoutManager(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main_blog)
+        viewModel = ViewModelProviders.of(this).get(BlogListViewModel::class.java)
+        mBinding.title = getString(R.string.blog)
+        mBinding.layoutManager = LinearLayoutManager(this)
         mAdapter = DataBindingAdapter<BlogListModel, ItemBlogListBinding>()
                 .initLayoutId(R.layout.item_blog_list)
                 .setOnItemClickListener(this)
                 .onBind(this)
-
-        childVM.setAdapter(mAdapter)
-
-        childDataBinding.recyclerView.setHasFixedSize(true)
-        childDataBinding.recyclerView.setLoadingMore(this)
-        childDataBinding.recyclerView.adapter = mAdapter
-
-        childDataBinding.refreshLayout.setOnRefreshListener(this)
-        childDataBinding.refreshLayout.post { this.onRefresh() }
-
-
+        mBinding.recyclerView.setHasFixedSize(true)
+        mBinding.recyclerView.setLoadingMore(this)
+        mBinding.recyclerView.adapter = mAdapter
+        mBinding.refreshLayout.setOnRefreshListener(this)
+        mBinding.refreshLayout.post { this.onRefresh() }
     }
 
+    private fun subscribeUi(viewModel: BlogListViewModel) {
+        viewModel
+                .getBlogList()
+                .observe(this,
+                        Observer<ObservableArrayList<BlogListModel>> { blogList ->
+                            if (blogList != null) {
+                                mBinding.isShowProgress = false
+                                mAdapter.addAll(blogList)
+                            } else {
+                                mBinding.isShowProgress = true
+                            }
+                            mBinding.executePendingBindings()
+                        })
+    }
+
+
     override fun onRefresh() {
-        childVM.onRefresh()
+        subscribeUi(viewModel)
     }
 
     override fun onLoadMore() {
-        childVM.onLoadMore()
     }
 
     override fun onItemClick(view: View, position: Int, info: BlogListModel) {
@@ -64,10 +81,6 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
 
     override fun onBind(bind: ItemBlogListBinding, position: Int, info: BlogListModel) {
         bind.entity = info
-    }
-
-    override fun clickNetWork() {
-        childVM.onRefresh()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -81,8 +94,4 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
         }
         return super.onOptionsItemSelected(item)
     }
-
-    override fun initChildVm(rootBinding: LayoutRootBinding): BlogListViewModel = BlogListViewModel(childDataBinding, rootBinding)
-    override fun getTitleName(): String = getString(R.string.blog)
-    override fun getLayoutId(): Int = R.layout.activity_main_blog
 }
