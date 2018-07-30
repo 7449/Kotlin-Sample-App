@@ -16,6 +16,7 @@ import com.blog.databinding.ActivityMainBlogBinding
 import com.blog.databinding.ItemBlogListBinding
 import com.blog.model.BlogListModel
 import com.blog.viewmodel.BlogListViewModel
+import com.common.base.BaseEntity
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
@@ -50,17 +51,18 @@ class BlogMainActivity : AppCompatActivity(),
         mBinding.recyclerView.setLoadingMore(this)
         mBinding.recyclerView.adapter = mAdapter
         mBinding.refreshLayout.setOnRefreshListener(this)
-        mBinding.refreshLayout.post { this.onRefresh() }
-    }
-
-    private fun subscribeUi(viewModel: BlogListViewModel) {
         viewModel
                 .getBlogList()
                 .observe(this,
-                        Observer<ObservableArrayList<BlogListModel>> { blogList ->
+                        Observer<BaseEntity<ObservableArrayList<BlogListModel>>> { blogList ->
                             if (blogList != null) {
                                 mBinding.isShowProgress = false
-                                mAdapter.addAll(blogList)
+                                if (blogList.page == 1) {
+                                    mAdapter.removeAll()
+                                }
+                                if (blogList.data != null) {
+                                    mAdapter.addAll(blogList.data!!)
+                                }
                             } else {
                                 mBinding.isShowProgress = true
                             }
@@ -70,10 +72,12 @@ class BlogMainActivity : AppCompatActivity(),
 
 
     override fun onRefresh() {
-        subscribeUi(viewModel)
+        viewModel.onRefresh()
     }
 
     override fun onLoadMore() {
+        if (mBinding.refreshLayout.isRefreshing) return
+        viewModel.onLoadMore()
     }
 
     override fun onItemClick(view: View, position: Int, info: BlogListModel) {

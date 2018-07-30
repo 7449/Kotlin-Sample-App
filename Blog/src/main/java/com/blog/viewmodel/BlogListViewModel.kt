@@ -7,49 +7,54 @@ import android.arch.lifecycle.MediatorLiveData
 import android.databinding.ObservableArrayList
 import com.blog.model.BlogListModel
 import com.blog.model.JsoupManager
+import com.common.base.BaseEntity
 import com.common.net.NetApi
-import com.common.utils.LogUtils
 import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 import io.reactivex.jsoup.network.manager.RxJsoupNetWorkListener
 import org.jsoup.nodes.Document
 
 /**
  * by y on 03/11/2017.
+ * 有空了改成 dagger2
  */
 
-class BlogListViewModel(application: Application) : AndroidViewModel(application) {
+class BlogListViewModel(application: Application) : AndroidViewModel(application), RxJsoupNetWorkListener<ObservableArrayList<BlogListModel>> {
 
     private var page = 1
-    private val mObservableBlogList: MediatorLiveData<ObservableArrayList<BlogListModel>> = MediatorLiveData()
+    private val mObservableBlogList: MediatorLiveData<BaseEntity<ObservableArrayList<BlogListModel>>> = MediatorLiveData()
 
     init {
-        page = 1
-        RxJsoupNetWork
-                .getInstance()
-                .getApi(javaClass.simpleName,
-                        NetApi.BLOG_BASE_URL,
-                        object : RxJsoupNetWorkListener<ObservableArrayList<BlogListModel>> {
-                            override fun onNetWorkComplete() {
-                            }
-
-                            override fun onNetWorkError(e: Throwable?) {
-                            }
-
-                            override fun getT(document: Document): ObservableArrayList<BlogListModel> = JsoupManager.getBlogList(document)
-
-                            override fun onNetWorkStart() {
-                                mObservableBlogList.postValue(null)
-                            }
-
-                            override fun onNetWorkSuccess(t: ObservableArrayList<BlogListModel>) {
-                                LogUtils.d(t.size.toString())
-                                mObservableBlogList.postValue(t)
-                            }
-
-                        })
+        RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, NetApi.BLOG_BASE_URL, this)
     }
 
-    fun getBlogList(): LiveData<ObservableArrayList<BlogListModel>> {
+    fun onRefresh() {
+        page = 1
+        RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, NetApi.BLOG_BASE_URL, this)
+    }
+
+    fun onLoadMore() {
+        RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, NetApi.BLOG_BASE_URL + String.format(NetApi.BLOG_URL_SUFFIX, page), this)
+    }
+
+    override fun onNetWorkComplete() {
+    }
+
+    override fun onNetWorkError(e: Throwable?) {
+        mObservableBlogList.value = BaseEntity(BaseEntity.ERROR, page, null)
+    }
+
+    override fun getT(document: Document): ObservableArrayList<BlogListModel> = JsoupManager.getBlogList(document)
+
+    override fun onNetWorkStart() {
+        mObservableBlogList.value = null
+    }
+
+    override fun onNetWorkSuccess(t: ObservableArrayList<BlogListModel>?) {
+        mObservableBlogList.value = BaseEntity(BaseEntity.SUCCESS, page, t)
+        page++
+    }
+
+    fun getBlogList(): LiveData<BaseEntity<ObservableArrayList<BlogListModel>>> {
         return mObservableBlogList
     }
 }
