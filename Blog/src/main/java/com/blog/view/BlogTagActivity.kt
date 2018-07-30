@@ -1,7 +1,6 @@
 package com.blog.view
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.blog.R
 import com.blog.databinding.ActivityBlogTagBinding
@@ -26,7 +25,6 @@ class BlogTagActivity : BaseDataBindingActivity<ActivityBlogTagBinding, BlogTagV
 
 
     override fun initDataBindingCreate(savedInstanceState: Bundle?) {
-        childDataBinding.layoutManager = LinearLayoutManager(this)
         mAdapter = DataBindingAdapter<BlogTagModel, ItemBlogTagBinding>()
                 .initLayoutId(R.layout.item_blog_tag)
                 .setOnItemClickListener(this)

@@ -24,5 +24,6 @@ ext.apiVersion = [
         objectboxVersion     : '2.0.0',
         roomVersion          : '1.1.1',
         lifecycleVersion     : '1.1.1',
+        ktxVersion           : '1.0.0-beta01',
 ]
 

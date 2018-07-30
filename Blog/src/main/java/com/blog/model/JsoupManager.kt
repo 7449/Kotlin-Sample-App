@@ -21,6 +21,8 @@ object JsoupManager {
         return list
     }
 
+    fun getDetail(document: Document): BlogDetailModel = BlogDetailModel(document.select("div.row").eq(1).html(), "", "")
+
     fun getTag(document: Document): ObservableArrayList<BlogTagModel> {
         var tempPos = 0
         val list = ObservableArrayList<BlogTagModel>()

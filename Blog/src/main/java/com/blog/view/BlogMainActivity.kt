@@ -33,7 +33,6 @@ class BlogMainActivity : BaseDataBindingActivity<ActivityMainBlogBinding, BlogLi
 
 
     override fun initDataBindingCreate(savedInstanceState: Bundle?) {
-
         childDataBinding.layoutManager = LinearLayoutManager(this)
         mAdapter = DataBindingAdapter<BlogListModel, ItemBlogListBinding>()
                 .initLayoutId(R.layout.item_blog_list)
