@@ -41,7 +41,6 @@ class BlogMainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main_blog)
         viewModel = ViewModelProviders.of(this).get(BlogListViewModel::class.java)
-        mBinding.title = getString(R.string.blog)
         mBinding.layoutManager = LinearLayoutManager(this)
         mAdapter = DataBindingAdapter<BlogListModel, ItemBlogListBinding>()
                 .initLayoutId(R.layout.item_blog_list)
