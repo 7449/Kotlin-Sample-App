@@ -10,25 +10,9 @@
 
     </data>
 
-    <LinearLayout
-        android:id="@+id/blog"
+    <com.common.widget.LoadMoreRecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.common.widget.LoadMoreRecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="@{layoutManager}" />
-
-        </android.support.v4.widget.SwipeRefreshLayout>
-
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        app:layoutManager="@{layoutManager}" />
 </layout>

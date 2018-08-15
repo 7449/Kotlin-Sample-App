@@ -22,5 +22,6 @@ ext.apiVersion = [
         kotlinVersion        : '1.2.60',
         roomVersion          : '1.1.1',
         lifecycleVersion     : '1.1.1',
+        logVersion           : '1.0.5',
 ]
 

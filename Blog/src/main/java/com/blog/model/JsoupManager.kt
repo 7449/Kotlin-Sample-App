@@ -28,13 +28,13 @@ object JsoupManager {
         val elements = document.select("div.one-tag-list")
         for (element in elements) {
             val littleTitle = element.select("span.tag-text").text()
-            list.add(BlogTagModel("", littleTitle, "", 1, -1))
+            list.add(BlogTagModel("", littleTitle, "", BlogTagModel.ITEM, -1))
             val select = element.select("div.post-preview")
             for (contentElement in select) {
                 val detailUrl = contentElement.select("a[href]").attr("abs:href")
                 val title = contentElement.select("h2.post-title").text()
                 val contentLittleTitle = contentElement.select("h3.post-subtitle").text()
-                list.add(BlogTagModel(title, contentLittleTitle, detailUrl, 0, tempPos))
+                list.add(BlogTagModel(title, contentLittleTitle, detailUrl, BlogTagModel.TITLE, tempPos))
                 tempPos++
             }
         }

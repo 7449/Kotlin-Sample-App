@@ -2,4 +2,5 @@
 <resources>
     <string name="tag">tag</string>
     <string name="title_blog_list">博客列表</string>
+    <string name="title_blog_tag">tag</string>
 </resources>

@@ -35,4 +35,5 @@ dependencies {
     api "android.arch.lifecycle:common-java8:$apiVersion.lifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$apiVersion.lifecycleVersion"
     api "android.arch.lifecycle:reactivestreams:$apiVersion.lifecycleVersion"
+    api "com.yyxk.XLog:xlog:$apiVersion.logVersion"
 }

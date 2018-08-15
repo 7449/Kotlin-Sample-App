@@ -4,57 +4,68 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.ObservableArrayList
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.blog.R
 import com.blog.databinding.ActivityBlogTagBinding
 import com.blog.databinding.ItemBlogTagBinding
 import com.blog.model.BlogTagModel
 import com.blog.viewmodel.BlogTagViewModel
+import com.common.base.BaseActivity
 import com.common.base.BaseEntity
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
+import com.common.databinding.RootBinding
+import com.common.utils.UIUtils
+import com.status.layout.Status
 
 /**
  * by y on 24/11/2017.
  */
-class BlogTagActivity : AppCompatActivity(),
+class BlogTagActivity : BaseActivity<ActivityBlogTagBinding>(),
         OnItemClickListener<BlogTagModel>,
-        OnBind<BlogTagModel, ItemBlogTagBinding> {
+        OnBind<BlogTagModel, ItemBlogTagBinding>,
+        Observer<BaseEntity<ObservableArrayList<BlogTagModel>>> {
 
     private lateinit var mAdapter: DataBindingAdapter<BlogTagModel, ItemBlogTagBinding>
-    private lateinit var mBinding: ActivityBlogTagBinding
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_blog_tag)
-        mBinding.recyclerView.setHasFixedSize(true)
-        mBinding.recyclerView.adapter = mAdapter
-        mBinding.refreshLayout.isEnabled = false
-        ViewModelProviders.of(this).get(BlogTagViewModel::class.java)
-                .getBlogList()
-                .observe(this,
-                        Observer<BaseEntity<ObservableArrayList<BlogTagModel>>> { tagList ->
-                            if (tagList != null) {
-                                mBinding.refreshLayout.isRefreshing = false
-                                if (tagList.data != null) {
-                                    mAdapter.addAll(tagList.data!!)
-                                }
-                            } else {
-                                mBinding.refreshLayout.isRefreshing = true
-                            }
-                            mBinding.executePendingBindings()
-                        })
+    override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
+        rootBinding.title = UIUtils.getString(R.string.title_blog_tag)
+        mAdapter = DataBindingAdapter<BlogTagModel, ItemBlogTagBinding>()
+                .initLayoutId(R.layout.item_blog_list)
+                .setOnItemClickListener(this)
+                .onBind(this)
+        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.adapter = mAdapter
+        ViewModelProviders.of(this).get(BlogTagViewModel::class.java).blogTag.observe(this, this)
     }
 
+    override fun getLayoutId(): Int = R.layout.activity_blog_tag
+
+    override fun onChanged(tagList: BaseEntity<ObservableArrayList<BlogTagModel>>?) {
+        if (tagList == null) {
+            onChangeStatusLayout(Status.ERROR)
+            return
+        }
+        when (tagList.type) {
+            BaseEntity.ERROR -> onChangeStatusLayout(Status.ERROR)
+            BaseEntity.LOADING -> onChangeStatusLayout(Status.LOADING)
+            BaseEntity.SUCCESS -> {
+                onChangeStatusLayout(Status.SUCCESS)
+                mAdapter.addAll(tagList.data!!)
+            }
+        }
+    }
 
     override fun onItemClick(view: View, position: Int, info: BlogTagModel) {
-
     }
 
     override fun onBind(bind: ItemBlogTagBinding, position: Int, info: BlogTagModel) {
+        if (info.type != BlogTagModel.ITEM) {
+            bind.blogListTitle.visibility = View.GONE
+        } else {
+            bind.blogListTitle.visibility = View.VISIBLE
+        }
         bind.entity = info
     }
 }
