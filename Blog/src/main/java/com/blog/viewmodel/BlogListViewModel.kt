@@ -2,7 +2,6 @@ package com.blog.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
 import android.databinding.ObservableArrayList
 import com.blog.model.BlogListModel
@@ -15,24 +14,21 @@ import org.jsoup.nodes.Document
 
 /**
  * by y on 03/11/2017.
- * 有空了改成 dagger2
  */
 
 class BlogListViewModel(application: Application) : AndroidViewModel(application), RxJsoupNetWorkListener<ObservableArrayList<BlogListModel>> {
 
     private var page = 1
-    private val mObservableBlogList: MediatorLiveData<BaseEntity<ObservableArrayList<BlogListModel>>> = MediatorLiveData()
-
-    init {
-        RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, NetApi.BLOG_BASE_URL, this)
-    }
+    val blogList: MediatorLiveData<BaseEntity<ObservableArrayList<BlogListModel>>> = MediatorLiveData()
 
     fun onRefresh() {
         page = 1
+        RxJsoupNetWork.getInstance().cancel(javaClass.simpleName)
         RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, NetApi.BLOG_BASE_URL, this)
     }
 
     fun onLoadMore() {
+        RxJsoupNetWork.getInstance().cancel(javaClass.simpleName)
         RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, NetApi.BLOG_BASE_URL + String.format(NetApi.BLOG_URL_SUFFIX, page), this)
     }
 
@@ -40,22 +36,22 @@ class BlogListViewModel(application: Application) : AndroidViewModel(application
     }
 
     override fun onNetWorkError(e: Throwable?) {
-        mObservableBlogList.value = BaseEntity(BaseEntity.ERROR, page, null)
+        blogList.value = BaseEntity(if (page == 1) BaseEntity.ERROR else BaseEntity.REFRESH_ERROR, page, ObservableArrayList())
     }
 
     override fun getT(document: Document): ObservableArrayList<BlogListModel> = JsoupManager.getBlogList(document)
 
     override fun onNetWorkStart() {
-        mObservableBlogList.value = null
+        blogList.value = BaseEntity(BaseEntity.REFRESH, page, ObservableArrayList())
     }
 
     override fun onNetWorkSuccess(t: ObservableArrayList<BlogListModel>?) {
-        mObservableBlogList.value = BaseEntity(BaseEntity.SUCCESS, page, t)
-        page++
-    }
-
-    fun getBlogList(): LiveData<BaseEntity<ObservableArrayList<BlogListModel>>> {
-        return mObservableBlogList
+        if (page == 1 && t != null && t.isEmpty()) {
+            blogList.value = BaseEntity(BaseEntity.EMPTY, page, t)
+        } else {
+            blogList.value = BaseEntity(BaseEntity.SUCCESS, page, t)
+            ++page
+        }
     }
 }
 

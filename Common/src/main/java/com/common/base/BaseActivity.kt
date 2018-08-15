@@ -1,89 +1,77 @@
 package com.common.base
 
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.CoordinatorLayout
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.text.TextUtils
+import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.LinearLayout
 import com.common.R
-import com.common.utils.UIUtils
-import com.common.widget.status.StatusClickListener
-import com.common.widget.status.StatusLayout
-
+import com.common.databinding.RootBinding
+import com.status.layout.OnStatusClickListener
+import com.status.layout.Status
 
 /**
- * by y on 27/09/2017.
+ * by y on 31/10/2017.
  */
-abstract class BaseActivity : AppCompatActivity(), StatusClickListener {
-    protected lateinit var mStatusView: StatusLayout
-    protected lateinit var mToolbar: Toolbar
+abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnStatusClickListener {
+    companion object {
+        private const val MAIN_CLASS_NAME = "MainActivity"
+    }
 
+    private lateinit var rootBinding: RootBinding
+    open lateinit var binding: BIND
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(initContentView())
-        initById()
-        initCreate(savedInstanceState)
-        mToolbar.visibility = if (showToolbar()) View.VISIBLE else View.GONE
-    }
-
-    private fun initContentView(): View {
-        val coordinatorLayout = CoordinatorLayout(this)
-        val linearLayout = LinearLayout(this)
-        val appBarLayout = AppBarLayout(this)
-        coordinatorLayout.id = R.id.activityRootView
-        linearLayout.id = R.id.activityRootLinearView
-        linearLayout.orientation = LinearLayout.VERTICAL
-
-        mToolbar = Toolbar(this)
-        if (!TextUtils.equals(javaClass.simpleName, "MainActivity")) {
-            mToolbar.navigationIcon = UIUtils.getDrawable(R.drawable.ic_arrow_back_24dp)
-            mToolbar.setNavigationOnClickListener { finish() }
+        rootBinding = DataBindingUtil.setContentView(this, R.layout.root)
+        if (!TextUtils.equals(javaClass.simpleName, MAIN_CLASS_NAME)) {
+            setSupportActionBar(rootBinding.toolbar)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
-        mToolbar.setTitleTextColor(UIUtils.getColor(R.color.colorWhite))
-        mStatusView = StatusLayout(this)
-        mStatusView.setSuccessView(getLayoutId(), FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-        mStatusView.setEmptyView(R.layout.layout_empty)
-        mStatusView.setErrorView(R.layout.layout_error)
-        mStatusView.getEmptyView()?.setOnClickListener { clickNetWork() }
-        mStatusView.getErrorView()?.setOnClickListener { clickNetWork() }
-        setStatusViewStatus(StatusLayout.SUCCESS)
-
-        appBarLayout.addView(mToolbar)
-        linearLayout.addView(appBarLayout, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
-        linearLayout.addView(mStatusView, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-        coordinatorLayout.addView(linearLayout, CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-        return coordinatorLayout
+        rootBinding.statusLayout.setOnStatusClickListener(this)
+        rootBinding.statusLayout.addSuccessView(getLayoutId())
+        binding = DataBindingUtil.bind(rootBinding.statusLayout.getView(Status.SUCCESS))!!
+        initCreate(rootBinding, savedInstanceState)
     }
 
-
-    abstract fun initCreate(savedInstanceState: Bundle?)
-    abstract fun initById()
-    abstract fun clickNetWork()
+    abstract fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?)
     abstract fun getLayoutId(): Int
-    abstract fun showToolbar(): Boolean
 
-    override fun onNorMalClick() {
+    open fun onStatusRetry() {
     }
 
-    override fun onLoadingClick() {
+    override fun onSuccessClick(view: View) {
     }
 
-    override fun onEmptyClick() {
+    override fun onLoadingClick(view: View) {
     }
 
-    override fun onSuccessClick() {
+    override fun onEmptyClick(view: View) = onStatusRetry()
+    override fun onErrorClick(view: View) = onStatusRetry()
+    override fun onNorMalClick(view: View) {
     }
 
-    override fun onErrorClick() {
+
+    open fun onChangeStatusLayout(status: String) {
+        rootBinding.statusLayout.status = status
     }
 
-    fun setStatusViewStatus(status: String) {
-        mStatusView.setStatus(status)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.unbind()
+        rootBinding.unbind()
+    }
+
 }

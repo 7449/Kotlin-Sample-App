@@ -14,16 +14,13 @@ ext.applicationIdVersion = [
 ]
 
 ext.apiVersion = [
-        xadapterVersion      : '0.0.4',
         rxJsoupNetWorkVersion: '0.0.7',
         rxNetWorkVersion     : '0.1.6',
+        statusLayoutVersion  : 'beta',
         dialogVersion        : '0.9.6.0',
         glideVersion         : '4.7.1',
-        daggerVersion        : '2.16',
-        kotlinVersion        : '1.2.51',
-        objectboxVersion     : '2.0.0',
+        kotlinVersion        : '1.2.60',
         roomVersion          : '1.1.1',
         lifecycleVersion     : '1.1.1',
-        ktxVersion           : '1.0.0-beta01',
 ]
 

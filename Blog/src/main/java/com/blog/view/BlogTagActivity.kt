@@ -15,7 +15,6 @@ import com.common.base.BaseEntity
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
-import com.xadapter.adapter.multi.MultiCallBack
 
 /**
  * by y on 24/11/2017.
@@ -56,11 +55,6 @@ class BlogTagActivity : AppCompatActivity(),
     }
 
     override fun onBind(bind: ItemBlogTagBinding, position: Int, info: BlogTagModel) {
-        if (info.itemType != MultiCallBack.TYPE_ITEM) {
-            bind.blogListTitle.visibility = View.GONE
-        } else {
-            bind.blogListTitle.visibility = View.VISIBLE
-        }
         bind.entity = info
     }
 }

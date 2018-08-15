@@ -12,43 +12,20 @@
         <variable
             name="isShowProgress"
             type="Boolean" />
-
-        <variable
-            name="title"
-            type="String" />
     </data>
 
-    <LinearLayout
-        android:id="@+id/blog"
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        bind:isShowProgress="@{isShowProgress}">
 
-        <android.support.design.widget.AppBarLayout
+        <com.common.widget.LoadMoreRecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layoutManager="@{layoutManager}" />
 
-            <android.support.v7.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:title="@{title}" />
-        </android.support.design.widget.AppBarLayout>
-
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/refresh_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            bind:isShowProgress="@{isShowProgress}">
-
-            <com.common.widget.LoadMoreRecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="@{layoutManager}" />
-
-        </android.support.v4.widget.SwipeRefreshLayout>
-
-
-    </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </layout>

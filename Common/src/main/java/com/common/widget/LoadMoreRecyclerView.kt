@@ -1,6 +1,7 @@
 package com.common.widget
 
 import android.content.Context
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -16,6 +17,7 @@ class LoadMoreRecyclerView : RecyclerView {
     private var lastPositions: IntArray? = null
     private var lastVisibleItemPosition: Int = 0
     private var loadingData: LoadMoreListener? = null
+    private var swipeRefreshLayout: SwipeRefreshLayout? = null
 
     constructor(context: Context) : super(context)
 
@@ -27,6 +29,10 @@ class LoadMoreRecyclerView : RecyclerView {
 
     fun setLoadingMore(loadingData: LoadMoreListener) {
         this.loadingData = loadingData
+    }
+
+    fun setRefreshLayout(swipeRefreshLayout: SwipeRefreshLayout) {
+        this.swipeRefreshLayout = swipeRefreshLayout
     }
 
     override fun onScrolled(dx: Int, dy: Int) {
@@ -63,8 +69,9 @@ class LoadMoreRecyclerView : RecyclerView {
         val layoutManager = layoutManager
         val visibleItemCount = layoutManager.childCount
         val totalItemCount = layoutManager.itemCount
-        if (visibleItemCount > 0 && state == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPosition == totalItemCount - 1 && loadingData != null) {
-            loadingData!!.onLoadMore()
+        if (visibleItemCount > 0 && state == RecyclerView.SCROLL_STATE_IDLE
+                && lastVisibleItemPosition == totalItemCount - 1 && !swipeRefreshLayout?.isRefreshing!!) {
+            loadingData?.onLoadMore()
         }
     }
 
