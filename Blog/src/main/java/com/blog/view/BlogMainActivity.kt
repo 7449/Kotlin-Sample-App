@@ -86,6 +86,10 @@ class BlogMainActivity : BaseActivity<ActivityMainBlogBinding>(),
     }
 
     override fun onItemClick(view: View, position: Int, info: BlogListModel) {
+        val bundle = Bundle()
+        bundle.putString(BlogDetailActivity.TITLE, info.title)
+        bundle.putString(BlogDetailActivity.URL, info.detailUrl)
+        UIUtils.startActivity(BlogDetailActivity().javaClass, bundle)
     }
 
     override fun onBind(bind: ItemBlogListBinding, position: Int, info: BlogListModel) {

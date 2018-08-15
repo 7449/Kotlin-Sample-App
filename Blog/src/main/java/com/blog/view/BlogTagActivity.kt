@@ -58,6 +58,10 @@ class BlogTagActivity : BaseActivity<ActivityBlogTagBinding>(),
     }
 
     override fun onItemClick(view: View, position: Int, info: BlogTagModel) {
+        val bundle = Bundle()
+        bundle.putString(BlogDetailActivity.TITLE, info.title)
+        bundle.putString(BlogDetailActivity.URL, info.detailUrl)
+        UIUtils.startActivity(BlogDetailActivity().javaClass, bundle)
     }
 
     override fun onBind(bind: ItemBlogTagBinding, position: Int, info: BlogTagModel) {

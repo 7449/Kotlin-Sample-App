@@ -8,7 +8,6 @@ import com.blog.model.BlogTagModel
 import com.blog.model.JsoupManager
 import com.common.base.BaseEntity
 import com.common.net.NetApi
-import com.yyxk.xlog.XLog
 import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 import io.reactivex.jsoup.network.manager.RxJsoupNetWorkListener
 import org.jsoup.nodes.Document
@@ -30,7 +29,6 @@ class BlogTagViewModel(application: Application) : AndroidViewModel(application)
     }
 
     override fun onNetWorkError(e: Throwable?) {
-        XLog.d(e!!.message)
         blogTag.value = BaseEntity(BaseEntity.ERROR, 0, ObservableArrayList())
     }
 
