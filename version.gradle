@@ -16,7 +16,7 @@ ext.applicationIdVersion = [
 ext.apiVersion = [
         rxJsoupNetWorkVersion: '0.0.8',
         rxNetWorkVersion     : '0.1.6',
-        statusLayoutVersion  : 'beta',
+        statusLayoutVersion  : 'beta01',
         dialogVersion        : '0.9.6.0',
         glideVersion         : '4.7.1',
         kotlinVersion        : '1.2.60',

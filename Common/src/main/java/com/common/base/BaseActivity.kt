@@ -32,7 +32,7 @@ abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnSta
         }
         rootBinding.statusLayout.setOnStatusClickListener(this)
         rootBinding.statusLayout.addSuccessView(getLayoutId())
-        binding = DataBindingUtil.bind(rootBinding.statusLayout.getView(Status.SUCCESS))!!
+        binding = DataBindingUtil.bind(rootBinding.statusLayout.getView(Status.SUCCESS)!!)!!
         initCreate(rootBinding, savedInstanceState)
     }
 
@@ -55,7 +55,7 @@ abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnSta
 
 
     open fun onChangeStatusLayout(status: String) {
-        rootBinding.statusLayout.status = status
+        rootBinding.statusLayout.setStatus(status)
     }
 
     open fun onChangeToolbarTitle(title: String) {

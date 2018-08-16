@@ -49,8 +49,8 @@ abstract class BaseFragment<BIND : ViewDataBinding> : Fragment(), OnStatusClickL
         mStatusLayout.addEmptyView(R.layout.layout_status_empty)
         mStatusLayout.addLoadingView(R.layout.layout_status_loading)
         mStatusLayout.addErrorView(R.layout.layout_status_error)
-        mStatusLayout.status = Status.SUCCESS
-        binding = DataBindingUtil.bind(mStatusLayout.getView(Status.SUCCESS))!!
+        mStatusLayout.setStatus(Status.SUCCESS)
+        binding = DataBindingUtil.bind(mStatusLayout.getView(Status.SUCCESS)!!)!!
         mStatusLayout.setOnStatusClickListener(this)
     }
 
@@ -60,7 +60,7 @@ abstract class BaseFragment<BIND : ViewDataBinding> : Fragment(), OnStatusClickL
     }
 
     open fun onChangeStatusLayout(status: String) {
-        mStatusLayout.status = status
+        mStatusLayout.setStatus(status)
     }
 
     override fun onSuccessClick(view: View) {
