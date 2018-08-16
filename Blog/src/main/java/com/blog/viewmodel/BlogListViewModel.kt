@@ -5,9 +5,9 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MediatorLiveData
 import android.databinding.ObservableArrayList
 import com.blog.model.BlogListModel
+import com.blog.model.BlogUrl
 import com.blog.model.JsoupManager
 import com.common.base.BaseEntity
-import com.common.net.NetApi
 import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 import io.reactivex.jsoup.network.manager.RxJsoupNetWorkListener
 import org.jsoup.nodes.Document
@@ -24,12 +24,12 @@ class BlogListViewModel(application: Application) : AndroidViewModel(application
     fun onRefresh() {
         page = 1
         RxJsoupNetWork.getInstance().cancel(javaClass.simpleName)
-        RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, NetApi.BLOG_BASE_URL, this)
+        RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, BlogUrl.BLOG_BASE_URL, this)
     }
 
     fun onLoadMore() {
         RxJsoupNetWork.getInstance().cancel(javaClass.simpleName)
-        RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, NetApi.BLOG_BASE_URL + String.format(NetApi.BLOG_URL_SUFFIX, page), this)
+        RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, BlogUrl.BLOG_BASE_URL + String.format(BlogUrl.BLOG_URL_SUFFIX, page), this)
     }
 
     override fun onNetWorkComplete() {

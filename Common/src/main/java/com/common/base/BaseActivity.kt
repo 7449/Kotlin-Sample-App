@@ -20,7 +20,7 @@ abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnSta
         private const val MAIN_CLASS_NAME = "MainActivity"
     }
 
-    private lateinit var rootBinding: RootBinding
+    open lateinit var rootBinding: RootBinding
     open lateinit var binding: BIND
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +56,10 @@ abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnSta
 
     open fun onChangeStatusLayout(status: String) {
         rootBinding.statusLayout.status = status
+    }
+
+    open fun onChangeToolbarTitle(title: String) {
+        rootBinding.title = title
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

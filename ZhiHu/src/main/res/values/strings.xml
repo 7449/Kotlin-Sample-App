@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="zhihu_about">关于</string>
+    <string name="zhihu">知乎</string>
+    <string name="movie">影视</string>
+    <string name="music">音乐</string>
+    <string name="develop">开发</string>
+    <string name="book">读书写作</string>
+    <string name="internet">科技生活</string>
+    <string name="zhihu_detail_fb">fb</string>
+</resources>

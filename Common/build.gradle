@@ -22,6 +22,7 @@ android {
 dependencies {
     api "com.android.support:appcompat-v7:$localVersion.supportLibraryVersion"
     api "com.android.support:design:$localVersion.supportLibraryVersion"
+    api "com.android.support:cardview-v7:$localVersion.supportLibraryVersion"
     api "org.jetbrains.kotlin:kotlin-stdlib:$apiVersion.kotlinVersion"
     api "com.ydevelop:rxJsoupNetWork:$apiVersion.rxJsoupNetWorkVersion"
     api "com.ydevelop:rxNetWork-kotlin:$apiVersion.rxNetWorkVersion"

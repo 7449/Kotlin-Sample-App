@@ -2,10 +2,11 @@ package sample.app.k.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import com.blog.view.BlogMainActivity
+import com.blog.view.BlogListActivity
 import com.common.base.BaseActivity
 import com.common.databinding.RootBinding
 import com.common.utils.UIUtils
+import com.zhihu.view.ZhiHuMainActivity
 import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 import io.reactivex.network.RxNetWork
 import sample.app.k.R
@@ -23,9 +24,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.blog -> UIUtils.startActivity(BlogMainActivity().javaClass)
+            R.id.blog -> UIUtils.startActivity(BlogListActivity().javaClass)
 //            R.id.jsoup -> UIUtils.startActivity(JsoupMainActivity().javaClass)
-//            R.id.zhihu -> UIUtils.startActivity(ZhiHuMainActivity().javaClass)
+            R.id.zhihu -> UIUtils.startActivity(ZhiHuMainActivity().javaClass)
 //            R.id.codeKK -> UIUtils.startActivity(CodekkMainActivity().javaClass)
         }
     }

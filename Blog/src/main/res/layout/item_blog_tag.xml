@@ -17,16 +17,16 @@
         android:padding="10dp">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/blog_list_title"
+            android:id="@+id/blog_tag_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@{entity.title}"
             android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
+            android:textSize="22sp" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/blog_list_little_title"
+            android:id="@+id/blog_tag_little_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"

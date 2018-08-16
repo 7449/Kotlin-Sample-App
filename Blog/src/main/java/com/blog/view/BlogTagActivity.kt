@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.ObservableArrayList
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.blog.R
 import com.blog.databinding.ActivityBlogTagBinding
@@ -32,9 +33,10 @@ class BlogTagActivity : BaseActivity<ActivityBlogTagBinding>(),
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
         rootBinding.title = UIUtils.getString(R.string.title_blog_tag)
         mAdapter = DataBindingAdapter<BlogTagModel, ItemBlogTagBinding>()
-                .initLayoutId(R.layout.item_blog_list)
+                .initLayoutId(R.layout.item_blog_tag)
                 .setOnItemClickListener(this)
                 .onBind(this)
+        binding.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.adapter = mAdapter
         ViewModelProviders.of(this).get(BlogTagViewModel::class.java).blogTag.observe(this, this)
@@ -66,10 +68,11 @@ class BlogTagActivity : BaseActivity<ActivityBlogTagBinding>(),
 
     override fun onBind(bind: ItemBlogTagBinding, position: Int, info: BlogTagModel) {
         if (info.type != BlogTagModel.ITEM) {
-            bind.blogListTitle.visibility = View.GONE
+            bind.blogTagLittleTitle.visibility = View.GONE
         } else {
-            bind.blogListTitle.visibility = View.VISIBLE
+            bind.blogTagLittleTitle.visibility = View.VISIBLE
         }
         bind.entity = info
+        bind.root.isEnabled = info.type == BlogTagModel.ITEM
     }
 }

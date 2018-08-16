@@ -70,7 +70,7 @@ class LoadMoreRecyclerView : RecyclerView {
         val visibleItemCount = layoutManager.childCount
         val totalItemCount = layoutManager.itemCount
         if (visibleItemCount > 0 && state == RecyclerView.SCROLL_STATE_IDLE
-                && lastVisibleItemPosition == totalItemCount - 1 && !swipeRefreshLayout?.isRefreshing!!) {
+                && lastVisibleItemPosition == totalItemCount - 1 && swipeRefreshLayout != null && !swipeRefreshLayout?.isRefreshing!!) {
             loadingData?.onLoadMore()
         }
     }

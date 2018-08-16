@@ -11,7 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.blog.R
-import com.blog.databinding.ActivityMainBlogBinding
+import com.blog.databinding.ActivityBlogListBinding
 import com.blog.databinding.ItemBlogListBinding
 import com.blog.model.BlogListModel
 import com.blog.viewmodel.BlogListViewModel
@@ -28,7 +28,7 @@ import com.status.layout.Status
 /**
  * by y on 31/10/2017.
  */
-class BlogMainActivity : BaseActivity<ActivityMainBlogBinding>(),
+class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
         OnItemClickListener<BlogListModel>,
         OnBind<BlogListModel, ItemBlogListBinding>,
         LoadMoreRecyclerView.LoadMoreListener,
@@ -108,5 +108,5 @@ class BlogMainActivity : BaseActivity<ActivityMainBlogBinding>(),
         return super.onOptionsItemSelected(item)
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_main_blog
+    override fun getLayoutId(): Int = R.layout.activity_blog_list
 }
