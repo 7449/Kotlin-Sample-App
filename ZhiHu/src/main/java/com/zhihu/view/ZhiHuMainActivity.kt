@@ -17,21 +17,21 @@ class ZhiHuMainActivity : BaseActivity<ActivityZhihuMainBinding>(), NavigationVi
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.zhihu -> replaceFragment(item.title.toString(), ZhiHuConstant.ZHIHU)
-            R.id.movie -> replaceFragment(item.title.toString(), ZhiHuConstant.MOVIE)
-            R.id.music -> replaceFragment(item.title.toString(), ZhiHuConstant.MUSIC)
-            R.id.develop -> replaceFragment(item.title.toString(), ZhiHuConstant.DEVELOP)
-            R.id.book -> replaceFragment(item.title.toString(), ZhiHuConstant.BOOK)
-            R.id.internet -> replaceFragment(item.title.toString(), ZhiHuConstant.INTERNET)
+            R.id.zhihu_zhihu -> replaceFragment(item.title.toString(), ZhiHuConstant.ZHIHU)
+            R.id.zhihu_movie -> replaceFragment(item.title.toString(), ZhiHuConstant.MOVIE)
+            R.id.zhihu_music -> replaceFragment(item.title.toString(), ZhiHuConstant.MUSIC)
+            R.id.zhihu_develop -> replaceFragment(item.title.toString(), ZhiHuConstant.DEVELOP)
+            R.id.zhihu_book -> replaceFragment(item.title.toString(), ZhiHuConstant.BOOK)
+            R.id.zhihu_internet -> replaceFragment(item.title.toString(), ZhiHuConstant.INTERNET)
         }
         binding.zhihuDrawer.closeDrawers()
         return true
     }
 
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
-        rootBinding.title = UIUtils.getString(R.string.zhihu)
-        binding.drawerMenu.setNavigationItemSelectedListener(this)
-        replaceFragment(UIUtils.getString(R.string.zhihu), ZhiHuConstant.ZHIHU)
+        rootBinding.title = UIUtils.getString(R.string.zhihu_zhihu)
+        binding.zhihuDrawerMenu.setNavigationItemSelectedListener(this)
+        replaceFragment(UIUtils.getString(R.string.zhihu_zhihu), ZhiHuConstant.ZHIHU)
     }
 
     private fun replaceFragment(title: String, type: String) {

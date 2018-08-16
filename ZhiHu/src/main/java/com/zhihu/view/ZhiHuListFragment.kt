@@ -53,8 +53,8 @@ class ZhiHuListFragment : LazyFragment<FragmentZhihuListBinding>(),
                 .initLayoutId(R.layout.item_zhihu_list)
                 .setOnItemClickListener(this)
                 .onBind(this)
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.adapter = mAdapter
+        binding.zhihuRecyclerView.setHasFixedSize(true)
+        binding.zhihuRecyclerView.adapter = mAdapter
         viewModel.request(ZhiHuConstant.getSuffix(bundle!!.getInt(ZhiHuConstant.FRAGMENT_INDEX), bundle!!.getString(ZhiHuConstant.FRAGMENT_TYPE)))
                 .zhiHuList.observe(this, this)
     }

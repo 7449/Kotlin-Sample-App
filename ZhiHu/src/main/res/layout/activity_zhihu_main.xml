@@ -14,11 +14,11 @@
 
 
         <android.support.design.widget.NavigationView
-            android:id="@+id/drawer_menu"
+            android:id="@+id/zhihu_drawer_menu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:menu="@menu/drawer_menu" />
+            app:menu="@menu/zhihu_drawer_menu" />
 
     </android.support.v4.widget.DrawerLayout>
 </layout>

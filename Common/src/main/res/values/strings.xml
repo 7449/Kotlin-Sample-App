@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">KotlinSample</string>
-    <string name="zhihu">知乎专栏</string>
+    <string name="zhihu_zhihu">知乎专栏</string>
     <string name="blog">blog</string>
     <string name="jsoup">Jsoup</string>
     <string name="codekk">codeKK</string>

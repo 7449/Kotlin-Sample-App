@@ -1,4 +1,4 @@
-package com.zhihu.model.net.service
+package com.zhihu.model.net.server
 
 import android.databinding.ObservableArrayList
 import com.zhihu.model.ZhiHuDetailModel
@@ -12,7 +12,7 @@ import retrofit2.http.Query
 /**
  * by y on 25/10/2017.
  */
-interface ZLService {
+interface ZLServer {
 
     @GET(ZhiHuUrl.ZL_LIST_API + "{suffix}/posts")
     fun getList(@Path("suffix") suffix: String, @Query("limit") limit: Int, @Query("offset") offset: Int): Observable<ObservableArrayList<ZhiHuListModel>>

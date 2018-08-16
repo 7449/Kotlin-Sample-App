@@ -37,4 +37,8 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:compiler:$apiVersion.lifecycleVersion"
     api "android.arch.lifecycle:reactivestreams:$apiVersion.lifecycleVersion"
     api "com.yyxk.XLog:xlog:$apiVersion.logVersion"
+    api "com.github.mukeshsolanki:MarkdownView-Android:$apiVersion.markdownViewVersion"
+    api("com.google.android:flexbox:$apiVersion.flexboxVersion", {
+        exclude group: 'com.android.support'
+    })
 }

@@ -40,19 +40,19 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
 
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(BlogListViewModel::class.java)
-        rootBinding.title = UIUtils.getString(R.string.title_blog_list)
+        rootBinding.title = UIUtils.getString(R.string.blog_list_title)
         binding.layoutManager = LinearLayoutManager(this)
         mAdapter = DataBindingAdapter<BlogListModel, ItemBlogListBinding>()
                 .initLayoutId(R.layout.item_blog_list)
                 .setOnItemClickListener(this)
                 .onBind(this)
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        binding.recyclerView.setLoadingMore(this)
-        binding.recyclerView.setRefreshLayout(binding.refreshLayout)
-        binding.recyclerView.adapter = mAdapter
-        binding.refreshLayout.setOnRefreshListener(this)
-        binding.refreshLayout.post { onRefresh() }
+        binding.blogRecyclerView.setHasFixedSize(true)
+        binding.blogRecyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        binding.blogRecyclerView.setLoadingMore(this)
+        binding.blogRecyclerView.setRefreshLayout(binding.blogRefreshLayout)
+        binding.blogRecyclerView.adapter = mAdapter
+        binding.blogRefreshLayout.setOnRefreshListener(this)
+        binding.blogRefreshLayout.post { onRefresh() }
         viewModel.blogList.observe(this, this)
     }
 
@@ -65,8 +65,8 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
         }
         when (blogList.type) {
             BaseEntity.EMPTY -> onChangeStatusLayout(Status.EMPTY)
-            BaseEntity.REFRESH_ERROR -> binding.refreshLayout.isRefreshing = false
-            BaseEntity.REFRESH -> binding.refreshLayout.isRefreshing = true
+            BaseEntity.REFRESH_ERROR -> binding.blogRefreshLayout.isRefreshing = false
+            BaseEntity.REFRESH -> binding.blogRefreshLayout.isRefreshing = true
             BaseEntity.ERROR -> {
                 if (blogList.page == 1) {
                     onChangeStatusLayout(Status.ERROR)
@@ -74,12 +74,13 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
                     //
                 }
             }
+            BaseEntity.NOMORE -> UIUtils.toast(R.string.blog_no_more)
             BaseEntity.SUCCESS -> {
                 if (blogList.page == 1) {
                     mAdapter.removeAll()
                 }
                 onChangeStatusLayout(Status.SUCCESS)
-                binding.refreshLayout.isRefreshing = false
+                binding.blogRefreshLayout.isRefreshing = false
                 mAdapter.addAll(blogList.data!!)
             }
         }
@@ -97,12 +98,12 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_tag, menu)
+        menuInflater.inflate(R.menu.blog_menu_tag, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.tag) {
+        if (item.itemId == R.id.blog_tag) {
             UIUtils.startActivity(BlogTagActivity().javaClass)
         }
         return super.onOptionsItemSelected(item)

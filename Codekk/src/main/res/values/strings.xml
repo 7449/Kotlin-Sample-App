@@ -1,0 +1,12 @@
+<resources>
+    <string name="codekk_navigation_tips">暂未开放</string>
+    <string name="codekk_op_title">开源项目</string>
+    <string name="codekk_opa_title">源码解析</string>
+    <string name="codekk_job_title">职位内推</string>
+    <string name="codekk_blog_title">博客文章</string>
+    <string name="codekk_notes_title">个人笔记(暂未开放)</string>
+    <string name="codekk_recommend_title">今日推荐</string>
+    <string name="codekk_common_title">公共功能(暂未开放)</string>
+    <string name="codekk_setting_title">设置</string>
+    <string name="codekk_no_more">没有更多数据了</string>
+</resources>

@@ -3,6 +3,7 @@ package com.common
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.common.utils.SPUtils
 import com.yyxk.xlog.XLog
 import io.reactivex.network.RxNetWork
 
@@ -16,6 +17,7 @@ class App : Application() {
         context = applicationContext
         XLog.init(true, BuildConfig.APPLICATION_ID)
         RxNetWork.instance.setBaseUrl("https://www.baidu.com")
+        SPUtils.init(this)
     }
 
     companion object {

@@ -23,8 +23,8 @@ class ZhiHuTabFragment : BaseFragment<FragmentZhihuTabBinding>() {
     }
 
     override fun initCreateView(savedInstanceState: Bundle?) {
-        binding.viewPager.adapter = ZhiHuTabAdapter(childFragmentManager, bundle?.getString(ZhiHuConstant.FRAGMENT_INDEX)!!)
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        binding.zhihuViewPager.adapter = ZhiHuTabAdapter(childFragmentManager, bundle?.getString(ZhiHuConstant.FRAGMENT_INDEX)!!)
+        binding.zhihuTabLayout.setupWithViewPager(binding.zhihuViewPager)
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_zhihu_tab

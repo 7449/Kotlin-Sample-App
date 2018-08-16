@@ -6,6 +6,10 @@
         <variable
             name="entity"
             type="com.blog.model.BlogTagModel" />
+
+        <import type="android.view.View" />
+
+        <import type="com.blog.model.BlogTagModel" />
     </data>
 
     <LinearLayout
@@ -13,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
         android:background="?android:selectableItemBackground"
+        android:enabled="@{entity.type == -1}"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -31,7 +36,8 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@{entity.littleTitle}"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="@{entity.type != -1 ? View.GONE:View.VISIBLE}" />
 
     </LinearLayout>
 </layout>

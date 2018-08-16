@@ -23,14 +23,14 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/item_zhihu_list_image"
+                android:id="@+id/zhihu_item_list_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 bind:display="@{entity.titleImage}" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/item_zhihu_list_title"
+                android:id="@+id/zhihu_item_list_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"

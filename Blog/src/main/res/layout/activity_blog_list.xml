@@ -16,13 +16,13 @@
 
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_layout"
+        android:id="@+id/blog_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         bind:isShowProgress="@{isShowProgress}">
 
         <com.common.widget.LoadMoreRecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/blog_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="@{layoutManager}" />

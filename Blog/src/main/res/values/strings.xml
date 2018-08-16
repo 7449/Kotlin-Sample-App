@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="tag">tag</string>
-    <string name="title_blog_list">博客列表</string>
-    <string name="title_blog_tag">tag</string>
+    <string name="blog_tag">tag</string>
+    <string name="blog_list_title">博客列表</string>
+    <string name="blog_no_more">没有更多数据了</string>
 </resources>

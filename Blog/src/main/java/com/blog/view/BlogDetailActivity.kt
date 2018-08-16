@@ -23,7 +23,7 @@ class BlogDetailActivity : BaseActivity<ActivityBlogDetailBinding>(), Observer<B
 
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
         rootBinding.title = intent.extras.getString(TITLE)
-        binding.webView.openProgress()
+        binding.blogWebView.openProgress()
         ViewModelProviders.of(this).get(BlogDetailViewModel::class.java)
                 .request(intent.extras.getString(URL))
                 .blogDetail.observe(this, this)
@@ -35,7 +35,7 @@ class BlogDetailActivity : BaseActivity<ActivityBlogDetailBinding>(), Observer<B
             BaseEntity.LOADING -> onChangeStatusLayout(Status.LOADING)
             BaseEntity.SUCCESS -> {
                 onChangeStatusLayout(Status.SUCCESS)
-                binding.webView.loadDataUrl(detail.data!!)
+                binding.blogWebView.loadDataUrl(detail.data!!)
             }
         }
     }

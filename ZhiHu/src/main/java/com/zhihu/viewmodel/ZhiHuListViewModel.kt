@@ -6,7 +6,7 @@ import android.arch.lifecycle.MediatorLiveData
 import android.databinding.ObservableArrayList
 import com.common.base.BaseEntity
 import com.zhihu.model.ZhiHuListModel
-import com.zhihu.model.net.service.ZLService
+import com.zhihu.model.net.server.ZLServer
 import io.reactivex.network.RxNetWork
 import io.reactivex.network.RxNetWorkListener
 
@@ -20,7 +20,7 @@ class ZhiHuListViewModel(application: Application) : AndroidViewModel(applicatio
     fun request(suffix: String): ZhiHuListViewModel {
         RxNetWork.instance.cancel(javaClass.simpleName)
         RxNetWork.instance.getApi(javaClass.simpleName,
-                RxNetWork.observable(ZLService::class.java).getList(suffix, 20, 0), this)
+                RxNetWork.observable(ZLServer::class.java).getList(suffix, 20, 0), this)
         return this
     }
 

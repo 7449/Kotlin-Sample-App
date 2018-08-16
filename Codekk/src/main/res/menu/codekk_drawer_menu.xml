@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/codekk_op"
+            android:checked="true"
+            android:icon="@drawable/ic_codekk_op"
+            android:title="@string/codekk_op_title" />
+        <item
+            android:id="@+id/codekk_opa"
+            android:icon="@drawable/ic_codekk_opa"
+            android:title="@string/codekk_opa_title" />
+        <item
+            android:id="@+id/codekk_job"
+            android:icon="@drawable/ic_codekk_job"
+            android:title="@string/codekk_job_title" />
+        <item
+            android:id="@+id/codekk_blog"
+            android:icon="@drawable/ic_codekk_blog"
+            android:title="@string/codekk_blog_title" />
+        <item
+            android:id="@+id/codekk_notes"
+            android:icon="@drawable/ic_codekk_notes"
+            android:title="@string/codekk_notes_title" />
+        <item
+            android:id="@+id/codekk_recommend"
+            android:icon="@drawable/ic_codekk_recommend"
+            android:title="@string/codekk_recommend_title" />
+        <item
+            android:id="@+id/codekk_common"
+            android:icon="@drawable/ic_codekk_common"
+            android:title="@string/codekk_common_title" />
+    </group>
+</menu>

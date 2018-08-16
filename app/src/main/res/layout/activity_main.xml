@@ -10,7 +10,7 @@
             android:id="@+id/zhihu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/zhihu" />
+            android:text="@string/zhihu_zhihu" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/blog"

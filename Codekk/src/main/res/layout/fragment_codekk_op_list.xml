@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="layoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager" />
+
+        <variable
+            name="isShowProgress"
+            type="Boolean" />
+    </data>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/codekk_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        bind:isShowProgress="@{isShowProgress}">
+
+        <com.common.widget.LoadMoreRecyclerView
+            android:id="@+id/codekk_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="@{layoutManager}" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</layout>

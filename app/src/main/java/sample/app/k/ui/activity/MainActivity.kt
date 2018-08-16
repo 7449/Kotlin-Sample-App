@@ -3,6 +3,7 @@ package sample.app.k.ui.activity
 import android.os.Bundle
 import android.view.View
 import com.blog.view.BlogListActivity
+import com.codekk.view.CodekkMainActivity
 import com.common.base.BaseActivity
 import com.common.databinding.RootBinding
 import com.common.utils.UIUtils
@@ -27,7 +28,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
             R.id.blog -> UIUtils.startActivity(BlogListActivity().javaClass)
 //            R.id.jsoup -> UIUtils.startActivity(JsoupMainActivity().javaClass)
             R.id.zhihu -> UIUtils.startActivity(ZhiHuMainActivity().javaClass)
-//            R.id.codeKK -> UIUtils.startActivity(CodekkMainActivity().javaClass)
+            R.id.codeKK -> UIUtils.startActivity(CodekkMainActivity().javaClass)
         }
     }
 

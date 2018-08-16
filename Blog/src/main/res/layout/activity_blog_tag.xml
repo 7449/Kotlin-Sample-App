@@ -11,7 +11,7 @@
     </data>
 
     <com.common.widget.LoadMoreRecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/blog_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="@{layoutManager}" />

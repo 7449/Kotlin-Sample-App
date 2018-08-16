@@ -23,5 +23,7 @@ ext.apiVersion = [
         roomVersion          : '1.1.1',
         lifecycleVersion     : '1.1.1',
         logVersion           : '1.0.5',
+        markdownViewVersion  : '1.0.6',
+        flexboxVersion       : '1.0.0'
 ]
 

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/tag"
-        android:title="@string/tag"
+        android:id="@+id/blog_tag"
+        android:title="@string/blog_tag"
         app:showAsAction="always" />
 </menu>

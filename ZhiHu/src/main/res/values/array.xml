@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="internet">
+    <string-array name="zhihu_internet">
         <item>apple</item>
         <item>MacTalk</item>
         <item>体验之美</item>
@@ -11,7 +11,7 @@
         <item>Rio说</item>
     </string-array>
 
-    <string-array name="internet_suffix">
+    <string-array name="zhihu_internet_suffix">
         <item>Apple</item>
         <item>mactalk</item>
         <item>design</item>
@@ -21,7 +21,7 @@
         <item>riobard</item>
     </string-array>
 
-    <string-array name="book">
+    <string-array name="zhihu_book">
         <item>西流堂</item>
         <item>文明之光</item>
         <item>读书有疑</item>
@@ -32,7 +32,7 @@
         <item>人丑就该多读书</item>
     </string-array>
 
-    <string-array name="book_suffix">
+    <string-array name="zhihu_book_suffix">
         <item>xiliutang</item>
         <item>wujun</item>
         <item>doubtsinreading</item>
@@ -43,7 +43,7 @@
         <item>uglypeoplefuckbooks</item>
     </string-array>
 
-    <string-array name="develop">
+    <string-array name="zhihu_develop">
         <item>Android Weekly</item>
         <item>AndroidDeveloper</item>
         <item>开发技术前线</item>
@@ -53,7 +53,7 @@
         <item>程序员的自我修养</item>
     </string-array>
 
-    <string-array name="develop_suffix">
+    <string-array name="zhihu_develop_suffix">
         <item>android-weekly</item>
         <item>stormzhang</item>
         <item>tech-frontier</item>
@@ -63,21 +63,21 @@
         <item>netjob</item>
     </string-array>
 
-    <string-array name="zhihu">
+    <string-array name="zhihu_zhihu">
         <item>知乎电子书</item>
         <item>知乎日报</item>
         <item>知识青年</item>
         <item>知乎日爆</item>
     </string-array>
 
-    <string-array name="zhihu_suffix">
+    <string-array name="zhihu_zhihu_suffix">
         <item>Weekly</item>
         <item>daily</item>
         <item>zhihumkt</item>
         <item>booom</item>
     </string-array>
 
-    <string-array name="movie">
+    <string-array name="zhihu_movie">
         <item>MovieDaily</item>
         <item>太空堡垒</item>
         <item>木易影评</item>
@@ -88,7 +88,7 @@
         <item>登爷的资料库</item>
     </string-array>
 
-    <string-array name="movie_suffix">
+    <string-array name="zhihu_movie_suffix">
         <item>MovieDaily</item>
         <item>Battlestar</item>
         <item>happymuyi</item>
@@ -99,7 +99,7 @@
         <item>nordenbox</item>
     </string-array>
 
-    <string-array name="music">
+    <string-array name="zhihu_music">
         <item>乱弹琴</item>
         <item>古典音乐</item>
         <item>那些年听过的歌</item>
@@ -108,7 +108,7 @@
         <item>狂喜之诗</item>
     </string-array>
 
-    <string-array name="music_suffix">
+    <string-array name="zhihu_music_suffix">
         <item>DKLearnsPop</item>
         <item>classicalmusic</item>
         <item>1song</item>
