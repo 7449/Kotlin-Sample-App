@@ -11,32 +11,33 @@ class CodekkOpListModel {
     lateinit var projectArray: ObservableArrayList<ProjectArrayBean>
 
     class ProjectArrayBean {
-        lateinit var projectName: String
-        lateinit var createTime: String
-        lateinit var updateTime: String
+
+        var projectName: String? = null
+        var createTime: String? = null
+        var updateTime: String? = null
         var expiredTimes: Int = 0
         var usedTimes: Int = 0
         var voteUp: Int = 0
         var isRecommend: Boolean = false
         var isHide: Boolean = false
-        lateinit var projectUrl: String
-        lateinit var demoUrl: String
-        lateinit var committer: String
-        lateinit var source: String
-        lateinit var lang: String
-        lateinit var authorName: String
-        lateinit var authorUrl: String
-        lateinit var codeKKUrl: String
-        lateinit var _id: String
-        lateinit var desc: String
-        lateinit var officialUrl: Any
-        lateinit var tags: ObservableArrayList<TagsBean>
+        var projectUrl: String? = null
+        var demoUrl: String? = null
+        var committer: String? = null
+        var source: String? = null
+        var lang: String? = null
+        var authorName: String? = null
+        var authorUrl: String? = null
+        var codeKKUrl: String? = null
+        var _id: String? = null
+        var desc: String? = null
+        var officialUrl: Any? = null
+        var tags: List<TagsBean>? = null
 
         class TagsBean {
-            lateinit var createTime: String
-            lateinit var name: String
-            lateinit var userName: String
-            lateinit var type: String
+            var createTime: String? = null
+            var name: String? = null
+            var userName: String? = null
+            var type: String? = null
         }
     }
 }

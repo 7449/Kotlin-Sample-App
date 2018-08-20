@@ -45,12 +45,12 @@ class BlogListViewModel(application: Application) : AndroidViewModel(application
         blogList.value = BaseEntity(BaseEntity.REFRESH, page, ObservableArrayList())
     }
 
-    override fun onNetWorkSuccess(t: ObservableArrayList<BlogListModel>?) {
-        if (page != 1 && t != null && t.isEmpty()) {
+    override fun onNetWorkSuccess(t: ObservableArrayList<BlogListModel>) {
+        if (page != 1 && t.isEmpty()) {
             blogList.value = BaseEntity(BaseEntity.NOMORE, page, t)
             return
         }
-        if (page == 1 && t != null && t.isEmpty()) {
+        if (page == 1 && t.isEmpty()) {
             blogList.value = BaseEntity(BaseEntity.EMPTY, page, t)
         } else {
             blogList.value = BaseEntity(BaseEntity.SUCCESS, page, t)

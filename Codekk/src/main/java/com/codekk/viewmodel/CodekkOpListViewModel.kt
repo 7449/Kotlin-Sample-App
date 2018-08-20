@@ -8,7 +8,6 @@ import com.codekk.model.CodekkOpListModel
 import com.codekk.model.net.NetFunc
 import com.codekk.model.net.server.CodekkServer
 import com.common.base.BaseEntity
-import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 import io.reactivex.network.RxNetWork
 import io.reactivex.network.RxNetWorkListener
 
@@ -31,7 +30,7 @@ class CodekkOpListViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun onLoadMore() {
-        RxJsoupNetWork.getInstance().cancel(javaClass.simpleName)
+        RxNetWork.instance.cancel(javaClass.simpleName)
         RxNetWork.instance.getApi(javaClass.simpleName,
                 RxNetWork
                         .observable(CodekkServer::class.java)

@@ -13,8 +13,8 @@ class BaseEntity<T>(var type: Int, var page: Int, var data: T?) {
         const val LOADING = 2
         const val REFRESH = 3
         const val LOADMORE = 4
-        const val NOMORE = 4
-        const val REFRESH_ERROR = 5
-        const val EMPTY = 6
+        const val NOMORE = 5
+        const val REFRESH_ERROR = 6
+        const val EMPTY = 7
     }
 }

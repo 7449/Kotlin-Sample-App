@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="entity"
             type="com.blog.model.BlogListModel" />
@@ -16,7 +17,6 @@
         android:padding="10dp">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/blog_list_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -25,7 +25,6 @@
             android:textSize="18sp" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/blog_list_little_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"

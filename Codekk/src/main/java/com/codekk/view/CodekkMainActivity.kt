@@ -27,10 +27,10 @@ class CodekkMainActivity : BaseActivity<ActivityCodekkMainBinding>(),
         if (item.itemId == R.id.codekk_common || item.itemId == R.id.codekk_notes) return false
         when (item.itemId) {
             R.id.codekk_op -> replaceFragment(item.title.toString(), CodekkOpListFragment())
-            R.id.codekk_opa -> replaceFragment(item.title.toString(), CodekkOpaListFragment())
-            R.id.codekk_job -> replaceFragment(item.title.toString(), CodekkJobListFragment())
-            R.id.codekk_blog -> replaceFragment(item.title.toString(), CodekkBlogListFragment())
-            R.id.codekk_recommend -> replaceFragment(item.title.toString(), CodekkRecommendListFragment())
+//            R.id.codekk_opa -> replaceFragment(item.title.toString(), CodekkOpaListFragment())
+//            R.id.codekk_job -> replaceFragment(item.title.toString(), CodekkJobListFragment())
+//            R.id.codekk_blog -> replaceFragment(item.title.toString(), CodekkBlogListFragment())
+//            R.id.codekk_recommend -> replaceFragment(item.title.toString(), CodekkRecommendListFragment())
         }
         binding.codekkDrawer.closeDrawers()
         return true
@@ -49,10 +49,9 @@ class CodekkMainActivity : BaseActivity<ActivityCodekkMainBinding>(),
         return super.onOptionsItemSelected(item)
     }
 
-    private fun replaceFragment(title: String, fragment: Any) {
+    private fun replaceFragment(title: String, fragment: Fragment) {
         onChangeToolbarTitle(title)
-        return
-        supportFragmentManager.beginTransaction().replace(R.id.codekk_fragment, fragment as Fragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.codekk_fragment, fragment).commit()
     }
 
 

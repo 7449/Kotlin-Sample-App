@@ -35,7 +35,7 @@ class BlogDetailViewModel(application: Application) : AndroidViewModel(applicati
         blogDetail.value = BaseEntity(BaseEntity.LOADING, 0, null)
     }
 
-    override fun onNetWorkSuccess(t: String?) {
+    override fun onNetWorkSuccess(t: String) {
         blogDetail.value = BaseEntity(BaseEntity.SUCCESS, 0, t)
     }
 }

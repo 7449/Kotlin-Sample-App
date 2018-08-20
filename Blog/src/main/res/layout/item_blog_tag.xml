@@ -8,8 +8,6 @@
             type="com.blog.model.BlogTagModel" />
 
         <import type="android.view.View" />
-
-        <import type="com.blog.model.BlogTagModel" />
     </data>
 
     <LinearLayout
@@ -22,7 +20,6 @@
         android:padding="10dp">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/blog_tag_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -31,7 +28,6 @@
             android:textSize="22sp" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/blog_tag_little_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
