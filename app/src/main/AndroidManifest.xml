@@ -21,6 +21,7 @@
         <activity android:name="com.blog.view.BlogTagActivity" />
         <activity android:name="com.blog.view.BlogDetailActivity" />
         <activity android:name="com.codekk.view.CodekkMainActivity" />
+        <activity android:name="com.codekk.view.CodekkSettingActivity" />
         <activity android:name="com.jsoup.JsoupMainActivity" />
         <activity android:name="com.zhihu.view.ZhiHuMainActivity" />
         <activity android:name="com.zhihu.view.ZhiHuDetailActivity" />

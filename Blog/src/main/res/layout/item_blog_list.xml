@@ -11,25 +11,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
+        android:layout_margin="@dimen/dp.3"
         android:background="?android:selectableItemBackground"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/dp.10">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="@dimen/dp.10"
             android:text="@{entity.title}"
             android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
+            android:textSize="@dimen/sp.18" />
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="@dimen/dp.10"
             android:text="@{entity.littleTitle}"
-            android:textSize="16sp" />
+            android:textSize="@dimen/sp.16" />
 
     </LinearLayout>
 </layout>

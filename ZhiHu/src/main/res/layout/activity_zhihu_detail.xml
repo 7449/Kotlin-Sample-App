@@ -18,9 +18,9 @@
             android:id="@+id/zhihu_detail_fb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/dp.16"
             android:src="@android:drawable/ic_menu_share"
-            app:borderWidth="0dp"
+            app:borderWidth="@dimen/dp.0"
             app:layout_anchor="@+id/zhihu_detail_appbar"
             app:layout_anchorGravity="bottom|end|right" />
 
@@ -34,15 +34,15 @@
                 android:id="@+id/zhihu_detail_coll_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleMarginEnd="@dimen/dp.64"
+                app:expandedTitleMarginStart="@dimen/dp.48"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:title="@{title}">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/zhihu_detail_image"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="@dimen/dp.300"
                     android:scaleType="centerCrop" />
 
                 <android.support.v7.widget.Toolbar
@@ -62,7 +62,7 @@
                 android:id="@+id/zhihu_detail_web_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp" />
+                android:layout_margin="@dimen/dp.10" />
 
         </android.support.v4.widget.NestedScrollView>
 

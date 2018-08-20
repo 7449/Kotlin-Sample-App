@@ -1,6 +1,8 @@
 package com.codekk.view
 
 import android.databinding.BindingAdapter
+import android.support.v7.widget.AppCompatTextView
+import android.text.util.Linkify
 import com.codekk.model.CodekkOpListModel
 import com.common.widget.FlowText
 import com.google.android.flexbox.FlexboxLayout
@@ -23,5 +25,12 @@ object CodekkView {
                 flexBoxLayout.addView(flowText)
             }
         }
+    }
+
+
+    @BindingAdapter("bind:autoLink")
+    @JvmStatic
+    fun autoLink(text: AppCompatTextView, web: Boolean) {
+        text.autoLinkMask = if (web) Linkify.WEB_URLS else 0
     }
 }

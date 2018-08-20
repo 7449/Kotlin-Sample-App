@@ -43,8 +43,7 @@ class CodekkMainActivity : BaseActivity<ActivityCodekkMainBinding>(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.codekk_setting -> {
-            }
+            R.id.codekk_setting -> UIUtils.startActivity(CodekkSettingActivity().javaClass)
         }
         return super.onOptionsItemSelected(item)
     }
