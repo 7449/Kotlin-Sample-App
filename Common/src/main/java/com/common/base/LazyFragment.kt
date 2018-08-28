@@ -11,34 +11,36 @@ import android.view.ViewGroup
  */
 abstract class LazyFragment<BIND : ViewDataBinding> : BaseFragment<BIND>() {
 
-    private var isUserVisible = false
-    private var isUserInitView = false
-    private var isUserFirstLoad = true
+    private var isUserVisible = true
+    private var isUserFirstLoad: Boolean = false
+    private var isUserInitView: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val convertView = super.onCreateView(inflater, container, savedInstanceState)
         isUserInitView = true
-        lazyData()
         return convertView
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        lazyData()
     }
 
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        if (isVisibleToUser) {
-            isUserVisible = true
-            lazyData()
-        } else {
-            isUserVisible = false
-        }
         super.setUserVisibleHint(isVisibleToUser)
+        isUserVisible = isVisibleToUser
+        if (isVisibleToUser) {
+            lazyData()
+        }
     }
 
     private fun lazyData() {
-        if (!isUserFirstLoad || !isUserVisible || !isUserInitView) {
+        if (isUserFirstLoad || !isUserVisible || !isUserInitView) {
             return
         }
         initActivityCreated()
-        isUserFirstLoad = false
+        isUserFirstLoad = true
     }
 
     protected abstract fun initActivityCreated()

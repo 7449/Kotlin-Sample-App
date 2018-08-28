@@ -13,6 +13,7 @@ import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
 import com.common.utils.UIUtils
 import com.status.layout.Status
+import com.yyxk.xlog.XLog
 import com.zhihu.R
 import com.zhihu.ZhiHuConstant
 import com.zhihu.databinding.FragmentZhihuListBinding
@@ -47,6 +48,7 @@ class ZhiHuListFragment : LazyFragment<FragmentZhihuListBinding>(),
     }
 
     override fun initActivityCreated() {
+        XLog.d("")
         viewModel = ViewModelProviders.of(this).get(ZhiHuListViewModel::class.java)
         binding.layoutManager = LinearLayoutManager(mActivity)
         mAdapter = DataBindingAdapter<ZhiHuListModel, ItemZhihuListBinding>()
@@ -56,7 +58,7 @@ class ZhiHuListFragment : LazyFragment<FragmentZhihuListBinding>(),
         binding.zhihuRecyclerView.setHasFixedSize(true)
         binding.zhihuRecyclerView.adapter = mAdapter
         viewModel.request(ZhiHuConstant.getSuffix(bundle!!.getInt(ZhiHuConstant.FRAGMENT_INDEX), bundle!!.getString(ZhiHuConstant.FRAGMENT_TYPE)))
-                .zhiHuList.observe(this, this)
+                .viewModelData.observe(this, this)
     }
 
     override fun onItemClick(view: View, position: Int, info: ZhiHuListModel) {
