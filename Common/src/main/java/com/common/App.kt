@@ -17,7 +17,10 @@ class App : Application() {
         super.onCreate()
         context = applicationContext
         XLog.init(true, BuildConfig.APPLICATION_ID)
-        RxNetWork.instance.setBaseUrl("https://www.baidu.com").setLogInterceptor(LogInterceptor())
+        RxNetWork.instance.apply {
+            baseUrl = "https://www.baidu.com"
+            logInterceptor = LogInterceptor()
+        }
         SPUtils.init(this)
     }
 
