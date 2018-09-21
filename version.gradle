@@ -19,7 +19,7 @@ ext.apiVersion = [
         statusLayoutVersion  : 'beta01',
         dialogVersion        : '0.9.6.0',
         glideVersion         : '4.8.0',
-        kotlinVersion        : '1.2.60',
+        kotlinVersion        : '1.2.70',
         roomVersion          : '1.1.1',
         lifecycleVersion     : '1.1.1',
         logVersion           : '1.0.5',

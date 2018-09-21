@@ -41,7 +41,7 @@ object UIUtils {
     }
 
     fun toast(`object`: Any) {
-        Toast.makeText(context, `object`.toString() + "", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, `object`.toString(), Toast.LENGTH_LONG).show()
     }
 
     fun toast(id: Int) {
@@ -49,7 +49,7 @@ object UIUtils {
     }
 
     fun snackBar(view: View, `object`: Any) {
-        Snackbar.make(view, `object`.toString() + "", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(view, `object`.toString(), Snackbar.LENGTH_SHORT).show()
     }
 
     fun snackBar(view: View, id: Int) {
@@ -57,7 +57,7 @@ object UIUtils {
     }
 
     fun snackBar(view: View, `object`: Any, color: Int) {
-        Snackbar.make(view, `object`.toString() + "", Snackbar.LENGTH_SHORT)
+        Snackbar.make(view, `object`.toString(), Snackbar.LENGTH_SHORT)
                 .setActionTextColor(color)
                 .show()
     }
