@@ -1,8 +1,8 @@
 package com.blog.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MediatorLiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MediatorLiveData
 import com.blog.model.JsoupManager
 import com.common.base.BaseEntity
 import io.reactivex.jsoup.network.manager.RxJsoupNetWork

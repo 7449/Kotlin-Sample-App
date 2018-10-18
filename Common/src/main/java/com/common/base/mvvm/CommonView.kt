@@ -1,8 +1,8 @@
 package com.common.base.mvvm
 
-import android.databinding.BindingAdapter
-import android.support.v4.widget.SwipeRefreshLayout
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.common.utils.ImageLoader
 
 /**

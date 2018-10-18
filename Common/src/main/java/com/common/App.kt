@@ -5,7 +5,7 @@ import android.app.Application
 import android.content.Context
 import com.common.net.LogInterceptor
 import com.common.utils.SPUtils
-import com.yyxk.xlog.XLog
+import com.socks.library.KLog
 import io.reactivex.network.RxNetWork
 
 /**
@@ -16,7 +16,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-        XLog.init(true, BuildConfig.APPLICATION_ID)
+        KLog.init(true, BuildConfig.APPLICATION_ID)
         RxNetWork.instance.apply {
             baseUrl = "https://www.baidu.com"
             logInterceptor = LogInterceptor()

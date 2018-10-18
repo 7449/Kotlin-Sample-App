@@ -5,12 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.common.App
 import com.common.R
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * by y on 25/10/2017.

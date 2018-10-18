@@ -1,11 +1,11 @@
 package com.zhihu.view
 
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.view.MenuItem
 import com.common.base.BaseActivity
 import com.common.databinding.RootBinding
 import com.common.utils.UIUtils
+import com.google.android.material.navigation.NavigationView
 import com.zhihu.R
 import com.zhihu.ZhiHuConstant
 import com.zhihu.databinding.ActivityZhihuMainBinding

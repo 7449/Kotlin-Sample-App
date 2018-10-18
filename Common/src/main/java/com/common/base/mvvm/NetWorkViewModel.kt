@@ -1,9 +1,9 @@
 package com.common.base.mvvm
 
-import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.ViewModel
 import com.common.base.BaseEntity
-import com.yyxk.xlog.XLog
+import com.socks.library.KLog
 import io.reactivex.network.RxNetWorkListener
 
 /**
@@ -14,7 +14,7 @@ abstract class NetWorkViewModel<T> : ViewModel(), RxNetWorkListener<T> {
     val viewModelData: MediatorLiveData<BaseEntity<T>> = MediatorLiveData()
 
     override fun onNetWorkError(e: Throwable) {
-        XLog.d(e)
+        KLog.d(e)
     }
 
     override fun onNetWorkComplete() {

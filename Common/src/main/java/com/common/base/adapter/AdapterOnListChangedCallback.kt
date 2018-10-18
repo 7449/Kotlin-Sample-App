@@ -1,8 +1,8 @@
 package com.common.base.adapter
 
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableList
-import android.databinding.ViewDataBinding
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableList
+import androidx.databinding.ViewDataBinding
 
 /**
  * by y on 02/11/2017.

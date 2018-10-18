@@ -1,7 +1,7 @@
 package com.common.base.adapter
 
-import android.databinding.ViewDataBinding
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * by y on 02/11/2017.

@@ -1,11 +1,11 @@
 package com.blog.view
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.ObservableArrayList
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.blog.R
 import com.blog.databinding.ActivityBlogTagBinding
 import com.blog.databinding.ItemBlogTagBinding

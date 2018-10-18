@@ -1,8 +1,8 @@
 package com.blog.view
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.blog.R
 import com.blog.databinding.ActivityBlogDetailBinding
 import com.blog.viewmodel.BlogDetailViewModel

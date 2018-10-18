@@ -1,19 +1,19 @@
 package com.zhihu.view
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.ObservableArrayList
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.common.base.BaseEntity
 import com.common.base.LazyFragment
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
 import com.common.utils.UIUtils
+import com.socks.library.KLog
 import com.status.layout.Status
-import com.yyxk.xlog.XLog
 import com.zhihu.R
 import com.zhihu.ZhiHuConstant
 import com.zhihu.databinding.FragmentZhihuListBinding
@@ -48,7 +48,7 @@ class ZhiHuListFragment : LazyFragment<FragmentZhihuListBinding>(),
     }
 
     override fun initActivityCreated() {
-        XLog.d("")
+        KLog.d("")
         viewModel = ViewModelProviders.of(this).get(ZhiHuListViewModel::class.java)
         binding.layoutManager = LinearLayoutManager(mActivity)
         mAdapter = DataBindingAdapter<ZhiHuListModel, ItemZhihuListBinding>()

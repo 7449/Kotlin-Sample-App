@@ -13,8 +13,4 @@ kotlin app
 
 [RxJsoupNetWork](https://github.com/7449/RxNetWork/tree/RxJsoupNetWork)
 
-[android.support]()
-
-[XLog]()
-
-[android.arch]()
+[androidx]()

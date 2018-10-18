@@ -20,23 +20,18 @@ android {
     }
 }
 dependencies {
-    api "com.android.support:appcompat-v7:$localVersion.supportLibraryVersion"
-    api "com.android.support:design:$localVersion.supportLibraryVersion"
-    api "com.android.support:cardview-v7:$localVersion.supportLibraryVersion"
+    api "androidx.appcompat:appcompat:$apiVersion.androidxVersion"
+    api "androidx.lifecycle:lifecycle-extensions:$apiVersion.lifecycleVersion"
+    api "com.google.android.material:material:$apiVersion.androidxVersion"
     api "org.jetbrains.kotlin:kotlin-stdlib:$apiVersion.kotlinVersion"
     api "com.ydevelop:rxJsoupNetWork:$apiVersion.rxJsoupNetWorkVersion"
     api "com.ydevelop:rxNetWork:$apiVersion.rxNetWorkVersion"
+    api "com.ydevelop:klog:$apiVersion.logVersion"
     api "com.ydevelop:status-layout:$apiVersion.statusLayoutVersion"
     api "com.github.bumptech.glide:glide:$apiVersion.glideVersion"
     api("com.afollestad.material-dialogs:core:$apiVersion.dialogVersion", {
         exclude group: 'com.android.support'
     })
-    api "android.arch.lifecycle:runtime:$apiVersion.lifecycleVersion"
-    api "android.arch.lifecycle:extensions:$apiVersion.lifecycleVersion"
-    api "android.arch.lifecycle:common-java8:$apiVersion.lifecycleVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$apiVersion.lifecycleVersion"
-    api "android.arch.lifecycle:reactivestreams:$apiVersion.lifecycleVersion"
-    api "com.yyxk.XLog:xlog:$apiVersion.logVersion"
     api "com.github.mukeshsolanki:MarkdownView-Android:$apiVersion.markdownViewVersion"
     api("com.google.android:flexbox:$apiVersion.flexboxVersion", {
         exclude group: 'com.android.support'

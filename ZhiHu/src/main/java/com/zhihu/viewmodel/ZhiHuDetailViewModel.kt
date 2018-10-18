@@ -1,8 +1,8 @@
 package com.zhihu.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MediatorLiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MediatorLiveData
 import com.common.base.BaseEntity
 import com.zhihu.model.ZhiHuDetailModel
 import com.zhihu.model.net.server.ZLServer

@@ -1,15 +1,15 @@
 package com.codekk.view
 
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
 import com.codekk.R
 import com.codekk.databinding.ActivityCodekkMainBinding
 import com.common.base.BaseActivity
 import com.common.databinding.RootBinding
 import com.common.utils.UIUtils
+import com.google.android.material.navigation.NavigationView
 
 /**
  * by y on 31/10/2017.

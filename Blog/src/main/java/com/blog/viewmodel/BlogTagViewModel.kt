@@ -1,9 +1,9 @@
 package com.blog.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MediatorLiveData
-import android.databinding.ObservableArrayList
+import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MediatorLiveData
 import com.blog.model.BlogTagModel
 import com.blog.model.BlogUrl
 import com.blog.model.JsoupManager

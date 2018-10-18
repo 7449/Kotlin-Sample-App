@@ -1,6 +1,6 @@
 package com.blog.model
 
-import android.databinding.ObservableArrayList
+import androidx.databinding.ObservableArrayList
 import org.jsoup.nodes.Document
 
 /**

@@ -1,14 +1,15 @@
 package com.common.base
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.common.R
 import com.common.databinding.RootBinding
+import com.socks.library.KLog
 import com.status.layout.OnStatusClickListener
 import com.status.layout.Status
 
@@ -32,7 +33,7 @@ abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnSta
         }
         rootBinding.statusLayout.setOnStatusClickListener(this)
         rootBinding.statusLayout.addSuccessView(getLayoutId())
-        binding = DataBindingUtil.bind(rootBinding.statusLayout.getView(Status.SUCCESS)!!)!!
+        binding = DataBindingUtil.bind(rootBinding.statusLayout.getView(Status.SUCCESS))!!
         initCreate(rootBinding, savedInstanceState)
     }
 
@@ -55,6 +56,7 @@ abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnSta
 
 
     open fun onChangeStatusLayout(status: String) {
+        KLog.d(status)
         rootBinding.statusLayout.setStatus(status)
     }
 

@@ -1,12 +1,12 @@
 package com.codekk.view
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.ObservableArrayList
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.codekk.R
 import com.codekk.databinding.FragmentCodekkOpListBinding
 import com.codekk.databinding.ItemCodekkOpListBinding

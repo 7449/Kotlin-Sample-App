@@ -1,6 +1,6 @@
 package com.zhihu.viewmodel
 
-import android.databinding.ObservableArrayList
+import androidx.databinding.ObservableArrayList
 import com.common.base.BaseEntity
 import com.common.base.mvvm.NetWorkViewModel
 import com.zhihu.model.ZhiHuListModel

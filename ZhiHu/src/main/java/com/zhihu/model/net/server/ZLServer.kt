@@ -1,6 +1,6 @@
 package com.zhihu.model.net.server
 
-import android.databinding.ObservableArrayList
+import androidx.databinding.ObservableArrayList
 import com.zhihu.model.ZhiHuDetailModel
 import com.zhihu.model.ZhiHuListModel
 import com.zhihu.model.net.ZhiHuUrl

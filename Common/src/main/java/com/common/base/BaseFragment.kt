@@ -2,14 +2,13 @@ package com.common.base
 
 import android.app.Activity
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import com.common.R
 import com.status.layout.OnStatusClickListener
 import com.status.layout.Status
@@ -50,7 +49,10 @@ abstract class BaseFragment<BIND : ViewDataBinding> : Fragment(), OnStatusClickL
         mStatusLayout.addLoadingView(R.layout.layout_status_loading)
         mStatusLayout.addErrorView(R.layout.layout_status_error)
         mStatusLayout.setStatus(Status.SUCCESS)
-        binding = DataBindingUtil.bind(mStatusLayout.getView(Status.SUCCESS)!!)!!
+        binding = DataBindingUtil.bind(mStatusLayout.getView(Status.SUCCESS))!!
+        mStatusLayout.getView(Status.EMPTY).visibility = View.GONE
+        mStatusLayout.getView(Status.LOADING).visibility = View.GONE
+        mStatusLayout.getView(Status.ERROR).visibility = View.GONE
         mStatusLayout.setOnStatusClickListener(this)
     }
 

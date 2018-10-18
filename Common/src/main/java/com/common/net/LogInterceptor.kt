@@ -1,6 +1,6 @@
 package com.common.net
 
-import com.yyxk.xlog.XLog
+import com.socks.library.KLog
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody
@@ -17,16 +17,16 @@ class LogInterceptor : Interceptor {
         val response = chain.proceed(chain.request())
         val body = response.body()
         if (body == null) {
-            XLog.i("body == null")
+            KLog.i("body == null")
             return response
         }
         val mediaType = body.contentType()
         val content = body.string()
         val logResponse = response.networkResponse()
         if (logResponse != null) {
-            XLog.i(logResponse.request().headers())
+            KLog.i(logResponse.request().headers())
         }
-        XLog.i(" url : " + request.url() + "   " + content)
+        KLog.i(" url : " + request.url() + "   " + content)
         return response.newBuilder().body(ResponseBody.create(mediaType, content)).build()
     }
 }

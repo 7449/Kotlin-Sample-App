@@ -1,6 +1,6 @@
 package com.codekk.model
 
-import android.databinding.ObservableArrayList
+import androidx.databinding.ObservableArrayList
 
 /**
  * by y on 2017/5/16

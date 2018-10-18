@@ -7,7 +7,7 @@
 
         <variable
             name="layoutManager"
-            type="android.support.v7.widget.RecyclerView.LayoutManager" />
+            type="androidx.recyclerview.widget.RecyclerView.LayoutManager" />
 
         <variable
             name="isShowProgress"
@@ -15,7 +15,7 @@
     </data>
 
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/blog_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,5 +27,5 @@
             android:layout_height="wrap_content"
             app:layoutManager="@{layoutManager}" />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

@@ -1,8 +1,8 @@
 package com.codekk.view
 
-import android.databinding.BindingAdapter
-import android.support.v7.widget.AppCompatTextView
 import android.text.util.Linkify
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.databinding.BindingAdapter
 import com.codekk.model.CodekkOpListModel
 import com.common.widget.FlowText
 import com.google.android.flexbox.FlexboxLayout

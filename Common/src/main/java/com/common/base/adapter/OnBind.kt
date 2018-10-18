@@ -1,6 +1,6 @@
 package com.common.base.adapter
 
-import android.databinding.ViewDataBinding
+import androidx.databinding.ViewDataBinding
 
 /**
  * by y on 02/11/2017.
