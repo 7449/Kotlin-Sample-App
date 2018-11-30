@@ -15,15 +15,18 @@ import com.blog.databinding.ActivityBlogListBinding
 import com.blog.databinding.ItemBlogListBinding
 import com.blog.model.BlogListModel
 import com.blog.viewmodel.BlogListViewModel
-import com.common.base.BaseActivity
-import com.common.base.BaseEntity
+import com.common.base.*
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
 import com.common.databinding.RootBinding
-import com.common.utils.UIUtils
+import com.common.utils.openActivity
+import com.common.utils.toast
 import com.common.widget.LoadMoreRecyclerView
-import com.status.layout.Status
+import com.status.layout.EMPTY
+import com.status.layout.ERROR
+import com.status.layout.SUCCESS
+import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 
 /**
  * by y on 31/10/2017.
@@ -40,7 +43,7 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
 
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(BlogListViewModel::class.java)
-        rootBinding.title = UIUtils.getString(R.string.blog_list_title)
+        rootBinding.title = getString(R.string.blog_list_title)
         binding.layoutManager = LinearLayoutManager(this)
         mAdapter = DataBindingAdapter<BlogListModel, ItemBlogListBinding>()
                 .initLayoutId(R.layout.item_blog_list)
@@ -57,29 +60,33 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
     }
 
     override fun onRefresh() = viewModel.onRefresh()
+
     override fun onLoadMore() = viewModel.onLoadMore()
-    override fun onChanged(blogList: BaseEntity<ObservableArrayList<BlogListModel>>?) {
-        if (blogList == null) {
-            onChangeStatusLayout(Status.ERROR)
-            return
-        }
+
+    override fun onChanged(blogList: BaseEntity<ObservableArrayList<BlogListModel>>) {
         when (blogList.type) {
-            BaseEntity.EMPTY -> onChangeStatusLayout(Status.EMPTY)
-            BaseEntity.REFRESH_ERROR -> binding.blogRefreshLayout.isRefreshing = false
-            BaseEntity.REFRESH -> binding.blogRefreshLayout.isRefreshing = true
-            BaseEntity.ERROR -> {
+            ENTITY_EMPTY -> {
+                onChangeStatusLayout(EMPTY)
+            }
+            ENTITY_REFRESH_ERROR -> {
+                binding.blogRefreshLayout.isRefreshing = false
+            }
+            ENTITY_REFRESH -> {
+                binding.blogRefreshLayout.isRefreshing = true
+            }
+            ENTITY_ERROR -> {
                 if (blogList.page == 1) {
-                    onChangeStatusLayout(Status.ERROR)
-                } else {
-                    //
+                    onChangeStatusLayout(ERROR)
                 }
             }
-            BaseEntity.NOMORE -> UIUtils.toast(R.string.blog_no_more)
-            BaseEntity.SUCCESS -> {
+            ENTITY_NOMORE -> {
+                toast(R.string.blog_no_more)
+            }
+            ENTITY_SUCCESS -> {
                 if (blogList.page == 1) {
                     mAdapter.removeAll()
                 }
-                onChangeStatusLayout(Status.SUCCESS)
+                onChangeStatusLayout(SUCCESS)
                 binding.blogRefreshLayout.isRefreshing = false
                 mAdapter.addAll(blogList.data!!)
             }
@@ -87,10 +94,10 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
     }
 
     override fun onItemClick(view: View, position: Int, info: BlogListModel) {
-        val bundle = Bundle()
-        bundle.putString(BlogDetailActivity.TITLE, info.title)
-        bundle.putString(BlogDetailActivity.URL, info.detailUrl)
-        UIUtils.startActivity(BlogDetailActivity().javaClass, bundle)
+        openActivity(BlogDetailActivity().javaClass, Bundle().apply {
+            putString(BLOG_DETAIL_TITLE, info.title)
+            putString(BLOG_DETAIL_URL, info.detailUrl)
+        })
     }
 
     override fun onBind(bind: ItemBlogListBinding, position: Int, info: BlogListModel) {
@@ -104,9 +111,14 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.blog_tag) {
-            UIUtils.startActivity(BlogTagActivity().javaClass)
+            openActivity(BlogTagActivity().javaClass)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        RxJsoupNetWork.getInstance().cancel(BlogListViewModel::class.java.simpleName)
     }
 
     override fun getLayoutId(): Int = R.layout.activity_blog_list

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.MenuItem
 import android.view.View
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -11,7 +12,7 @@ import com.common.R
 import com.common.databinding.RootBinding
 import com.socks.library.KLog
 import com.status.layout.OnStatusClickListener
-import com.status.layout.Status
+import com.status.layout.SUCCESS
 
 /**
  * by y on 31/10/2017.
@@ -31,9 +32,10 @@ abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnSta
             setSupportActionBar(rootBinding.toolbar)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
-        rootBinding.statusLayout.setOnStatusClickListener(this)
+        rootBinding.statusLayout.onStatusClickListener = this
         rootBinding.statusLayout.addSuccessView(getLayoutId())
-        binding = DataBindingUtil.bind(rootBinding.statusLayout.getView(Status.SUCCESS))!!
+        binding = DataBindingUtil.bind(rootBinding.statusLayout.getView(SUCCESS)
+                ?: FrameLayout(this))!!
         initCreate(rootBinding, savedInstanceState)
     }
 

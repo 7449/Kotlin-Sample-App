@@ -8,7 +8,7 @@ import com.codekk.R
 import com.codekk.databinding.ActivityCodekkMainBinding
 import com.common.base.BaseActivity
 import com.common.databinding.RootBinding
-import com.common.utils.UIUtils
+import com.common.utils.openActivity
 import com.google.android.material.navigation.NavigationView
 
 /**
@@ -16,12 +16,12 @@ import com.google.android.material.navigation.NavigationView
  */
 class CodekkMainActivity : BaseActivity<ActivityCodekkMainBinding>(),
         NavigationView.OnNavigationItemSelectedListener {
+
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
-        rootBinding.title = UIUtils.getString(R.string.codekk_op_title)
-        replaceFragment(UIUtils.getString(R.string.codekk_op_title), CodekkOpListFragment())
+        rootBinding.title = getString(R.string.codekk_op_title)
+        replaceFragment(getString(R.string.codekk_op_title), CodekkOpListFragment())
         binding.codekkDrawerMenu.setNavigationItemSelectedListener(this)
     }
-
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.codekk_common || item.itemId == R.id.codekk_notes) return false
@@ -43,7 +43,7 @@ class CodekkMainActivity : BaseActivity<ActivityCodekkMainBinding>(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.codekk_setting -> UIUtils.startActivity(CodekkSettingActivity().javaClass)
+            R.id.codekk_setting -> openActivity(CodekkSettingActivity().javaClass)
         }
         return super.onOptionsItemSelected(item)
     }

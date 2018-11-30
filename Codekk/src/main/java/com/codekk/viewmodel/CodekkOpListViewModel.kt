@@ -7,7 +7,7 @@ import androidx.lifecycle.MediatorLiveData
 import com.codekk.model.CodekkOpListModel
 import com.codekk.model.net.NetFunc
 import com.codekk.model.net.server.CodekkServer
-import com.common.base.BaseEntity
+import com.common.base.*
 import io.reactivex.network.RxNetWork
 import io.reactivex.network.RxNetWorkListener
 
@@ -21,8 +21,8 @@ class CodekkOpListViewModel(application: Application) : AndroidViewModel(applica
 
     fun onRefresh() {
         page = 1
-        RxNetWork.instance.cancel(javaClass.simpleName)
-        RxNetWork.instance.getApi(javaClass.simpleName,
+        RxNetWork.instance.cancel(CodekkOpListViewModel::class.java.simpleName)
+        RxNetWork.instance.getApi(CodekkOpListViewModel::class.java.simpleName,
                 RxNetWork
                         .observable(CodekkServer::class.java)
                         .getOpList(page, "array")
@@ -30,8 +30,8 @@ class CodekkOpListViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun onLoadMore() {
-        RxNetWork.instance.cancel(javaClass.simpleName)
-        RxNetWork.instance.getApi(javaClass.simpleName,
+        RxNetWork.instance.cancel(CodekkOpListViewModel::class.java.simpleName)
+        RxNetWork.instance.getApi(CodekkOpListViewModel::class.java.simpleName,
                 RxNetWork
                         .observable(CodekkServer::class.java)
                         .getOpList(page, "array")
@@ -42,22 +42,22 @@ class CodekkOpListViewModel(application: Application) : AndroidViewModel(applica
     }
 
     override fun onNetWorkStart() {
-        opList.value = BaseEntity(BaseEntity.REFRESH, page, ObservableArrayList())
+        opList.value = BaseEntity(ENTITY_REFRESH, page, ObservableArrayList())
     }
 
     override fun onNetWorkError(e: Throwable) {
-        opList.value = BaseEntity(if (page == 1) BaseEntity.ERROR else BaseEntity.REFRESH_ERROR, page, ObservableArrayList())
+        opList.value = BaseEntity(if (page == 1) ENTITY_ERROR else ENTITY_REFRESH_ERROR, page, ObservableArrayList())
     }
 
     override fun onNetWorkSuccess(data: CodekkOpListModel) {
         if (page != 1 && data.projectArray.isEmpty()) {
-            opList.value = BaseEntity(BaseEntity.NOMORE, page, data.projectArray)
+            opList.value = BaseEntity(ENTITY_NOMORE, page, data.projectArray)
             return
         }
         if (page == 1 && data.projectArray.isEmpty()) {
-            opList.value = BaseEntity(BaseEntity.EMPTY, page, data.projectArray)
+            opList.value = BaseEntity(ENTITY_EMPTY, page, data.projectArray)
         } else {
-            opList.value = BaseEntity(BaseEntity.SUCCESS, page, data.projectArray)
+            opList.value = BaseEntity(ENTITY_SUCCESS, page, data.projectArray)
             ++page
         }
     }

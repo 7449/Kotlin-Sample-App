@@ -5,6 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MediatorLiveData
 import com.blog.model.JsoupManager
 import com.common.base.BaseEntity
+import com.common.base.ENTITY_ERROR
+import com.common.base.ENTITY_LOADING
+import com.common.base.ENTITY_SUCCESS
 import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 import io.reactivex.jsoup.network.manager.RxJsoupNetWorkListener
 import org.jsoup.nodes.Document
@@ -17,8 +20,8 @@ class BlogDetailViewModel(application: Application) : AndroidViewModel(applicati
     val blogDetail: MediatorLiveData<BaseEntity<String>> = MediatorLiveData()
 
     fun request(url: String): BlogDetailViewModel {
-        RxJsoupNetWork.getInstance().cancel(javaClass.simpleName)
-        RxJsoupNetWork.getInstance().getApi(javaClass.simpleName, url, this)
+        RxJsoupNetWork.getInstance().cancel(BlogDetailViewModel::class.java.simpleName)
+        RxJsoupNetWork.getInstance().getApi(BlogDetailViewModel::class.java.simpleName, url, this)
         return this
     }
 
@@ -26,16 +29,16 @@ class BlogDetailViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     override fun onNetWorkError(e: Throwable?) {
-        blogDetail.value = BaseEntity(BaseEntity.ERROR, 0, null)
+        blogDetail.value = BaseEntity(type = ENTITY_ERROR)
     }
 
     override fun getT(document: Document): String = JsoupManager.getDetail(document)
 
     override fun onNetWorkStart() {
-        blogDetail.value = BaseEntity(BaseEntity.LOADING, 0, null)
+        blogDetail.value = BaseEntity(type = ENTITY_LOADING)
     }
 
     override fun onNetWorkSuccess(t: String) {
-        blogDetail.value = BaseEntity(BaseEntity.SUCCESS, 0, t)
+        blogDetail.value = BaseEntity(ENTITY_SUCCESS, 0, t)
     }
 }

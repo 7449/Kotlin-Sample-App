@@ -1,6 +1,7 @@
 package com.zhihu
 
-import com.common.utils.UIUtils
+import com.common.App
+
 
 /**
  *   @author y
@@ -19,24 +20,24 @@ object ZhiHuConstant {
 
     fun getTabName(type: String): Array<String> {
         return when (type) {
-            ZhiHuConstant.ZHIHU -> UIUtils.getStringArray(R.array.zhihu_zhihu)
-            ZhiHuConstant.MOVIE -> UIUtils.getStringArray(R.array.zhihu_movie)
-            ZhiHuConstant.MUSIC -> UIUtils.getStringArray(R.array.zhihu_music)
-            ZhiHuConstant.DEVELOP -> UIUtils.getStringArray(R.array.zhihu_develop)
-            ZhiHuConstant.BOOK -> UIUtils.getStringArray(R.array.zhihu_book)
-            else -> UIUtils.getStringArray(R.array.zhihu_internet)
+            ZhiHuConstant.ZHIHU -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_zhihu)
+            ZhiHuConstant.MOVIE -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_movie)
+            ZhiHuConstant.MUSIC -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_music)
+            ZhiHuConstant.DEVELOP -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_develop)
+            ZhiHuConstant.BOOK -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_book)
+            else -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_internet)
         }
     }
 
 
     fun getSuffix(position: Int, type: String): String {
         return when (type) {
-            ZhiHuConstant.ZHIHU -> UIUtils.getStringArray(R.array.zhihu_zhihu_suffix)[position]
-            ZhiHuConstant.MOVIE -> UIUtils.getStringArray(R.array.zhihu_movie_suffix)[position]
-            ZhiHuConstant.MUSIC -> UIUtils.getStringArray(R.array.zhihu_music_suffix)[position]
-            ZhiHuConstant.DEVELOP -> UIUtils.getStringArray(R.array.zhihu_develop_suffix)[position]
-            ZhiHuConstant.BOOK -> UIUtils.getStringArray(R.array.zhihu_book_suffix)[position]
-            ZhiHuConstant.INTERNET -> UIUtils.getStringArray(R.array.zhihu_internet_suffix)[position]
+            ZhiHuConstant.ZHIHU -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_zhihu_suffix)[position]
+            ZhiHuConstant.MOVIE -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_movie_suffix)[position]
+            ZhiHuConstant.MUSIC -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_music_suffix)[position]
+            ZhiHuConstant.DEVELOP -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_develop_suffix)[position]
+            ZhiHuConstant.BOOK -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_book_suffix)[position]
+            ZhiHuConstant.INTERNET -> App.instance.applicationContext.resources.getStringArray(R.array.zhihu_internet_suffix)[position]
             else -> ""
         }
     }

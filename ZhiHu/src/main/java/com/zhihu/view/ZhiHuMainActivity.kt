@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.common.base.BaseActivity
 import com.common.databinding.RootBinding
-import com.common.utils.UIUtils
 import com.google.android.material.navigation.NavigationView
 import com.zhihu.R
 import com.zhihu.ZhiHuConstant
@@ -29,9 +28,9 @@ class ZhiHuMainActivity : BaseActivity<ActivityZhihuMainBinding>(), NavigationVi
     }
 
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
-        rootBinding.title = UIUtils.getString(R.string.zhihu_zhihu)
+        rootBinding.title = getString(R.string.zhihu_zhihu)
         binding.zhihuDrawerMenu.setNavigationItemSelectedListener(this)
-        replaceFragment(UIUtils.getString(R.string.zhihu_zhihu), ZhiHuConstant.ZHIHU)
+        replaceFragment(getString(R.string.zhihu_zhihu), ZhiHuConstant.ZHIHU)
     }
 
     private fun replaceFragment(title: String, type: String) {

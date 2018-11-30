@@ -6,7 +6,7 @@ import com.blog.view.BlogListActivity
 import com.codekk.view.CodekkMainActivity
 import com.common.base.BaseActivity
 import com.common.databinding.RootBinding
-import com.common.utils.UIUtils
+import com.common.utils.openActivity
 import com.zhihu.view.ZhiHuMainActivity
 import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 import io.reactivex.network.RxNetWork
@@ -16,7 +16,7 @@ import sample.app.k.databinding.ActivityMainBinding
 class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
 
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
-        rootBinding.title = UIUtils.getString(R.string.app_name)
+        rootBinding.title = getString(R.string.app_name)
         binding.zhihu.setOnClickListener(this)
         binding.blog.setOnClickListener(this)
         binding.jsoup.setOnClickListener(this)
@@ -25,10 +25,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.blog -> UIUtils.startActivity(BlogListActivity().javaClass)
-//            R.id.jsoup -> UIUtils.startActivity(JsoupMainActivity().javaClass)
-            R.id.zhihu -> UIUtils.startActivity(ZhiHuMainActivity().javaClass)
-            R.id.codeKK -> UIUtils.startActivity(CodekkMainActivity().javaClass)
+            R.id.blog -> openActivity(BlogListActivity().javaClass)
+//            R.id.jsoup -> openActivity(JsoupMainActivity().javaClass)
+            R.id.zhihu -> openActivity(ZhiHuMainActivity().javaClass)
+            R.id.codeKK -> openActivity(CodekkMainActivity().javaClass)
         }
     }
 

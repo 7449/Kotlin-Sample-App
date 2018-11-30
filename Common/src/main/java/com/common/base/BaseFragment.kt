@@ -10,9 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.common.R
-import com.status.layout.OnStatusClickListener
-import com.status.layout.Status
-import com.status.layout.StatusLayout
+import com.status.layout.*
 
 /**
  * @author y
@@ -48,12 +46,12 @@ abstract class BaseFragment<BIND : ViewDataBinding> : Fragment(), OnStatusClickL
         mStatusLayout.addEmptyView(R.layout.layout_status_empty)
         mStatusLayout.addLoadingView(R.layout.layout_status_loading)
         mStatusLayout.addErrorView(R.layout.layout_status_error)
-        mStatusLayout.setStatus(Status.SUCCESS)
-        binding = DataBindingUtil.bind(mStatusLayout.getView(Status.SUCCESS))!!
-        mStatusLayout.getView(Status.EMPTY).visibility = View.GONE
-        mStatusLayout.getView(Status.LOADING).visibility = View.GONE
-        mStatusLayout.getView(Status.ERROR).visibility = View.GONE
-        mStatusLayout.setOnStatusClickListener(this)
+        mStatusLayout.setStatus(SUCCESS)
+        binding = DataBindingUtil.bind(mStatusLayout.getView(SUCCESS) ?: View(mActivity))!!
+        mStatusLayout.getView(EMPTY)?.visibility = View.GONE
+        mStatusLayout.getView(LOADING)?.visibility = View.GONE
+        mStatusLayout.getView(ERROR)?.visibility = View.GONE
+        mStatusLayout.onStatusClickListener = this
     }
 
     abstract fun getLayoutId(): Int

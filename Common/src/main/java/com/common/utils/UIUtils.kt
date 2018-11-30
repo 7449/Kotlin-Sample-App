@@ -1,73 +1,75 @@
 package com.common.utils
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import com.common.App
-import com.common.R
+import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 
 /**
  * by y on 25/10/2017.
  */
-object UIUtils {
-    val context: Context
-        get() = App.instance
 
-    fun getDrawable(id: Int): Drawable? = ContextCompat.getDrawable(context, id)
+fun Activity.openActivity(clz: Class<*>, bundle: Bundle) {
+    val intent = Intent(this, clz)
+    intent.putExtras(bundle)
+    startActivity(intent)
+}
 
-    fun getColor(id: Int): Int = ContextCompat.getColor(context, id)
+fun Activity.openActivity(clz: Class<*>) {
+    val intent = Intent(this, clz)
+    startActivity(intent)
+}
 
-    fun getString(id: Int): String = context.resources.getString(id)
+fun Activity.toast(`object`: Any) {
+    Toast.makeText(this, `object`.toString(), Toast.LENGTH_LONG).show()
+}
 
-    fun getStringArray(id: Int): Array<String> = context.resources.getStringArray(id)
+fun Activity.toast(id: Int) {
+    Toast.makeText(this, id, Toast.LENGTH_LONG).show()
+}
 
-    fun startActivity(clz: Class<*>) {
-        val intent = Intent(context, clz)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        context.startActivity(intent)
-    }
+fun Activity.snackBar(view: View, `object`: Any) {
+    Snackbar.make(view, `object`.toString(), Snackbar.LENGTH_SHORT).show()
+}
 
-    fun startActivity(clz: Class<*>, bundle: Bundle) {
-        val intent = Intent(context, clz)
-        intent.putExtras(bundle)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        context.startActivity(intent)
-    }
+fun Activity.snackBar(view: View, id: Int) {
+    Snackbar.make(view, id, Snackbar.LENGTH_SHORT).show()
+}
 
-    fun toast(`object`: Any) {
-        Toast.makeText(context, `object`.toString(), Toast.LENGTH_LONG).show()
-    }
+fun Activity.getStringArray(id: Int): Array<String> {
+    return resources.getStringArray(id)
+}
 
-    fun toast(id: Int) {
-        Toast.makeText(context, id, Toast.LENGTH_LONG).show()
-    }
+fun Fragment.openActivity(clz: Class<*>, bundle: Bundle) {
+    val intent = Intent(activity, clz)
+    intent.putExtras(bundle)
+    startActivity(intent)
+}
 
-    fun snackBar(view: View, `object`: Any) {
-        Snackbar.make(view, `object`.toString(), Snackbar.LENGTH_SHORT).show()
-    }
+fun Fragment.openActivity(clz: Class<*>) {
+    val intent = Intent(activity, clz)
+    startActivity(intent)
+}
 
-    fun snackBar(view: View, id: Int) {
-        Snackbar.make(view, id, Snackbar.LENGTH_SHORT).show()
-    }
+fun Fragment.toast(`object`: Any) {
+    Toast.makeText(activity, `object`.toString(), Toast.LENGTH_LONG).show()
+}
 
-    fun snackBar(view: View, `object`: Any, color: Int) {
-        Snackbar.make(view, `object`.toString(), Snackbar.LENGTH_SHORT)
-                .setActionTextColor(color)
-                .show()
-    }
+fun Fragment.toast(id: Int) {
+    Toast.makeText(activity, id, Toast.LENGTH_LONG).show()
+}
 
-    fun share(activity: Activity, message: String) {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_TEXT, message)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        activity.startActivity(Intent.createChooser(intent, getString(R.string.share)))
-    }
+fun Fragment.snackBar(view: View, `object`: Any) {
+    Snackbar.make(view, `object`.toString(), Snackbar.LENGTH_SHORT).show()
+}
 
+fun Fragment.snackBar(view: View, id: Int) {
+    Snackbar.make(view, id, Snackbar.LENGTH_SHORT).show()
+}
+
+fun Fragment.getStringArray(id: Int): Array<String> {
+    return resources.getStringArray(id)
 }

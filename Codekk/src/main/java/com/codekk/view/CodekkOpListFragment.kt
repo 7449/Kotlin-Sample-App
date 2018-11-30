@@ -12,14 +12,16 @@ import com.codekk.databinding.FragmentCodekkOpListBinding
 import com.codekk.databinding.ItemCodekkOpListBinding
 import com.codekk.model.CodekkOpListModel
 import com.codekk.viewmodel.CodekkOpListViewModel
-import com.common.base.BaseEntity
-import com.common.base.BaseFragment
+import com.common.base.*
 import com.common.base.adapter.DataBindingAdapter
 import com.common.base.adapter.OnBind
 import com.common.base.adapter.OnItemClickListener
-import com.common.utils.UIUtils
+import com.common.utils.toast
 import com.common.widget.LoadMoreRecyclerView
-import com.status.layout.Status
+import com.status.layout.EMPTY
+import com.status.layout.ERROR
+import com.status.layout.SUCCESS
+import io.reactivex.network.RxNetWork
 
 /**
  * @author y
@@ -52,29 +54,33 @@ class CodekkOpListFragment : BaseFragment<FragmentCodekkOpListBinding>(),
     }
 
     override fun onRefresh() = viewModel.onRefresh()
+
     override fun onLoadMore() = viewModel.onLoadMore()
-    override fun onChanged(opList: BaseEntity<ObservableArrayList<CodekkOpListModel.ProjectArrayBean>>?) {
-        if (opList == null) {
-            onChangeStatusLayout(Status.ERROR)
-            return
-        }
+
+    override fun onChanged(opList: BaseEntity<ObservableArrayList<CodekkOpListModel.ProjectArrayBean>>) {
         when (opList.type) {
-            BaseEntity.EMPTY -> onChangeStatusLayout(Status.EMPTY)
-            BaseEntity.REFRESH_ERROR -> binding.codekkRefreshLayout.isRefreshing = false
-            BaseEntity.REFRESH -> binding.codekkRefreshLayout.isRefreshing = true
-            BaseEntity.ERROR -> {
+            ENTITY_EMPTY -> {
+                onChangeStatusLayout(EMPTY)
+            }
+            ENTITY_REFRESH_ERROR -> {
+                binding.codekkRefreshLayout.isRefreshing = false
+            }
+            ENTITY_REFRESH -> {
+                binding.codekkRefreshLayout.isRefreshing = true
+            }
+            ENTITY_ERROR -> {
                 if (opList.page == 1) {
-                    onChangeStatusLayout(Status.ERROR)
-                } else {
-                    //
+                    onChangeStatusLayout(ERROR)
                 }
             }
-            BaseEntity.NOMORE -> UIUtils.toast(R.string.codekk_no_more)
-            BaseEntity.SUCCESS -> {
+            ENTITY_NOMORE -> {
+                toast(R.string.codekk_no_more)
+            }
+            ENTITY_SUCCESS -> {
                 if (opList.page == 1) {
                     mAdapter.removeAll()
                 }
-                onChangeStatusLayout(Status.SUCCESS)
+                onChangeStatusLayout(SUCCESS)
                 binding.codekkRefreshLayout.isRefreshing = false
                 mAdapter.addAll(opList.data!!)
             }
@@ -86,6 +92,11 @@ class CodekkOpListFragment : BaseFragment<FragmentCodekkOpListBinding>(),
 
     override fun onBind(bind: ItemCodekkOpListBinding, position: Int, info: CodekkOpListModel.ProjectArrayBean) {
         bind.entity = info
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        RxNetWork.instance.cancel(CodekkOpListViewModel::class.java.simpleName)
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_codekk_op_list
