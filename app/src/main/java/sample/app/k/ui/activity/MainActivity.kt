@@ -1,7 +1,6 @@
 package sample.app.k.ui.activity
 
 import android.os.Bundle
-import android.view.View
 import com.blog.view.BlogListActivity
 import com.codekk.view.CodekkMainActivity
 import com.common.base.BaseActivity
@@ -13,26 +12,17 @@ import io.reactivex.network.RxNetWork
 import sample.app.k.R
 import sample.app.k.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+
+    override val layoutId: Int = R.layout.activity_main
 
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
         rootBinding.title = getString(R.string.app_name)
-        binding.zhihu.setOnClickListener(this)
-        binding.blog.setOnClickListener(this)
-        binding.jsoup.setOnClickListener(this)
-        binding.codeKK.setOnClickListener(this)
+        binding.zhihu.setOnClickListener { openActivity(ZhiHuMainActivity().javaClass) }
+        binding.blog.setOnClickListener { openActivity(BlogListActivity().javaClass) }
+//        binding.jsoup.setOnClickListener { openActivity(JsoupMainActivity().javaClass) }
+        binding.codeKK.setOnClickListener { openActivity(CodekkMainActivity().javaClass) }
     }
-
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.blog -> openActivity(BlogListActivity().javaClass)
-//            R.id.jsoup -> openActivity(JsoupMainActivity().javaClass)
-            R.id.zhihu -> openActivity(ZhiHuMainActivity().javaClass)
-            R.id.codeKK -> openActivity(CodekkMainActivity().javaClass)
-        }
-    }
-
-    override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun onDestroy() {
         super.onDestroy()

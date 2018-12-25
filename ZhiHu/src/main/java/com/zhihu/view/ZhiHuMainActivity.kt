@@ -39,5 +39,5 @@ class ZhiHuMainActivity : BaseActivity<ActivityZhihuMainBinding>(), NavigationVi
     }
 
 
-    override fun getLayoutId(): Int = R.layout.activity_zhihu_main
+    override val layoutId: Int = R.layout.activity_zhihu_main
 }

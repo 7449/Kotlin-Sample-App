@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: '../version.gradle'
 
@@ -32,4 +33,5 @@ dependencies {
     api "com.afollestad.material-dialogs:core:$apiVersion.dialogVersion"
     api "com.github.mukeshsolanki:MarkdownView-Android:$apiVersion.markdownViewVersion"
     api "com.google.android:flexbox:$apiVersion.flexboxVersion"
+    api "com.ydevelop:rv-adapter:$apiVersion.adapterVersion"
 }

@@ -7,20 +7,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.codekk.BR
 import com.codekk.R
 import com.codekk.databinding.FragmentCodekkOpListBinding
-import com.codekk.databinding.ItemCodekkOpListBinding
 import com.codekk.model.CodekkOpListModel
 import com.codekk.viewmodel.CodekkOpListViewModel
 import com.common.base.*
-import com.common.base.adapter.DataBindingAdapter
-import com.common.base.adapter.OnBind
-import com.common.base.adapter.OnItemClickListener
 import com.common.utils.toast
 import com.common.widget.LoadMoreRecyclerView
 import com.status.layout.EMPTY
 import com.status.layout.ERROR
 import com.status.layout.SUCCESS
+import com.xadapter.OnItemClickListener
+import com.xadapter.adapter.XDataBindingAdapter
+import com.xadapter.adapter.XDataBindingAdapterFactory
 import io.reactivex.network.RxNetWork
 
 /**
@@ -30,20 +30,20 @@ class CodekkOpListFragment : BaseFragment<FragmentCodekkOpListBinding>(),
         OnItemClickListener<CodekkOpListModel.ProjectArrayBean>,
         LoadMoreRecyclerView.LoadMoreListener,
         SwipeRefreshLayout.OnRefreshListener,
-        OnBind<CodekkOpListModel.ProjectArrayBean, ItemCodekkOpListBinding>,
         Observer<BaseEntity<ObservableArrayList<CodekkOpListModel.ProjectArrayBean>>> {
 
 
-    private lateinit var mAdapter: DataBindingAdapter<CodekkOpListModel.ProjectArrayBean, ItemCodekkOpListBinding>
+    private lateinit var mAdapter: XDataBindingAdapter<CodekkOpListModel.ProjectArrayBean>
     private lateinit var viewModel: CodekkOpListViewModel
 
     override fun initCreateView(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(CodekkOpListViewModel::class.java)
         binding.layoutManager = LinearLayoutManager(mActivity)
-        mAdapter = DataBindingAdapter<CodekkOpListModel.ProjectArrayBean, ItemCodekkOpListBinding>()
-                .initLayoutId(R.layout.item_codekk_op_list)
-                .setOnItemClickListener(this)
-                .onBind(this)
+        mAdapter = XDataBindingAdapterFactory(BR.entity)
+        mAdapter.apply {
+            itemLayoutId = R.layout.item_codekk_op_list
+            onItemClickListener = this@CodekkOpListFragment
+        }
         binding.codekkRecyclerView.setHasFixedSize(true)
         binding.codekkRecyclerView.setLoadingMore(this)
         binding.codekkRecyclerView.setRefreshLayout(binding.codekkRefreshLayout)
@@ -87,11 +87,7 @@ class CodekkOpListFragment : BaseFragment<FragmentCodekkOpListBinding>(),
         }
     }
 
-    override fun onItemClick(view: View, position: Int, info: CodekkOpListModel.ProjectArrayBean) {
-    }
-
-    override fun onBind(bind: ItemCodekkOpListBinding, position: Int, info: CodekkOpListModel.ProjectArrayBean) {
-        bind.entity = info
+    override fun onItemClick(view: View, position: Int, entity: CodekkOpListModel.ProjectArrayBean) {
     }
 
     override fun onDestroyView() {
@@ -99,5 +95,5 @@ class CodekkOpListFragment : BaseFragment<FragmentCodekkOpListBinding>(),
         RxNetWork.instance.cancel(CodekkOpListViewModel::class.java.simpleName)
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_codekk_op_list
+    override val layoutId: Int = R.layout.fragment_codekk_op_list
 }

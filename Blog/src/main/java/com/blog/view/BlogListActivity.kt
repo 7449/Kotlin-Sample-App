@@ -10,22 +10,23 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.blog.BR
 import com.blog.R
 import com.blog.databinding.ActivityBlogListBinding
-import com.blog.databinding.ItemBlogListBinding
 import com.blog.model.BlogListModel
 import com.blog.viewmodel.BlogListViewModel
 import com.common.base.*
-import com.common.base.adapter.DataBindingAdapter
-import com.common.base.adapter.OnBind
-import com.common.base.adapter.OnItemClickListener
 import com.common.databinding.RootBinding
 import com.common.utils.openActivity
 import com.common.utils.toast
 import com.common.widget.LoadMoreRecyclerView
+import com.socks.library.KLog
 import com.status.layout.EMPTY
 import com.status.layout.ERROR
 import com.status.layout.SUCCESS
+import com.xadapter.OnItemClickListener
+import com.xadapter.adapter.XDataBindingAdapter
+import com.xadapter.adapter.XDataBindingAdapterFactory
 import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 
 /**
@@ -33,22 +34,23 @@ import io.reactivex.jsoup.network.manager.RxJsoupNetWork
  */
 class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
         OnItemClickListener<BlogListModel>,
-        OnBind<BlogListModel, ItemBlogListBinding>,
         LoadMoreRecyclerView.LoadMoreListener,
         SwipeRefreshLayout.OnRefreshListener,
         Observer<BaseEntity<ObservableArrayList<BlogListModel>>> {
 
-    private lateinit var mAdapter: DataBindingAdapter<BlogListModel, ItemBlogListBinding>
+    private lateinit var mAdapter: XDataBindingAdapter<BlogListModel>
     private lateinit var viewModel: BlogListViewModel
 
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(BlogListViewModel::class.java)
         rootBinding.title = getString(R.string.blog_list_title)
+
         binding.layoutManager = LinearLayoutManager(this)
-        mAdapter = DataBindingAdapter<BlogListModel, ItemBlogListBinding>()
-                .initLayoutId(R.layout.item_blog_list)
-                .setOnItemClickListener(this)
-                .onBind(this)
+        mAdapter = XDataBindingAdapterFactory(BR.entity)
+        mAdapter.apply {
+            itemLayoutId = R.layout.item_blog_list
+            onItemClickListener = this@BlogListActivity
+        }
         binding.blogRecyclerView.setHasFixedSize(true)
         binding.blogRecyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         binding.blogRecyclerView.setLoadingMore(this)
@@ -64,6 +66,7 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
     override fun onLoadMore() = viewModel.onLoadMore()
 
     override fun onChanged(blogList: BaseEntity<ObservableArrayList<BlogListModel>>) {
+        KLog.d(blogList.type)
         when (blogList.type) {
             ENTITY_EMPTY -> {
                 onChangeStatusLayout(EMPTY)
@@ -93,15 +96,11 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
         }
     }
 
-    override fun onItemClick(view: View, position: Int, info: BlogListModel) {
+    override fun onItemClick(view: View, position: Int, entity: BlogListModel) {
         openActivity(BlogDetailActivity().javaClass, Bundle().apply {
-            putString(BLOG_DETAIL_TITLE, info.title)
-            putString(BLOG_DETAIL_URL, info.detailUrl)
+            putString(BLOG_DETAIL_TITLE, entity.title)
+            putString(BLOG_DETAIL_URL, entity.detailUrl)
         })
-    }
-
-    override fun onBind(bind: ItemBlogListBinding, position: Int, info: BlogListModel) {
-        bind.entity = info
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -121,5 +120,5 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
         RxJsoupNetWork.getInstance().cancel(BlogListViewModel::class.java.simpleName)
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_blog_list
+    override val layoutId: Int = R.layout.activity_blog_list
 }

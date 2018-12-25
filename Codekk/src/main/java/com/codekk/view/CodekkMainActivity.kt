@@ -54,6 +54,6 @@ class CodekkMainActivity : BaseActivity<ActivityCodekkMainBinding>(),
     }
 
 
-    override fun getLayoutId(): Int = R.layout.activity_codekk_main
+    override val layoutId: Int = R.layout.activity_codekk_main
 
 }

@@ -15,6 +15,6 @@ class CodekkSettingActivity : BaseActivity<ActivityCodekkSettingBinding>() {
         rootBinding.title = getString(R.string.codekk_setting_title)
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_codekk_setting
+    override val layoutId: Int = R.layout.activity_codekk_setting
 
 }

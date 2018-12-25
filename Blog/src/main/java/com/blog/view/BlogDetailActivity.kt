@@ -49,5 +49,5 @@ class BlogDetailActivity : BaseActivity<ActivityBlogDetailBinding>(), Observer<B
         RxJsoupNetWork.getInstance().cancel(BlogDetailViewModel::class.java.simpleName)
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_blog_detail
+    override val layoutId: Int = R.layout.activity_blog_detail
 }

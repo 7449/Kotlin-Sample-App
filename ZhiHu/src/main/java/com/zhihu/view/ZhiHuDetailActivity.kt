@@ -53,7 +53,7 @@ class ZhiHuDetailActivity : BaseActivity<ActivityZhihuDetailBinding>(), Observer
         }
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_zhihu_detail
+    override val layoutId: Int = R.layout.activity_zhihu_detail
 
     override fun onDestroy() {
         binding.zhihuDetailWebView.reset()

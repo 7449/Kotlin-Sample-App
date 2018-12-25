@@ -7,17 +7,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.common.base.*
-import com.common.base.adapter.DataBindingAdapter
-import com.common.base.adapter.OnBind
-import com.common.base.adapter.OnItemClickListener
 import com.common.utils.openActivity
 import com.status.layout.ERROR
 import com.status.layout.LOADING
 import com.status.layout.SUCCESS
+import com.xadapter.OnItemClickListener
+import com.xadapter.adapter.XDataBindingAdapter
+import com.xadapter.adapter.XDataBindingAdapterFactory
+import com.zhihu.BR
 import com.zhihu.R
 import com.zhihu.ZhiHuConstant
 import com.zhihu.databinding.FragmentZhihuListBinding
-import com.zhihu.databinding.ItemZhihuListBinding
 import com.zhihu.model.ZhiHuListModel
 import com.zhihu.viewmodel.ZhiHuListViewModel
 import io.reactivex.network.RxNetWork
@@ -27,7 +27,6 @@ import io.reactivex.network.RxNetWork
  */
 class ZhiHuListFragment : LazyFragment<FragmentZhihuListBinding>(),
         OnItemClickListener<ZhiHuListModel>,
-        OnBind<ZhiHuListModel, ItemZhihuListBinding>,
         Observer<BaseEntity<ObservableArrayList<ZhiHuListModel>>> {
 
 
@@ -42,7 +41,7 @@ class ZhiHuListFragment : LazyFragment<FragmentZhihuListBinding>(),
         }
     }
 
-    private lateinit var mAdapter: DataBindingAdapter<ZhiHuListModel, ItemZhihuListBinding>
+    private lateinit var mAdapter: XDataBindingAdapter<ZhiHuListModel>
     private lateinit var viewModel: ZhiHuListViewModel
 
     override fun initCreateView(savedInstanceState: Bundle?) {
@@ -51,10 +50,11 @@ class ZhiHuListFragment : LazyFragment<FragmentZhihuListBinding>(),
     override fun initActivityCreated() {
         viewModel = ViewModelProviders.of(this).get(ZhiHuListViewModel::class.java)
         binding.layoutManager = LinearLayoutManager(mActivity)
-        mAdapter = DataBindingAdapter<ZhiHuListModel, ItemZhihuListBinding>()
-                .initLayoutId(R.layout.item_zhihu_list)
-                .setOnItemClickListener(this)
-                .onBind(this)
+        mAdapter = XDataBindingAdapterFactory(BR.entity)
+        mAdapter.apply {
+            itemLayoutId = R.layout.item_zhihu_list
+            onItemClickListener = this@ZhiHuListFragment
+        }
         binding.zhihuRecyclerView.setHasFixedSize(true)
         binding.zhihuRecyclerView.adapter = mAdapter
         viewModel.request(ZhiHuConstant.getSuffix(bundle?.getInt(ZhiHuConstant.FRAGMENT_INDEX)
@@ -62,14 +62,10 @@ class ZhiHuListFragment : LazyFragment<FragmentZhihuListBinding>(),
                 .viewModelData.observe(this, this)
     }
 
-    override fun onItemClick(view: View, position: Int, info: ZhiHuListModel) {
+    override fun onItemClick(view: View, position: Int, entity: ZhiHuListModel) {
         val bundle = Bundle()
-        bundle.putInt(ZHIHU_DETAIL_SLUG, info.slug)
+        bundle.putInt(ZHIHU_DETAIL_SLUG, entity.slug)
         openActivity(ZhiHuDetailActivity().javaClass, bundle)
-    }
-
-    override fun onBind(bind: ItemZhihuListBinding, position: Int, info: ZhiHuListModel) {
-        bind.entity = info
     }
 
     override fun onChanged(zhihuList: BaseEntity<ObservableArrayList<ZhiHuListModel>>) {
@@ -92,6 +88,6 @@ class ZhiHuListFragment : LazyFragment<FragmentZhihuListBinding>(),
         RxNetWork.instance.cancel(ZhiHuListViewModel::class.java.simpleName)
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_zhihu_list
+    override val layoutId: Int = R.layout.fragment_zhihu_list
 
 }

@@ -6,20 +6,20 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.blog.BR
 import com.blog.R
 import com.blog.databinding.ActivityBlogTagBinding
-import com.blog.databinding.ItemBlogTagBinding
 import com.blog.model.BlogTagModel
 import com.blog.viewmodel.BlogTagViewModel
 import com.common.base.*
-import com.common.base.adapter.DataBindingAdapter
-import com.common.base.adapter.OnBind
-import com.common.base.adapter.OnItemClickListener
 import com.common.databinding.RootBinding
 import com.common.utils.openActivity
 import com.status.layout.ERROR
 import com.status.layout.LOADING
 import com.status.layout.SUCCESS
+import com.xadapter.OnItemClickListener
+import com.xadapter.adapter.XDataBindingAdapter
+import com.xadapter.adapter.XDataBindingAdapterFactory
 import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 
 /**
@@ -27,24 +27,24 @@ import io.reactivex.jsoup.network.manager.RxJsoupNetWork
  */
 class BlogTagActivity : BaseActivity<ActivityBlogTagBinding>(),
         OnItemClickListener<BlogTagModel>,
-        OnBind<BlogTagModel, ItemBlogTagBinding>,
         Observer<BaseEntity<ObservableArrayList<BlogTagModel>>> {
 
-    private lateinit var mAdapter: DataBindingAdapter<BlogTagModel, ItemBlogTagBinding>
+    private lateinit var mAdapter: XDataBindingAdapter<BlogTagModel>
 
     override fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?) {
         rootBinding.title = getString(R.string.blog_tag)
-        mAdapter = DataBindingAdapter<BlogTagModel, ItemBlogTagBinding>()
-                .initLayoutId(R.layout.item_blog_tag)
-                .setOnItemClickListener(this)
-                .onBind(this)
+        mAdapter = XDataBindingAdapterFactory(BR.entity)
+        mAdapter.apply {
+            itemLayoutId = R.layout.item_blog_tag
+            onItemClickListener = this@BlogTagActivity
+        }
         binding.layoutManager = LinearLayoutManager(this)
         binding.blogRecyclerView.setHasFixedSize(true)
         binding.blogRecyclerView.adapter = mAdapter
         ViewModelProviders.of(this).get(BlogTagViewModel::class.java).blogTag.observe(this, this)
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_blog_tag
+    override val layoutId: Int = R.layout.activity_blog_tag
 
     override fun onChanged(tagList: BaseEntity<ObservableArrayList<BlogTagModel>>) {
         when (tagList.type) {
@@ -61,15 +61,11 @@ class BlogTagActivity : BaseActivity<ActivityBlogTagBinding>(),
         }
     }
 
-    override fun onItemClick(view: View, position: Int, info: BlogTagModel) {
+    override fun onItemClick(view: View, position: Int, entity: BlogTagModel) {
         openActivity(BlogDetailActivity().javaClass, Bundle().apply {
-            putString(BLOG_DETAIL_TITLE, info.title)
-            putString(BLOG_DETAIL_URL, info.detailUrl)
+            putString(BLOG_DETAIL_TITLE, entity.title)
+            putString(BLOG_DETAIL_URL, entity.detailUrl)
         })
-    }
-
-    override fun onBind(bind: ItemBlogTagBinding, position: Int, info: BlogTagModel) {
-        bind.entity = info
     }
 
     override fun onDestroy() {

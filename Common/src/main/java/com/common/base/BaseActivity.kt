@@ -18,6 +18,7 @@ import com.status.layout.SUCCESS
  * by y on 31/10/2017.
  */
 abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnStatusClickListener {
+
     companion object {
         private const val MAIN_CLASS_NAME = "MainActivity"
     }
@@ -33,14 +34,14 @@ abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnSta
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
         rootBinding.statusLayout.onStatusClickListener = this
-        rootBinding.statusLayout.addSuccessView(getLayoutId())
+        rootBinding.statusLayout.addSuccessView(layoutId)
         binding = DataBindingUtil.bind(rootBinding.statusLayout.getView(SUCCESS)
                 ?: FrameLayout(this))!!
         initCreate(rootBinding, savedInstanceState)
     }
 
     abstract fun initCreate(rootBinding: RootBinding, savedInstanceState: Bundle?)
-    abstract fun getLayoutId(): Int
+    abstract val layoutId: Int
 
     open fun onStatusRetry() {
     }
@@ -81,5 +82,4 @@ abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnSta
         binding.unbind()
         rootBinding.unbind()
     }
-
 }

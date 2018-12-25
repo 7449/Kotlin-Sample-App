@@ -29,5 +29,5 @@ class ZhiHuTabFragment : BaseFragment<FragmentZhihuTabBinding>() {
         binding.zhihuViewPager.offscreenPageLimit = zhiHuTabAdapter.count
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_zhihu_tab
+    override val layoutId: Int = R.layout.fragment_zhihu_tab
 }

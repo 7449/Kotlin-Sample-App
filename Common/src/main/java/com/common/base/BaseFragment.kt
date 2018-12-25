@@ -42,7 +42,7 @@ abstract class BaseFragment<BIND : ViewDataBinding> : Fragment(), OnStatusClickL
 
     private fun initView(inflater: LayoutInflater) {
         mStatusLayout = StatusLayout(inflater.context)
-        mStatusLayout.addSuccessView(getLayoutId())
+        mStatusLayout.addSuccessView(layoutId)
         mStatusLayout.addEmptyView(R.layout.layout_status_empty)
         mStatusLayout.addLoadingView(R.layout.layout_status_loading)
         mStatusLayout.addErrorView(R.layout.layout_status_error)
@@ -54,7 +54,7 @@ abstract class BaseFragment<BIND : ViewDataBinding> : Fragment(), OnStatusClickL
         mStatusLayout.onStatusClickListener = this
     }
 
-    abstract fun getLayoutId(): Int
+    abstract val layoutId: Int
 
     open fun onStatusRetry() {
     }
