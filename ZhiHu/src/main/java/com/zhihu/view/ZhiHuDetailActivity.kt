@@ -8,9 +8,7 @@ import com.common.base.*
 import com.common.databinding.RootBinding
 import com.common.utils.ImageLoader
 import com.common.utils.snackBar
-import com.status.layout.ERROR
-import com.status.layout.LOADING
-import com.status.layout.SUCCESS
+import com.status.layout.StatusLayout
 import com.zhihu.R
 import com.zhihu.databinding.ActivityZhihuDetailBinding
 import com.zhihu.model.ZhiHuDetailModel
@@ -39,13 +37,13 @@ class ZhiHuDetailActivity : BaseActivity<ActivityZhihuDetailBinding>(), Observer
     override fun onChanged(zhihuDetail: BaseEntity<ZhiHuDetailModel>) {
         when (zhihuDetail.type) {
             ENTITY_ERROR -> {
-                onChangeStatusLayout(ERROR)
+                onChangeStatusLayout(StatusLayout.ERROR)
             }
             ENTITY_LOADING -> {
-                onChangeStatusLayout(LOADING)
+                onChangeStatusLayout(StatusLayout.LOADING)
             }
             ENTITY_SUCCESS -> {
-                onChangeStatusLayout(SUCCESS)
+                onChangeStatusLayout(StatusLayout.SUCCESS)
                 binding.title = zhihuDetail.data?.title
                 ImageLoader.display(binding.zhihuDetailImage, zhihuDetail.data?.titleImage ?: "")
                 binding.zhihuDetailWebView.loadDataUrl(zhihuDetail.data?.content ?: "")

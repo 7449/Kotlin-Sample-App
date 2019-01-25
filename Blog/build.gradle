@@ -24,6 +24,3 @@ android {
 dependencies {
     api project(':Common')
 }
-repositories {
-    mavenCentral()
-}

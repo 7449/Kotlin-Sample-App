@@ -8,9 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.common.base.*
 import com.common.utils.openActivity
-import com.status.layout.ERROR
-import com.status.layout.LOADING
-import com.status.layout.SUCCESS
+import com.status.layout.StatusLayout
 import com.xadapter.OnItemClickListener
 import com.xadapter.adapter.XDataBindingAdapter
 import com.xadapter.adapter.XDataBindingAdapterFactory
@@ -71,13 +69,13 @@ class ZhiHuListFragment : LazyFragment<FragmentZhihuListBinding>(),
     override fun onChanged(zhihuList: BaseEntity<ObservableArrayList<ZhiHuListModel>>) {
         when (zhihuList.type) {
             ENTITY_ERROR -> {
-                onChangeStatusLayout(ERROR)
+                onChangeStatusLayout(StatusLayout.ERROR)
             }
             ENTITY_LOADING -> {
-                onChangeStatusLayout(LOADING)
+                onChangeStatusLayout(StatusLayout.LOADING)
             }
             ENTITY_SUCCESS -> {
-                onChangeStatusLayout(SUCCESS)
+                onChangeStatusLayout(StatusLayout.SUCCESS)
                 mAdapter.addAll(zhihuList.data ?: ObservableArrayList())
             }
         }

@@ -21,9 +21,7 @@ import com.common.utils.openActivity
 import com.common.utils.toast
 import com.common.widget.LoadMoreRecyclerView
 import com.socks.library.KLog
-import com.status.layout.EMPTY
-import com.status.layout.ERROR
-import com.status.layout.SUCCESS
+import com.status.layout.StatusLayout
 import com.xadapter.OnItemClickListener
 import com.xadapter.adapter.XDataBindingAdapter
 import com.xadapter.adapter.XDataBindingAdapterFactory
@@ -69,7 +67,7 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
         KLog.d(blogList.type)
         when (blogList.type) {
             ENTITY_EMPTY -> {
-                onChangeStatusLayout(EMPTY)
+                onChangeStatusLayout(StatusLayout.EMPTY)
             }
             ENTITY_REFRESH_ERROR -> {
                 binding.blogRefreshLayout.isRefreshing = false
@@ -79,7 +77,7 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
             }
             ENTITY_ERROR -> {
                 if (blogList.page == 1) {
-                    onChangeStatusLayout(ERROR)
+                    onChangeStatusLayout(StatusLayout.ERROR)
                 }
             }
             ENTITY_NOMORE -> {
@@ -89,7 +87,7 @@ class BlogListActivity : BaseActivity<ActivityBlogListBinding>(),
                 if (blogList.page == 1) {
                     mAdapter.removeAll()
                 }
-                onChangeStatusLayout(SUCCESS)
+                onChangeStatusLayout(StatusLayout.SUCCESS)
                 binding.blogRefreshLayout.isRefreshing = false
                 mAdapter.addAll(blogList.data!!)
             }

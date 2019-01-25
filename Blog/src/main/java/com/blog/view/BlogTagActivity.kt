@@ -14,9 +14,7 @@ import com.blog.viewmodel.BlogTagViewModel
 import com.common.base.*
 import com.common.databinding.RootBinding
 import com.common.utils.openActivity
-import com.status.layout.ERROR
-import com.status.layout.LOADING
-import com.status.layout.SUCCESS
+import com.status.layout.StatusLayout
 import com.xadapter.OnItemClickListener
 import com.xadapter.adapter.XDataBindingAdapter
 import com.xadapter.adapter.XDataBindingAdapterFactory
@@ -49,13 +47,13 @@ class BlogTagActivity : BaseActivity<ActivityBlogTagBinding>(),
     override fun onChanged(tagList: BaseEntity<ObservableArrayList<BlogTagModel>>) {
         when (tagList.type) {
             ENTITY_ERROR -> {
-                onChangeStatusLayout(ERROR)
+                onChangeStatusLayout(StatusLayout.ERROR)
             }
             ENTITY_LOADING -> {
-                onChangeStatusLayout(LOADING)
+                onChangeStatusLayout(StatusLayout.LOADING)
             }
             ENTITY_SUCCESS -> {
-                onChangeStatusLayout(SUCCESS)
+                onChangeStatusLayout(StatusLayout.SUCCESS)
                 mAdapter.addAll(tagList.data ?: ObservableArrayList())
             }
         }

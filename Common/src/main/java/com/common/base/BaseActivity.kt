@@ -12,7 +12,7 @@ import com.common.R
 import com.common.databinding.RootBinding
 import com.socks.library.KLog
 import com.status.layout.OnStatusClickListener
-import com.status.layout.SUCCESS
+import com.status.layout.StatusLayout
 
 /**
  * by y on 31/10/2017.
@@ -35,7 +35,7 @@ abstract class BaseActivity<BIND : ViewDataBinding> : AppCompatActivity(), OnSta
         }
         rootBinding.statusLayout.onStatusClickListener = this
         rootBinding.statusLayout.addSuccessView(layoutId)
-        binding = DataBindingUtil.bind(rootBinding.statusLayout.getView(SUCCESS)
+        binding = DataBindingUtil.bind(rootBinding.statusLayout.getView(StatusLayout.SUCCESS)
                 ?: FrameLayout(this))!!
         initCreate(rootBinding, savedInstanceState)
     }

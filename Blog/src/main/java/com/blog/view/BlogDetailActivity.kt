@@ -8,9 +8,7 @@ import com.blog.databinding.ActivityBlogDetailBinding
 import com.blog.viewmodel.BlogDetailViewModel
 import com.common.base.*
 import com.common.databinding.RootBinding
-import com.status.layout.ERROR
-import com.status.layout.LOADING
-import com.status.layout.SUCCESS
+import com.status.layout.StatusLayout
 import io.reactivex.jsoup.network.manager.RxJsoupNetWork
 
 /**
@@ -32,13 +30,13 @@ class BlogDetailActivity : BaseActivity<ActivityBlogDetailBinding>(), Observer<B
     override fun onChanged(detail: BaseEntity<String>) {
         when (detail.type) {
             ENTITY_ERROR -> {
-                onChangeStatusLayout(ERROR)
+                onChangeStatusLayout(StatusLayout.ERROR)
             }
             ENTITY_LOADING -> {
-                onChangeStatusLayout(LOADING)
+                onChangeStatusLayout(StatusLayout.LOADING)
             }
             ENTITY_SUCCESS -> {
-                onChangeStatusLayout(SUCCESS)
+                onChangeStatusLayout(StatusLayout.SUCCESS)
                 binding.blogWebView.loadDataUrl(detail.data ?: "")
             }
         }

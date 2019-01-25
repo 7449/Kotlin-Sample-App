@@ -15,9 +15,7 @@ import com.codekk.viewmodel.CodekkOpListViewModel
 import com.common.base.*
 import com.common.utils.toast
 import com.common.widget.LoadMoreRecyclerView
-import com.status.layout.EMPTY
-import com.status.layout.ERROR
-import com.status.layout.SUCCESS
+import com.status.layout.StatusLayout
 import com.xadapter.OnItemClickListener
 import com.xadapter.adapter.XDataBindingAdapter
 import com.xadapter.adapter.XDataBindingAdapterFactory
@@ -60,7 +58,7 @@ class CodekkOpListFragment : BaseFragment<FragmentCodekkOpListBinding>(),
     override fun onChanged(opList: BaseEntity<ObservableArrayList<CodekkOpListModel.ProjectArrayBean>>) {
         when (opList.type) {
             ENTITY_EMPTY -> {
-                onChangeStatusLayout(EMPTY)
+                onChangeStatusLayout(StatusLayout.EMPTY)
             }
             ENTITY_REFRESH_ERROR -> {
                 binding.codekkRefreshLayout.isRefreshing = false
@@ -70,7 +68,7 @@ class CodekkOpListFragment : BaseFragment<FragmentCodekkOpListBinding>(),
             }
             ENTITY_ERROR -> {
                 if (opList.page == 1) {
-                    onChangeStatusLayout(ERROR)
+                    onChangeStatusLayout(StatusLayout.ERROR)
                 }
             }
             ENTITY_NOMORE -> {
@@ -80,7 +78,7 @@ class CodekkOpListFragment : BaseFragment<FragmentCodekkOpListBinding>(),
                 if (opList.page == 1) {
                     mAdapter.removeAll()
                 }
-                onChangeStatusLayout(SUCCESS)
+                onChangeStatusLayout(StatusLayout.SUCCESS)
                 binding.codekkRefreshLayout.isRefreshing = false
                 mAdapter.addAll(opList.data!!)
             }

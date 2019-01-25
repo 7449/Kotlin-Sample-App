@@ -7,6 +7,7 @@ import com.common.utils.SPUtils
 import com.socks.library.KLog
 import io.reactivex.network.RxNetWork
 import io.reactivex.network.SimpleRxNetOptionFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * by y on 27/09/2017.
@@ -17,7 +18,7 @@ class App : Application() {
         super.onCreate()
         context = applicationContext
         KLog.init(true, BuildConfig.APPLICATION_ID)
-        RxNetWork.initialization(SimpleRxNetOptionFactory("https://www.baidu.com", null, null))
+        RxNetWork.initialization(SimpleRxNetOptionFactory("https://www.baidu.com", GsonConverterFactory.create()))
         SPUtils.init(this)
     }
 

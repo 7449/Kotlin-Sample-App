@@ -23,12 +23,8 @@ android {
 }
 
 dependencies {
-    api project(':Common')
     api project(':Blog')
     api project(':Codekk')
     api project(':Jsoup')
     api project(':ZhiHu')
-}
-repositories {
-    mavenCentral()
 }
