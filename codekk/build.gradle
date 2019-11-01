@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -9,7 +9,6 @@ android {
     }
     compileSdkVersion localVersion.compileSdkVersion
     defaultConfig {
-        applicationId applicationIdVersion.applicationId
         minSdkVersion localVersion.minSdkVersion
         targetSdkVersion localVersion.targetSdkVersion
         versionCode localVersion.versionCode
@@ -17,7 +16,5 @@ android {
     }
 }
 dependencies {
-    api project(':blog')
-    api project(':codekk')
-    api project(':zhihu')
+    api project(':common')
 }

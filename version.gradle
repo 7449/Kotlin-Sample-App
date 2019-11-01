@@ -1,6 +1,6 @@
 ext.localVersion = [
-        compileSdkVersion: 28,
-        targetSdkVersion : 28,
+        compileSdkVersion: 29,
+        targetSdkVersion : 29,
         minSdkVersion    : 19,
 
         versionCode      : 1,
@@ -8,28 +8,30 @@ ext.localVersion = [
 ]
 
 ext.applicationIdVersion = [
-        applicationId: 'sample.app.k'
+        applicationId: 'com.app.k'
 ]
 
 ext.apiVersion = [
-        androidxVersion      : '1.0.2',
+        appcompatVersion     : '1.1.0',
         materialVersion      : '1.0.0',
-        lifecycleVersion     : '2.0.0',
+        lifecycleVersion     : '2.1.0',
 
-        kotlinVersion        : '1.3.20',
+        kotlinVersion        : '1.3.50',
+        andResGuardVersion   : '1.2.17',
+        gradleVersion        : '3.5.1',
 
         rxJsoupNetWorkVersion: '0.0.8',
         rxNetWorkVersion     : '0.1.93',
-        rxandroidVersion     : '2.1.0',
-        retrofitVersion      : '2.5.0',
+        rxandroidVersion     : '2.1.1',
+        retrofitVersion      : '2.6.2',
 
         logVersion           : '0.0.1',
         statusLayoutVersion  : 'beta04',
 
-        dialogVersion        : '2.0.0-rc8',
-        glideVersion         : '4.8.0',
-        markdownViewVersion  : '1.0.6',
-        flexboxVersion       : '1.1.0',
         adapterVersion       : '0.0.9.3',
+        dialogVersion        : '3.1.1',
+        glideVersion         : '4.10.0',
+        markdownViewVersion  : '1.0.8',
+        flexboxVersion       : '1.1.1',
 ]
 

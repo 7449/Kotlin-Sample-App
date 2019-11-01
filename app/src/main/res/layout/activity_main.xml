@@ -19,12 +19,6 @@
             android:text="@string/blog" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/jsoup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/jsoup" />
-
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/codeKK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
